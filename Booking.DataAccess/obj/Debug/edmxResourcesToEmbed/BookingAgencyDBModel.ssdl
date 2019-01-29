@@ -1,0 +1,284 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BookingAgencyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Accomodation">
+    <Key>
+      <PropertyRef Name="AccomodationId" />
+    </Key>
+    <Property Name="AccomodationId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Type" Type="tinyint" Nullable="false" />
+    <Property Name="Location" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Category" Type="tinyint" />
+    <Property Name="NoPersons" Type="tinyint" Nullable="false" />
+    <Property Name="Parking" Type="tinyint" />
+    <Property Name="Wifi" Type="tinyint" />
+    <Property Name="HB" Type="tinyint" />
+    <Property Name="TV" Type="tinyint" />
+    <Property Name="Kitchen" Type="tinyint" />
+    <Property Name="Bathroom" Type="tinyint" />
+    <Property Name="Price" Type="tinyint" Nullable="false" />
+    <Property Name="Description" Type="text" />
+  </EntityType>
+  <EntityType Name="AccomodationOwners">
+    <Key>
+      <PropertyRef Name="AccomodationId" />
+    </Key>
+    <Property Name="OwnerId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="AccomodationId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="aspnet_Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="LoweredUserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="MobileAlias" Type="nvarchar" MaxLength="16" />
+    <Property Name="IsAnonymous" Type="bit" Nullable="false" />
+    <Property Name="LastActivityDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BookingAgencyUsers">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Surname" Type="nvarchar" MaxLength="100" />
+    <Property Name="PIB" Type="nvarchar" MaxLength="100" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Comments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccomodationId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Comment" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Approved" Type="tinyint" Nullable="false" />
+    <Property Name="CommentDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employees">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="50" />
+    <Property Name="Salary" Type="int" />
+  </EntityType>
+  <EntityType Name="Rating">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccomodationId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Rating" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ReceivedMessages">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ReceiverId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Reservations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="AccomodationId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="StartPeriod" Type="datetime" Nullable="false" />
+    <Property Name="EndPeriod" Type="nvarchar" MaxLength="100" />
+    <Property Name="Confirmed" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="SentMessages">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccomodationId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="SenderId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Message" Type="text" />
+    <Property Name="MessageDate" Type="datetime" Nullable="false" />
+    <Property Name="MessageSeen" Type="tinyint" />
+  </EntityType>
+  <Association Name="FK__Comments__Accomo__7D0E9093">
+    <End Role="Accomodation" Type="Self.Accomodation" Multiplicity="1" />
+    <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Accomodation">
+        <PropertyRef Name="AccomodationId" />
+      </Principal>
+      <Dependent Role="Comments">
+        <PropertyRef Name="AccomodationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Comments__UserId__7C1A6C5A">
+    <End Role="BookingAgencyUsers" Type="Self.BookingAgencyUsers" Multiplicity="1" />
+    <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BookingAgencyUsers">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Comments">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Rating__Accomoda__7849DB76">
+    <End Role="Accomodation" Type="Self.Accomodation" Multiplicity="1" />
+    <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Accomodation">
+        <PropertyRef Name="AccomodationId" />
+      </Principal>
+      <Dependent Role="Rating">
+        <PropertyRef Name="AccomodationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Rating__UserId__7755B73D">
+    <End Role="BookingAgencyUsers" Type="Self.BookingAgencyUsers" Multiplicity="1" />
+    <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BookingAgencyUsers">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Rating">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ReceivedM__Recei__7FEAFD3E">
+    <End Role="BookingAgencyUsers" Type="Self.BookingAgencyUsers" Multiplicity="1" />
+    <End Role="ReceivedMessages" Type="Self.ReceivedMessages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BookingAgencyUsers">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="ReceivedMessages">
+        <PropertyRef Name="ReceiverId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Reservati__Accom__74794A92">
+    <End Role="Accomodation" Type="Self.Accomodation" Multiplicity="1" />
+    <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Accomodation">
+        <PropertyRef Name="AccomodationId" />
+      </Principal>
+      <Dependent Role="Reservations">
+        <PropertyRef Name="AccomodationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Reservati__UserI__73852659">
+    <End Role="BookingAgencyUsers" Type="Self.BookingAgencyUsers" Multiplicity="1" />
+    <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BookingAgencyUsers">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Reservations">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SentMessa__Accom__04AFB25B">
+    <End Role="Accomodation" Type="Self.Accomodation" Multiplicity="1" />
+    <End Role="SentMessages" Type="Self.SentMessages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Accomodation">
+        <PropertyRef Name="AccomodationId" />
+      </Principal>
+      <Dependent Role="SentMessages">
+        <PropertyRef Name="AccomodationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SentMessa__Sende__03BB8E22">
+    <End Role="BookingAgencyUsers" Type="Self.BookingAgencyUsers" Multiplicity="1" />
+    <End Role="SentMessages" Type="Self.SentMessages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BookingAgencyUsers">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="SentMessages">
+        <PropertyRef Name="SenderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AccomodationOwners_Accomodation">
+    <End Role="Accomodation" Type="Self.Accomodation" Multiplicity="1" />
+    <End Role="Accomodation1" Type="Self.Accomodation" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Accomodation">
+        <PropertyRef Name="AccomodationId" />
+      </Principal>
+      <Dependent Role="Accomodation1">
+        <PropertyRef Name="AccomodationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BookingAgencyModelStoreContainer">
+    <EntitySet Name="Accomodation" EntityType="Self.Accomodation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AccomodationOwners" EntityType="Self.AccomodationOwners" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="aspnet_Users" EntityType="Self.aspnet_Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BookingAgencyUsers" EntityType="Self.BookingAgencyUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rating" EntityType="Self.Rating" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ReceivedMessages" EntityType="Self.ReceivedMessages" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Reservations" EntityType="Self.Reservations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SentMessages" EntityType="Self.SentMessages" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Comments__Accomo__7D0E9093" Association="Self.FK__Comments__Accomo__7D0E9093">
+      <End Role="Accomodation" EntitySet="Accomodation" />
+      <End Role="Comments" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Comments__UserId__7C1A6C5A" Association="Self.FK__Comments__UserId__7C1A6C5A">
+      <End Role="BookingAgencyUsers" EntitySet="BookingAgencyUsers" />
+      <End Role="Comments" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Rating__Accomoda__7849DB76" Association="Self.FK__Rating__Accomoda__7849DB76">
+      <End Role="Accomodation" EntitySet="Accomodation" />
+      <End Role="Rating" EntitySet="Rating" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Rating__UserId__7755B73D" Association="Self.FK__Rating__UserId__7755B73D">
+      <End Role="BookingAgencyUsers" EntitySet="BookingAgencyUsers" />
+      <End Role="Rating" EntitySet="Rating" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ReceivedM__Recei__7FEAFD3E" Association="Self.FK__ReceivedM__Recei__7FEAFD3E">
+      <End Role="BookingAgencyUsers" EntitySet="BookingAgencyUsers" />
+      <End Role="ReceivedMessages" EntitySet="ReceivedMessages" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Reservati__Accom__74794A92" Association="Self.FK__Reservati__Accom__74794A92">
+      <End Role="Accomodation" EntitySet="Accomodation" />
+      <End Role="Reservations" EntitySet="Reservations" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Reservati__UserI__73852659" Association="Self.FK__Reservati__UserI__73852659">
+      <End Role="BookingAgencyUsers" EntitySet="BookingAgencyUsers" />
+      <End Role="Reservations" EntitySet="Reservations" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SentMessa__Accom__04AFB25B" Association="Self.FK__SentMessa__Accom__04AFB25B">
+      <End Role="Accomodation" EntitySet="Accomodation" />
+      <End Role="SentMessages" EntitySet="SentMessages" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SentMessa__Sende__03BB8E22" Association="Self.FK__SentMessa__Sende__03BB8E22">
+      <End Role="BookingAgencyUsers" EntitySet="BookingAgencyUsers" />
+      <End Role="SentMessages" EntitySet="SentMessages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AccomodationOwners_Accomodation" Association="Self.FK_AccomodationOwners_Accomodation">
+      <End Role="Accomodation" EntitySet="Accomodation" />
+      <End Role="Accomodation1" EntitySet="Accomodation" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

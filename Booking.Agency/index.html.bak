@@ -1,0 +1,254 @@
+﻿<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org">
+    <head>
+        <title>ELSO Registry</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta charset="UTF-8">
+        <meta name="description" content="description">
+        <meta name="keywords" content="">
+        <meta name="author" content="Copyright © 2017 www.elso.org. All Rights Reserved.">
+        <!-- charts and pdf stuff -->
+        <script src="Scripts/xepOnline.jqPlugin.js"></script>
+        <!-- meta -->
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,height=device-height,user-scalable=no"/>
+        <!--<meta http-equiv="x-ua-compatible" content="IE=edge"/>-->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <!-- google fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600" rel="stylesheet" type="text/css">
+        <!--<link href="app/resources/css/ui-grid.min.css" rel="stylesheet" type="text/css"/>-->
+        <!-- font icons -->
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <!--<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">-->
+        <!-- bootstrap -->
+        <link href="Content/bootstrap.min.css" rel="stylesheet" />
+        <!-- qtip -->
+        <link href="Content/jquery.qtip.css" rel="stylesheet" />
+        <link href="Content/select.min.css" rel="stylesheet" />
+        <link href="css/loading-bar.min.css" rel="stylesheet" />
+        <!-- default style -->
+        <link href="app/resources/css/default.min.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body id="body" data-ng-app="elsoApp" data-ng-cloak="">
+        <!-- layout start -->
+        <div data-ng-show="loading" class="loading">
+            <div>
+                <i class="fa fa-cog fa-spin fa-elso-darkblue fa-3x fa-fw"></i>
+                <div>{{loadingMessage}}</div>
+            </div>
+        </div>
+        <div id="slider" class="slideup">
+            <div data-ng-show="messages.length != 0" data-ng-repeat="msg in messages track by $index">
+                {{msg}}
+            </div>
+            <div data-ng-show="errors.length != 0" data-ng-repeat="err in errors track by $index">
+                {{err}}
+            </div>
+        </div>
+        <div class="header" style="display: block;">
+            <img src="Content/images/elso_logo.png" style="padding: 0 0.5em 2em 0.9em;cursor:pointer;" data-ng-click="changeView('/')" />
+            <h1 class="logo-title">ELSO Registry</h1>
+            <span class="logo-sub-title">Extracorporeal Life Support Organization</span>
+            <div class="header-nav" data-ng-show="loggedUser.UserId!='' && !route.startsWith('/login')">
+                <div>
+                    <i class="fa fa-2x fa-fw fa-home fa-icon" data-ng-click="changeView('/')" title="Application Home" ></i>
+                    <i class="fa fa-2x fa-fw fa-gear fa-icon" data-ng-click="changeView('/settings')" title="Application Settings" ></i>
+                    <i class="fa fa-2x fa-fw fa-sign-out fa-icon" data-ng-click="logout();" data-ng-show="loggedUser != null" title="Logout" ></i>
+                    <i class="fa fa-2x fa-fw fa-sign-in fa-icon" data-ng-click="changeView('/login');" data-ng-show="loggedUser == null" title="Login" ></i>
+                    <i class="fa fa-2x fa-th fa-icon" data-ng-click="changeView('/');" style="display:none;" title="Menu" ></i>
+                </div>
+                <br />
+                <div>
+                    <div>
+                        <b>{{loggedUser.FullName}}</b>
+                        <span ng-show="!isInRole('Host User')">{{Center.Name}} ({{Center.CenterNo}})</span>
+                        <div>({{getLocale()}} {{getTimeFormat()}}, {{getUnit()}})</div>
+                        <select data-ng-show="isInRole('Host User')" id="Centers" name="Centers" style="width:20em;" 
+                            data-ng-change="Center_OnChange(CenterId)"
+                            data-ng-model="CenterId" 
+                            data-ng-options="Center.CenterId as (Center.Name + ' (' + Center.CenterNo + ')') for Center in Centers">
+                            <option value="">- Please Select -</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <horizontal-navigation></horizontal-navigation>
+        <section-navigation></section-navigation>
+        <section-header></section-header>
+        <div class="scroller" ng-class="{largeH: route == '/login', smallH: route != '/login'}">
+            <ul>
+                <li>
+                    <div class="layout animateView" data-ng-view=""></div>
+                </li>
+            </ul>
+        </div>
+        <div class="footer noselect">
+            <div class="copyright">
+                © 2017 - Extracorporeal Life Support Organization, Ann Arbor, Michigan, USA
+            </div>
+        </div>
+        <!-- layout end -->
+        <!-- modernizr -->
+        <script src="Scripts/modernizr.js"></script>
+        <!-- moment -->
+        <script src="Scripts/moment.min.js"></script>
+        <script src="Scripts/moment-with-locales.min.js"></script>
+        <script src="Scripts/moment-timezone-with-data.min.js"></script>
+        <!-- lodash -->
+        <script src="Scripts/lodash.min.js"></script>
+        <!-- jquery -->
+        <script src="Scripts/jquery-1.12.4.min.js"></script>
+        <!-- jquery qtip -->
+        <script src="Scripts/jquery.qtip.min.js"></script>
+        <!-- botstrap -->
+        <script src="Scripts/bootstrap.min.js"></script>
+        <!-- angular -->
+        <script src="Scripts/angular.js"></script>
+        <!-- angular ui -->
+        <script src="Scripts/ui-bootstrap-tpls-2.5.0.min.js"></script>
+        <!-- angular scripts -->
+        <script src="Scripts/angular-route.min.js"></script>
+        <script src="Scripts/angular-resource.min.js"></script>
+        <script src="Scripts/angular-animate.min.js"></script>
+        <script src="Scripts/angular-cookies.min.js"></script>
+        <script src="Scripts/angular-sanitize.min.js"></script>
+        <script src="Scripts/loading-bar.min.js"></script>
+        <!-- dynamic locale -->
+        <script src="Scripts/tmhDynamicLocale.min.js"></script>
+        <!-- angular ui grid -->
+        <!--<script src="Scripts/ui-grid.min.js"></script>-->
+        <script src="Scripts/select.min.js"></script>
+        <!-- high charts -->
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/highcharts-more.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+        <!-- modules -->                
+        <!--<script src="app/modules/angular-infinite-scroll.js"></script>   -->
+        <script src="app/modules/angular-reports-overall-year-types.js"></script>   
+        <script src="app/modules/angular-reports-mode-diagnose.js"></script>      
+        <script src="app/modules/angular-common-codes-lists.js"></script>
+        <script src="app/modules/angular-common-cpt-codes-list.js"></script>
+        <script src="app/modules/angular-client-paginate.js"></script>
+        <script src="app/modules/angular-client-validate.js"></script>
+        <script src="app/modules/angular-datetime-picker.js"></script>
+        <script src="app/modules/angular-grid.js"></script>
+        <script src="app/modules/angular-sorter.js"></script>
+        <script src="app/modules/angular-run-header.js"></script>
+        <script src="app/modules/angular-section-header.js"></script>
+        <script src="app/modules/angular-section-navigation.js"></script>
+        <script src="app/modules/angular-horizontal-navigation.js"></script>
+        <script src="app/modules/angular-title.js"></script>
+        <script src="app/modules/angular-qtip.js"></script>
+        <script src="app/modules/angular-model-state-errors.js"></script>
+        <!-- controllers -->
+        <script src="app/app.js"></script>
+        <script src="app/controllers/testCtrl.js"></script>
+        <script src="app/controllers/homeCtrl.js"></script>
+        <script src="app/controllers/eclsCtrl.js"></script>
+        <script src="app/controllers/loginCtrl.js"></script>
+        <script src="app/controllers/addendaCtrl.js"></script>
+        <script src="app/controllers/datadumpCtrl.js"></script>
+        <script src="app/controllers/customPatientReportCtrl.js"></script>
+        <script src="app/controllers/complicationsCtrl.js"></script>
+        <script src="app/controllers/complicationsEditCtrl.js"></script>
+        <script src="app/controllers/infectionsCtrl.js"></script>
+        <script src="app/controllers/infectionsEditCtrl.js"></script>
+        <script src="app/controllers/diagnosesCtrl.js"></script>
+        <script src="app/controllers/diagnosesEditCtrl.js"></script>
+        <script src="app/controllers/eclsAssessment.js"></script>
+        <script src="app/controllers/eclsAssessmentEditCtrl.js"></script>
+        <script src="app/controllers/homeCtrl.js"></script>
+        <script src="app/controllers/infectionsCtrl.js"></script>
+        <script src="app/controllers/loginCtrl.js"></script>
+        <script src="app/controllers/outcomeCtrl.js"></script>
+        <script src="app/controllers/outcomeEditCtrl.js"></script>
+        <script src="app/controllers/patientCtrl.js"></script>
+        <script src="app/controllers/patientInfoEditCtrl.js"></script>
+        <script src="app/controllers/patientNeonatalInfoEditCtrl.js"></script>
+        <script src="app/controllers/patientCdhInfoEditCtrl.js"></script>
+        <script src="app/controllers/preEclsAssessmentCtrl.js"></script>
+        <script src="app/controllers/preEclsAssessmentEditCtrl.js"></script>
+        <script src="app/controllers/preEclsSupportCtrl.js"></script>
+        <script src="app/controllers/preEclsSupportEditCtrl.js"></script>
+        <script src="app/controllers/proceduresCtrl.js"></script>
+        <script src="app/controllers/runCtrl.js"></script>
+        <script src="app/controllers/runDetailsCtrl.js"></script>
+        <script src="app/controllers/runDetailsViewCtrl.js"></script>
+        <script src="app/controllers/cannulaEditCtrl.js"></script>
+        <script src="app/controllers/runInfoCtrl.js"></script>
+        <script src="app/controllers/runInfoEditCtrl.js"></script>
+        <script src="app/controllers/severityScoresCtrl.js"></script>
+        <script src="app/controllers/severityScoresEditCtrl.js"></script>
+        <script src="app/controllers/submissionCtrl.js"></script>
+        <script src="app/controllers/submissionEditCtrl.js"></script>
+        <script src="app/controllers/settingsCtrl.js"></script>
+        <script src="app/controllers/statistiscsCtrl.js"></script>
+        <script src="app/controllers/quickAddCtrl.js"></script>    
+        <script src="app/controllers/quickAddRunCtrl.js"></script>       
+        <script src="app/controllers/proceduresEditCtrl.js"></script>
+        <script src="app/controllers/ecprCtrl.js"></script>
+        <script src="app/controllers/testPdfCtrl.js"></script>
+        <script src="app/controllers/deletionCtrl.js"></script>
+        <script src="app/controllers/cannulaMasterEditCtrl.js"></script>        
+        <script src="app/controllers/cannulaMasterAddEditCtrl.js"></script>  
+        <script src="app/controllers/pumpMasterEditCtrl.js"></script>        
+        <script src="app/controllers/pumpMasterAddEditCtrl.js"></script> 
+        <script src="app/controllers/membraneLungMasterEditCtrl.js"></script>   
+        <script src="app/controllers/membraneLungMasterAddEditCtrl.js"></script> 
+        <script src="app/controllers/hemofilterMasterEditCtrl.js"></script>   
+        <script src="app/controllers/hemofilterMasterAddEditCtrl.js"></script> 
+        <script src="app/controllers/temperatureRegulationMasterEditCtrl.js"></script>
+        <script src="app/controllers/temperatureRegulationMasterAddEditCtrl.js"></script>
+        <script src="app/controllers/heatExchangerMasterEditCtrl.js"></script>
+        <script src="app/controllers/heatExchangerMasterAddEditCtrl.js"></script>
+        <script src="app/controllers/manufacturerMasterEditCtrl.js"></script>
+        <script src="app/controllers/manufacturerMasterAddEditCtrl.js"></script>
+        <!-- Cardiac Addendum -->
+        <script src="app/controllers/cardiacCtrl.js"></script>
+        <script src="app/controllers/cardiacAddendumDiagnosesEditCtrl.js"></script>
+        <script src="app/controllers/cardiacAddendumEvaluationEditCtrl.js"></script>
+        <script src="app/controllers/cardiacAddendumProceduresEditCtrl.js"></script>
+        <script src="app/controllers/cardiacAddendumPostOpEditCtrl.js"></script>
+        <script src="app/controllers/cardiacAddendumOutcomeEditCtrl.js"></script>
+        <script src="app/controllers/cardiacAddendumAllSectionsEditCtrl.js"></script>
+        <!-- ECPR Addendum -->
+        <script src="app/controllers/ecprCtrl.js"></script>                
+        <script src="app/controllers/ecprAddendumAllSectionsEditCtrl.js"></script>        
+        <script src="app/controllers/ecprAddendumPreliminaryEditCtrl.js"></script>
+        <script src="app/controllers/ecprAddendumCirculationEditCtrl.js"></script>
+        <script src="app/controllers/ecprAddendumPrimeEditCtrl.js"></script>
+        <script src="app/controllers/ecprAddendumTemperatureEditCtrl.js"></script>
+        <script src="app/controllers/ecprAddendumCodetimeEditCtrl.js"></script>
+        <script src="app/controllers/ecprAddendumMedicationEditCtrl.js"></script>
+        <!-- Reports css2pdf -->
+        <script src="app/controllers/internationalReportCtrl.js"></script>  
+        <script src="app/controllers/centerSpecificReportCtrl.js"></script>
+        <script src="app/controllers/regionalSummaryReportCtrl.js"></script> 
+        <script src="app/controllers/trendAllReportCtrl.js"></script>     
+        <script src="app/controllers/trendCenterSpecificReportCtrl.js"></script>    
+        <script src="app/controllers/trendRegionalSummaryReportCtrl.js"></script>  
+        <!-- services -->
+        <script src="app/services/appService.js"></script>
+        <script src="app/services/dataService.js"></script>
+        <script src="app/services/flashService.js"></script>
+        <!-- directives -->        
+        <script src="app/directives/rptdone.js"></script>
+        <script src="app/directives/formattedDate.js"></script>
+        <script src="app/directives/doConvert.js"></script>
+        <script src="app/directives/ngEnter.js"></script>
+        <script src="app/directives/numMax.js"></script>        
+        <script src="app/directives/numMaxPrecision.js"></script>
+        <script src="app/directives/numMin.js"></script>
+        <script src="app/directives/numNumber.js"></script>
+        <script src="app/directives/numPrecision.js"></script>
+		<script src="app/directives/uiSelectOpenOnFocus.js"></script>        
+        <!-- filters -->
+        <script src="app/filters/yesNo.js"></script>
+        <script src="app/filters/unitConvert.js"></script>
+        <script src="app/filters/datetimeFormat.js"></script>
+        <script src="app/filters/numberFormat.js"></script>
+        <script src="app/filters/showHideOption.js"></script>
+    </body>
+</html>

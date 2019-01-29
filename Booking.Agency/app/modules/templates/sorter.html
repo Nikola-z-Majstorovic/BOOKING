@@ -1,0 +1,12 @@
+﻿<div ng-transclude="">
+    <select id="sorter" name="sorter" data-ng-change="sort_Change(s)"
+        data-ng-model="s"
+        data-ng-options="s.name as s.value for s in sort">
+        <option value="">- Sort By -</option>
+    </select>
+    <select id="ascDesc" name="ascDesc"  data-ng-change="ascDesc_Change(ad)"
+        data-ng-model="ad"
+        data-ng-options="ad.name as ad.value for ad in ascDesc">
+        <option value="">- Asc/Desc -</option>
+    </select>
+</div>

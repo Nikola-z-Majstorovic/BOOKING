@@ -1,0 +1,173 @@
+E:\PROJECTS\test\Booking.System\obj\Debug\Booking.Agency.csprojResolveAssemblyReference.cache
+E:\PROJECTS\test\Booking.Agency\bin\Booking.Agency.dll
+E:\PROJECTS\test\Booking.Agency\bin\Booking.Agency.pdb
+E:\PROJECTS\test\Booking.Agency\bin\Antlr3.Runtime.dll
+E:\PROJECTS\test\Booking.Agency\bin\Booking.DataAccess.dll
+E:\PROJECTS\test\Booking.Agency\bin\ClosedXML.dll
+E:\PROJECTS\test\Booking.Agency\bin\DocumentFormat.OpenXml.dll
+E:\PROJECTS\test\Booking.Agency\bin\EntityFramework.dll
+E:\PROJECTS\test\Booking.Agency\bin\EntityFramework.SqlServer.dll
+E:\PROJECTS\test\Booking.Agency\bin\itextsharp.dll
+E:\PROJECTS\test\Booking.Agency\bin\KellermanSoftware.Compare-NET-Objects.dll
+E:\PROJECTS\test\Booking.Agency\bin\Microsoft.AspNet.Identity.Core.dll
+E:\PROJECTS\test\Booking.Agency\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+E:\PROJECTS\test\Booking.Agency\bin\Microsoft.Data.Edm.dll
+E:\PROJECTS\test\Booking.Agency\bin\Microsoft.Data.OData.dll
+E:\PROJECTS\test\Booking.Agency\bin\Microsoft.Web.Infrastructure.dll
+E:\PROJECTS\test\Booking.Agency\bin\Newtonsoft.Json.dll
+E:\PROJECTS\test\Booking.Agency\bin\System.Net.Http.Formatting.dll
+E:\PROJECTS\test\Booking.Agency\bin\System.Spatial.dll
+E:\PROJECTS\test\Booking.Agency\bin\System.Web.Helpers.dll
+E:\PROJECTS\test\Booking.Agency\bin\System.Web.Http.dll
+E:\PROJECTS\test\Booking.Agency\bin\System.Web.Http.OData.dll
+E:\PROJECTS\test\Booking.Agency\bin\System.Web.Http.Tracing.dll
+E:\PROJECTS\test\Booking.Agency\bin\System.Web.Http.WebHost.dll
+E:\PROJECTS\test\Booking.Agency\bin\System.Web.Mvc.dll
+E:\PROJECTS\test\Booking.Agency\bin\System.Web.Optimization.dll
+E:\PROJECTS\test\Booking.Agency\bin\System.Web.Providers.dll
+E:\PROJECTS\test\Booking.Agency\bin\System.Web.Razor.dll
+E:\PROJECTS\test\Booking.Agency\bin\System.Web.WebPages.Deployment.dll
+E:\PROJECTS\test\Booking.Agency\bin\System.Web.WebPages.dll
+E:\PROJECTS\test\Booking.Agency\bin\System.Web.WebPages.Razor.dll
+E:\PROJECTS\test\Booking.Agency\bin\WebGrease.dll
+E:\PROJECTS\test\Booking.Agency\bin\Booking.DataAccess.pdb
+E:\PROJECTS\test\Booking.Agency\bin\ClosedXML.pdb
+E:\PROJECTS\test\Booking.Agency\bin\EntityFramework.xml
+E:\PROJECTS\test\Booking.Agency\bin\EntityFramework.SqlServer.xml
+E:\PROJECTS\test\Booking.Agency\bin\itextsharp.xml
+E:\PROJECTS\test\Booking.Agency\bin\KellermanSoftware.Compare-NET-Objects.xml
+E:\PROJECTS\test\Booking.Agency\bin\Microsoft.AspNet.Identity.Core.xml
+E:\PROJECTS\test\Booking.Agency\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+E:\PROJECTS\test\Booking.Agency\bin\Newtonsoft.Json.xml
+E:\PROJECTS\test\Booking.Agency\bin\System.Net.Http.Formatting.xml
+E:\PROJECTS\test\Booking.Agency\bin\System.Web.Helpers.xml
+E:\PROJECTS\test\Booking.Agency\bin\System.Web.Http.xml
+E:\PROJECTS\test\Booking.Agency\bin\System.Web.Http.OData.xml
+E:\PROJECTS\test\Booking.Agency\bin\System.Web.Http.Tracing.xml
+E:\PROJECTS\test\Booking.Agency\bin\System.Web.Http.WebHost.xml
+E:\PROJECTS\test\Booking.Agency\bin\System.Web.Mvc.xml
+E:\PROJECTS\test\Booking.Agency\bin\System.Web.Razor.xml
+E:\PROJECTS\test\Booking.Agency\bin\System.Web.WebPages.xml
+E:\PROJECTS\test\Booking.Agency\bin\System.Web.WebPages.Deployment.xml
+E:\PROJECTS\test\Booking.Agency\bin\System.Web.WebPages.Razor.xml
+E:\PROJECTS\test\Booking.Agency\bin\Microsoft.Data.Edm.xml
+E:\PROJECTS\test\Booking.Agency\bin\Microsoft.Data.OData.xml
+E:\PROJECTS\test\Booking.Agency\bin\System.Spatial.xml
+E:\PROJECTS\test\Booking.Agency\bin\de\Microsoft.Data.Edm.resources.dll
+E:\PROJECTS\test\Booking.Agency\bin\es\Microsoft.Data.Edm.resources.dll
+E:\PROJECTS\test\Booking.Agency\bin\fr\Microsoft.Data.Edm.resources.dll
+E:\PROJECTS\test\Booking.Agency\bin\it\Microsoft.Data.Edm.resources.dll
+E:\PROJECTS\test\Booking.Agency\bin\ja\Microsoft.Data.Edm.resources.dll
+E:\PROJECTS\test\Booking.Agency\bin\ko\Microsoft.Data.Edm.resources.dll
+E:\PROJECTS\test\Booking.Agency\bin\ru\Microsoft.Data.Edm.resources.dll
+E:\PROJECTS\test\Booking.Agency\bin\zh-Hans\Microsoft.Data.Edm.resources.dll
+E:\PROJECTS\test\Booking.Agency\bin\zh-Hant\Microsoft.Data.Edm.resources.dll
+E:\PROJECTS\test\Booking.Agency\bin\de\Microsoft.Data.OData.resources.dll
+E:\PROJECTS\test\Booking.Agency\bin\es\Microsoft.Data.OData.resources.dll
+E:\PROJECTS\test\Booking.Agency\bin\fr\Microsoft.Data.OData.resources.dll
+E:\PROJECTS\test\Booking.Agency\bin\it\Microsoft.Data.OData.resources.dll
+E:\PROJECTS\test\Booking.Agency\bin\ja\Microsoft.Data.OData.resources.dll
+E:\PROJECTS\test\Booking.Agency\bin\ko\Microsoft.Data.OData.resources.dll
+E:\PROJECTS\test\Booking.Agency\bin\ru\Microsoft.Data.OData.resources.dll
+E:\PROJECTS\test\Booking.Agency\bin\zh-Hans\Microsoft.Data.OData.resources.dll
+E:\PROJECTS\test\Booking.Agency\bin\zh-Hant\Microsoft.Data.OData.resources.dll
+E:\PROJECTS\test\Booking.Agency\bin\de\System.Spatial.resources.dll
+E:\PROJECTS\test\Booking.Agency\bin\es\System.Spatial.resources.dll
+E:\PROJECTS\test\Booking.Agency\bin\fr\System.Spatial.resources.dll
+E:\PROJECTS\test\Booking.Agency\bin\it\System.Spatial.resources.dll
+E:\PROJECTS\test\Booking.Agency\bin\ja\System.Spatial.resources.dll
+E:\PROJECTS\test\Booking.Agency\bin\ko\System.Spatial.resources.dll
+E:\PROJECTS\test\Booking.Agency\bin\ru\System.Spatial.resources.dll
+E:\PROJECTS\test\Booking.Agency\bin\zh-Hans\System.Spatial.resources.dll
+E:\PROJECTS\test\Booking.Agency\bin\zh-Hant\System.Spatial.resources.dll
+E:\PROJECTS\test\Booking.Agency\obj\Debug\Booking.Agency.csprojResolveAssemblyReference.cache
+E:\PROJECTS\test\Booking.Agency\obj\Debug\Booking.Agency.dll
+E:\PROJECTS\test\Booking.Agency\obj\Debug\Booking.Agency.pdb
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\Booking.Agency.dll.config
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\Booking.Agency.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\Booking.Agency.pdb
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\Antlr3.Runtime.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\Booking.DataAccess.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\ClosedXML.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\DocumentFormat.OpenXml.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\EntityFramework.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\EntityFramework.SqlServer.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\itextsharp.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\KellermanSoftware.Compare-NET-Objects.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\Microsoft.Data.Edm.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\Microsoft.Data.OData.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\Newtonsoft.Json.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\System.Net.Http.Formatting.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\System.Spatial.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\System.Web.Helpers.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\System.Web.Http.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\System.Web.Http.OData.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\System.Web.Http.Tracing.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\System.Web.Http.WebHost.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\System.Web.Mvc.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\System.Web.Optimization.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\System.Web.Providers.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\System.Web.Razor.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\System.Web.WebPages.Deployment.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\System.Web.WebPages.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\System.Web.WebPages.Razor.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\WebGrease.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\Booking.DataAccess.pdb
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\Booking.DataAccess.dll.config
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\ClosedXML.pdb
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\EntityFramework.xml
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\EntityFramework.SqlServer.xml
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\itextsharp.xml
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\KellermanSoftware.Compare-NET-Objects.xml
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\Newtonsoft.Json.xml
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\System.Net.Http.Formatting.xml
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\System.Web.Helpers.xml
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\System.Web.Http.xml
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\System.Web.Http.OData.xml
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\System.Web.Http.Tracing.xml
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\System.Web.Http.WebHost.xml
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\System.Web.Mvc.xml
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\System.Web.Razor.xml
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\System.Web.WebPages.xml
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\System.Web.WebPages.Deployment.xml
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\System.Web.WebPages.Razor.xml
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\Microsoft.Data.Edm.xml
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\Microsoft.Data.OData.xml
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\System.Spatial.xml
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\de\Microsoft.Data.Edm.resources.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\es\Microsoft.Data.Edm.resources.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\fr\Microsoft.Data.Edm.resources.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\it\Microsoft.Data.Edm.resources.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\ja\Microsoft.Data.Edm.resources.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\ko\Microsoft.Data.Edm.resources.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\ru\Microsoft.Data.Edm.resources.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\zh-Hans\Microsoft.Data.Edm.resources.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\zh-Hant\Microsoft.Data.Edm.resources.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\de\Microsoft.Data.OData.resources.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\es\Microsoft.Data.OData.resources.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\fr\Microsoft.Data.OData.resources.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\it\Microsoft.Data.OData.resources.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\ja\Microsoft.Data.OData.resources.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\ko\Microsoft.Data.OData.resources.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\ru\Microsoft.Data.OData.resources.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\zh-Hans\Microsoft.Data.OData.resources.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\zh-Hant\Microsoft.Data.OData.resources.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\de\System.Spatial.resources.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\es\System.Spatial.resources.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\fr\System.Spatial.resources.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\it\System.Spatial.resources.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\ja\System.Spatial.resources.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\ko\System.Spatial.resources.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\ru\System.Spatial.resources.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\zh-Hans\System.Spatial.resources.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\bin\zh-Hant\System.Spatial.resources.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\obj\Debug\Booking.Agency.csprojAssemblyReference.cache
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\obj\Debug\Booking.Agency.csproj.CoreCompileInputs.cache
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\obj\Debug\Booking.Agency.csproj.CopyComplete
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\obj\Debug\Booking.Agency.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\obj\Debug\Booking.Agency.pdb
