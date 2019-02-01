@@ -17,11 +17,10 @@ namespace Booking.DataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public BookingAgencyUser()
         {
-            this.Comments = new HashSet<Comment>();
-            this.Ratings = new HashSet<Rating>();
-            this.ReceivedMessages = new HashSet<ReceivedMessage>();
-            this.Reservations = new HashSet<Reservation>();
             this.SentMessages = new HashSet<SentMessage>();
+            this.Comments = new HashSet<Comment>();
+            this.Reservations = new HashSet<Reservation>();
+            this.Ratings = new HashSet<Rating>();
         }
     
         public System.Guid UserId { get; set; }
@@ -33,14 +32,12 @@ namespace Booking.DataAccess
         public string Phone { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SentMessage> SentMessages { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comments { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Rating> Ratings { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ReceivedMessage> ReceivedMessages { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reservation> Reservations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SentMessage> SentMessages { get; set; }
+        public virtual ICollection<Rating> Ratings { get; set; }
     }
 }

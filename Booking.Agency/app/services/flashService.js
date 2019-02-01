@@ -2,7 +2,7 @@
     return {
         //-------------------------------------------------------------------------
         ok: function (status) {
-            if (status.messages != undefined) {// this line is added to hold flash message for some time
+            if (status.messages != undefined) {
                 $rootScope.msgtype = 'ok';
                 $rootScope.message = status.message;
                 $rootScope.code = status.code;
@@ -18,7 +18,7 @@
                             $rootScope.errors = [];
                             $rootScope.messages = [];
                             $("#slider").toggleClass("slidedown slideup");
-                        }, 4000);
+                        }, 2500);
                     }
                 }
             }

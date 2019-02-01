@@ -24,8 +24,17 @@ namespace Booking.Agency.Base.Data
         }
         #endregion
 
-
         #region Users
+
+
+        public BookingAgencyUser GetUserForId(Guid userId)
+        {
+            using (var context = new BookingAgencyEntities())
+            {
+                context.Configuration.ProxyCreationEnabled = false;
+                return context.BookingAgencyUsers.Include(u => u.Reservations).Include(u => u.Comments).Where(u => u.UserId == userId).Single();
+            }
+        }
         public void CreateUser(BookingAgencyUser user)
         {
             using (var context = new BookingAgencyEntities())
@@ -37,6 +46,40 @@ namespace Booking.Agency.Base.Data
                 context.SaveChanges();
             }
         }
+        public List<BookingAgencyUser> GetAllUsers()
+        {
+            using (var context = new BookingAgencyEntities())
+            {
+                context.Configuration.ProxyCreationEnabled = false;
+
+                Guid adminUserId = GetUserId();
+                return context.BookingAgencyUsers.Where(u => u.UserId != adminUserId).ToList();
+            }
+        }
+
+        public Guid GetUserId()
+        {
+            if (HttpContext.Current.Session["UserId"] != null)
+            {
+                return new Guid(HttpContext.Current.Session["UserId"].ToString());
+            }
+            else
+            {
+                throw new Exception("Error!");
+            }
+        }
+
+        public void UpdateUser(BookingAgencyUser user)
+        {
+            using (var context = new BookingAgencyEntities())
+            {
+                context.Configuration.ProxyCreationEnabled = false;
+                var ExistingUser = context.BookingAgencyUsers.Where(u => u.UserId == user.UserId).Single();
+                context.Entry(ExistingUser).CurrentValues.SetValues(user);
+                context.SaveChanges();
+            }
+        }
+        
         #endregion
 
 
@@ -57,11 +100,12 @@ namespace Booking.Agency.Base.Data
             }
         }
 
-        public List<Accomodation> GetAccomodationsForSelectedLocation(string AccomodationLocation)
+        public List<Accomodation> GetAccomodationsForSelectedLocation(int LocationId)
         {
             using (var context = new BookingAgencyEntities())
             {
-                return context.Accomodations.Where(a => a.Location == AccomodationLocation).ToList();
+                context.Configuration.ProxyCreationEnabled = false;
+                return context.Accomodations.Where(a => a.Location == LocationId).Include(a => a.Ratings).ToList();
             }
         }
 
@@ -69,7 +113,8 @@ namespace Booking.Agency.Base.Data
         {
             using (var context = new BookingAgencyEntities())
             {
-                return context.Accomodations.FirstOrDefault(a => a.AccomodationId == AccomodationId);
+                context.Configuration.ProxyCreationEnabled = false;
+                return context.Accomodations.Include(a => a.Reservations).Include(a => a.Ratings).Include(a => a.Comments.Select(bu => bu.BookingAgencyUser)).FirstOrDefault(a => a.AccomodationId == AccomodationId);
             }
         }
 
@@ -110,21 +155,27 @@ namespace Booking.Agency.Base.Data
             }
         }
 
-        public List<SentMessage> GetSentMessagesForAccomodationId(Guid AccomodationId)
+        public void UpdateMessage(SentMessage message)
         {
             using (var context = new BookingAgencyEntities())
             {
-                return context.SentMessages.Where(m => m.AccomodationId == AccomodationId).ToList();                                
+                context.Configuration.ProxyCreationEnabled = false;
+                var ExistingMessage = context.SentMessages.Where(a => a.Id == message.Id).Single();
+                context.Entry(ExistingMessage).CurrentValues.SetValues(message);
+                context.SaveChanges();
             }
         }
+        
 
-        public List<ReceivedMessage> GetReceivedMessagesForReceiverId(Guid UserId)
-        {
-            using (var context = new BookingAgencyEntities())
-            {
-                return context.ReceivedMessages.Where(m => m.ReceiverId == UserId).ToList();
-            }
-        }
+        //public List<SentMessage> GetSentMessagesForAccomodationId(Guid AccomodationId)
+        //{
+        //    using (var context = new BookingAgencyEntities())
+        //    {
+        //        return context.SentMessages.Where(m => m.AccomodationId == AccomodationId).ToList();                                
+        //    }
+        //}
+
+
         #endregion
 
         #region Comments
@@ -144,7 +195,6 @@ namespace Booking.Agency.Base.Data
         {
             using (var context = new BookingAgencyEntities())
             {
-
                 context.Configuration.ProxyCreationEnabled = false;
                 var ExistingComment = context.Comments.Where(c => c.Id == Comment.Id).Single();
                 context.Entry(ExistingComment).CurrentValues.SetValues(Comment);
@@ -168,43 +218,116 @@ namespace Booking.Agency.Base.Data
         {
             using (var context = new BookingAgencyEntities())
             {
-                return context.Comments.ToList();
+                context.Configuration.ProxyCreationEnabled = false;
+                return context.Comments.OrderByDescending(c => c.CommentDate).Include(c => c.BookingAgencyUser).Include(c => c.Accomodation).ToList();
             }
         }
 
-        public Comment GetAllCommentsForSelectedAccomodation(Guid AccomodationId)
+        public List<Comment> GetAllNotApprovedComments()
         {
             using (var context = new BookingAgencyEntities())
             {
-                return context.Comments.Where(c => c.AccomodationId == AccomodationId).Single();
+                context.Configuration.ProxyCreationEnabled = false;
+                return context.Comments.OrderByDescending(c => c.CommentDate).Include(c => c.BookingAgencyUser).Include(c => c.Accomodation).Where(c => c.Approved == 0).ToList();
+            }
+        }
+
+        public Comment GetSelectedComment(int CommentId)
+        {
+            using (var context = new BookingAgencyEntities())
+            {
+                return context.Comments.Where(c => c.Id == CommentId).Single();
+            }
+        }
+        
+        #endregion
+
+        #region Reservations
+
+        public void UpdateReservation(Reservation reservation)
+        {
+            using (var context = new BookingAgencyEntities())
+            {
+                context.Configuration.ProxyCreationEnabled = false;
+                var ExistingReservation = context.Reservations.Where(u => u.Id == reservation.Id).Single();
+                context.Entry(ExistingReservation).CurrentValues.SetValues(reservation);
+                context.SaveChanges();
+            }
+        }
+
+        public void CreateReservation(Reservation reservation)
+        {
+            using (var context = new BookingAgencyEntities())
+            {
+                context.Reservations.Attach(reservation);
+
+                context.Entry(reservation).State = EntityState.Added;
+
+                context.SaveChanges();
+            }
+        }
+
+        public List<Reservation> GetAllReservations()
+        {
+            using (var context = new BookingAgencyEntities())
+            {
+                return context.Reservations.ToList();
+            }
+        }
+
+        public List<Reservation> GetAllReservationsForAccomodationId(Guid AccomodationId)
+        {
+            using (var context = new BookingAgencyEntities())
+            {
+                context.Configuration.ProxyCreationEnabled = false;
+                return context.Reservations.Where(r => r.AccomodationId == AccomodationId).ToList();
+            }
+        }
+
+        public List<Reservation> GetAllReservationsForUserId(Guid UserId)
+        {
+            using (var context = new BookingAgencyEntities())
+            {
+                context.Configuration.ProxyCreationEnabled = false;
+                return context.Reservations.Include(m => m.SentMessages.Select(sm => sm.BookingAgencyUser)).Include(m => m.BookingAgencyUser).Include(m => m.Accomodation).Where(r => r.UserId == UserId).ToList();
             }
         }
         #endregion
 
-        #region Reservations
-        //public List<Reservation> GetAllReservations()
-        //{
-        //    using (var context = new BookingAgencyEntities())
-        //    {
-        //        return context.Reservations.ToList();
-        //    }
-        //}
+        #region Locations
+        public List<TravelLocation> GetAllLocations()
+        {
+            using (var context = new BookingAgencyEntities())
+            {
+                context.Configuration.ProxyCreationEnabled = false;
+                return context.TravelLocations.Include(a => a.Accomodations).ToList();
+            }
+        }
 
-        //public List<Reservation> GetAllReservationsForAccomodationId(Guid AccomodationId)
-        //{
-        //    using (var context = new BookingAgencyEntities())
-        //    {
-        //        return context.Reservations.Where(r => r.AccomodationId == AccomodationId).ToList();
-        //    }
-        //}
-
-        //public List<Reservation> GetAllReservationsForUserId(Guid UserId)
-        //{
-        //    using (var context = new BookingAgencyEntities())
-        //    {
-        //        return context.Reservations.Where(r => r.UserId == UserId).ToList();
-        //    }
-        //}
+        public TravelLocation GetSelectedLocation(int LocationId)
+        {
+            using (var context = new BookingAgencyEntities())
+            {
+                return context.TravelLocations.Where(l => l.Id == LocationId).Single();
+            }
+        }
+        
         #endregion
+
+        #region Rating
+
+        public void RateAccomodation(Rating rate)
+        {
+            using (var context = new BookingAgencyEntities())
+            {
+                context.Ratings.Attach(rate);
+
+                context.Entry(rate).State = EntityState.Added;
+
+                context.SaveChanges();
+            }
+        }
+        #endregion
+        
     }
 }

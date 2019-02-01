@@ -1,0 +1,184 @@
+﻿<div class="content">
+    <div class="content-body" data-ng-show="!loading">
+        <run-header></run-header>
+        <fieldset>
+            <legend>Equipment</legend>
+            <form name="frm" novalidate="" data-ng-enter="frm.$invalid || save()">
+                <fieldset>
+                    <legend class="fa-grey">Membrane Lung</legend>
+                    <div class="control-item">
+                        <label for="Manufacturer">Manufacturer:</label><br />
+                        <select id="MembraneLungManufacturer" name="MembraneLungManufacturer"
+                            tabindex="1"
+                            data-ng-change="MembraneLungManufacturer_OnChange()"
+                            data-ng-model="equipmentRun.MembraneLung.ManufacturerId" 
+                            data-ng-options="MembraneLungManufacturer.ManufacturerId as MembraneLungManufacturer.Name for MembraneLungManufacturer in enumMembraneLungManufacturers">
+                            <option value="">- Please Select -</option>
+                        </select>
+                    </div>
+                    <div class="control-item">
+                        <label for="MembraneLung">Device:</label><br />
+                        <select id="MembraneLungDevice" name="MembraneLungDevice" data-ng-change="membraneIsOther()"
+                            tabindex="2"
+                            data-ng-disabled="disabledMembrane" 
+                            data-ng-model="equipmentRun.MembraneLungId" 
+                            data-ng-options="MembraneLung.MembraneLungId as MembraneLung.Name for MembraneLung in enumMembraneLungDevices">
+                            <option value="">- Please Select -</option>
+                        </select>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="control-item" data-ng-show="membraneLungIsOther" style="float:initial;">
+                        <span>
+                            Please insert Your manufacturer and device. Those information will be emailed to our administrators and we will see to add them as new equipment data.
+                             <span class="soft">Please insert both manufacturer and device.</span>
+                        </span>
+                        <br />
+                        <label for="membraneLungOtherManufacturer">Manufacturer:</label><br />
+                        <input id="membraneLungOtherManufacturer" data-ng-model="otherEmail.mML" type="text" name="mML" placeholder="Manufacturer"/>
+                        <br />
+                        <label for="membraneLungOtherDevice">Device:</label><br />
+                        <input id="membraneLungOtherDevice" data-ng-model="otherEmail.dML" type="text" name="dML" placeholder="Device"/>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend class="fa-grey">Heat Exchanger</legend>
+                    <div class="control-item">
+                        <label for="HeatExchangerManufacturer">Manufacturer:</label><br />
+                        <select id="HeatExchangerManufacturer" name="HeatExchangerManufacturer" 
+                            tabindex="3"
+                            data-ng-change="HeatExchangerManufacturer_OnChange()"
+                             data-ng-model="equipmentRun.HeatExchanger.ManufacturerId" 
+                            data-ng-options="HeatExchangerManufacturer.ManufacturerId as HeatExchangerManufacturer.Name for HeatExchangerManufacturer in enumHeatExchangerManufacturers">
+                            <option value="">- Please Select -</option>
+                        </select>
+                    </div>
+                    <div class="control-item">
+                        <label for="HeatExchangerDevice">Device:</label><br />
+                        <select id="HeatExchangerDevice" name="HeatExchangerDevice" data-ng-change="exchangerIsOther()"
+                            tabindex="4"
+                            data-ng-disabled="disabledExchanger"
+                            data-ng-model="equipmentRun.HeatExchangerId" 
+                            data-ng-options="HeatExchanger.HeatExchangerId as HeatExchanger.Name for HeatExchanger in enumHeatExchangerDevices">
+                            <option value="">- Please Select -</option>
+                        </select>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="control-item" data-ng-show="heatExchangerIsOther" style="float:initial;">
+                        <span>
+                            Please insert Your manufacturer and device. Those information will be emailed to our administrators and we will see to add them as new equipment data.
+                             <span class="soft">Please insert both manufacturer and device.</span>
+                        </span>
+                        <br />
+                        <label for="heatExchangerOtherManufacturer">Manufacturer:</label><br />
+                        <input id="heatExchangerOtherManufacturer" data-ng-model="otherEmail.mHE" type="text" name="mHE" placeholder="Manufacturer"/>
+                        <br />
+                        <label for="heatExchangerOtherDevice">Device:</label><br />
+                        <input id="heatExchangerOtherDevice" data-ng-model="otherEmail.dHE" type="text" name="dHE" placeholder="Device"/>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend class="fa-grey">Blood Pump</legend>
+                    <div class="control-item">
+                        <label for="BloodPumpManufacturer">Manufacturer:</label><br />
+                        <select id="BloodPumpManufacturer" name="BloodPumpManufacturer"
+                            tabindex="5"
+                            data-ng-change="PumpManufacturer_OnChange()"
+                            data-ng-model="equipmentRun.Pump.ManufacturerId" 
+                            data-ng-options="PumpManufacturer.ManufacturerId as PumpManufacturer.Name for PumpManufacturer in enumPumpManufacturers">
+                            <option value="">- Please Select -</option>
+                        </select>
+                    </div>
+                    <div class="control-item">
+                        <label for="BloodPumpDevice">Device:</label><br />
+                        <select id="BloodPumpDevice" name="BloodPumpDevice" data-ng-change="bloodPumpIsOther()"
+                            tabindex="6"
+                            data-ng-disabled="disabledPump"
+                            data-ng-model="equipmentRun.PumpId" 
+                            data-ng-options="Pump.PumpId as Pump.Name for Pump in enumPumpDevices">
+                            <option value="">- Please Select -</option>
+                        </select>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="control-item" data-ng-show="pumpIsOther" style="float:initial;">
+                        <span>
+                            Please insert Your manufacturer and device. Those information will be emailed to our administrators and we will see to add them as new equipment data.
+                             <span class="soft">Please insert both manufacturer and device.</span>
+                        </span>
+                        <br />
+                        <label for="PumpOtherManufacturer">Manufacturer:</label><br />
+                        <input id="PumpOtherManufacturer" data-ng-model="otherEmail.mP" type="text" name="mP" placeholder="Manufacturer"/>
+                        <br />
+                        <label for="pumpOtherDevice">Device:</label><br />
+                        <input id="pumpOtherDevice" data-ng-model="otherEmail.dP" type="text" name="dP" placeholder="Device"/>
+                    </div>
+            </fieldset>
+                <fieldset>
+                    <legend class="fa-grey">Hemofilter</legend>
+                    <div class="control-item">
+                        <label for="HemofilterManufacturer">Manufacturer:</label><br />
+                        <select id="HemofilterManufacturer" name="HemofilterManufacturer"
+                            tabindex="6"
+                            data-ng-change="HemofilterManufacturer_OnChange(HemofilterManufacturer)"
+                            data-ng-model="equipmentRun.Hemofilter.ManufacturerId" 
+                            data-ng-options="HemofilterManufacturer.ManufacturerId as HemofilterManufacturer.Name for HemofilterManufacturer in enumHemofilterManufacturers">
+                            <option value="">- Please Select -</option>
+                        </select>
+                    </div>
+                    <div class="control-item">
+                        <label for="HemofilterPumpDevice">Device:</label><br />
+                        <select id="HemofilterPumpDevice" name="HemofilterDevice" data-ng-change="hemofilterIsOther()"
+                            tabindex="7"
+                            data-ng-disabled="disabledHemo"
+                            data-ng-model="equipmentRun.HemofilterId" 
+                            data-ng-options="Hemofilter.HemofilterId as Hemofilter.Name for Hemofilter in enumHemofilterDevices">
+                            <option value="">- Please Select -</option>
+                        </select>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="control-item" data-ng-show="hemoIsOther" style="float:initial;">
+                        <span>
+                            Please insert Your manufacturer and device. Those information will be emailed to our administrators and we will see to add them as new equipment data.
+                             <span class="soft">Please insert both manufacturer and device.</span>
+                        </span>
+                        <br />
+                        <label for="HemofilterOtherManufacturer">Manufacturer:</label><br />
+                        <input id="HemofilterOtherManufacturer" data-ng-model="otherEmail.mH" type="text" name="mH" placeholder="Manufacturer"/>
+                        <br />
+                        <label for="HemoOtherDevice">Device:</label><br />
+                        <input id="HemoOtherDevice" data-ng-model="otherEmail.dH" type="text" name="dH" placeholder="Device"/>
+                    </div>
+                </fieldset>
+                <!--<div class="buttons-container">
+                    <span class="fa-stack fa-lg">
+                        <i class="fa fa-circle fa-stack-2x fa-icon"></i>
+                        <i class="fa fa-check fa-stack-1x fa-icon-white" data-ng-click="frm.$invalid || save();" title="Submit"></i>
+                    </span>
+                        <span class="fa-stack fa-lg">
+                        <i class="fa fa-circle fa-stack-2x fa-icon"></i>
+                        <i class="fa fa-close fa-stack-1x fa-icon-white" data-ng-click="changeView('/rundetails/view/' + run.RunId + '/' + runDetail.RunDetailId)" title="Cancel"></i>
+                    </span>
+                    <model-state-errors></model-state-errors>
+                </div>-->
+                <!--<div class="control-item" style="float:none;">
+                    <label>I cannot find my equipment on this list</label><br />             
+                    <input type="checkbox"
+                            name="AddNewEquipment"                           
+                            value="AddNewEquipment"
+                            data-ng-click="changeView('/addnewequipment/edit/' + run.RunId);" 
+                     />   
+                </div>-->
+                <div class="buttons-container">
+                <button data-ng-click="frm.$invalid || save('back');" title="Back" tabindex="8">Back</button>
+                <!--<button data-ng-click="frm.$invalid || save('next');" title="Next" tabindex="9">Next</button>-->
+                <button data-ng-click="cancel();" title="Cancel">Cancel</button>
+                <button data-ng-click="frm.$invalid || save('');" title="Save" tabindex="10">Save</button>
+                    <div class="validation-messages">
+                    <span class="fa-elso-darkblue" data-ng-show="frm.$valid">Form seems ok you can continue</span>
+                    <span class="fa-elso-darkblue" data-ng-show="frm.$invalid">Please fill the form</span>
+                </div>
+                <model-state-errors></model-state-errors>
+            </div>
+            </form>
+        </fieldset>
+    </div>
+</div>

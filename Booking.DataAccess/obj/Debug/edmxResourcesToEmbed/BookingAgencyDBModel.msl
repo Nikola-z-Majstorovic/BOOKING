@@ -1,33 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="BookingAgencyModelStoreContainer" CdmEntityContainer="BookingAgencyEntities">
-    <EntitySetMapping Name="Employees">
-      <EntityTypeMapping TypeName="BookingAgencyModel.Employee">
-        <MappingFragment StoreEntitySet="Employees">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-          <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="Gender" ColumnName="Gender" />
-          <ScalarProperty Name="Salary" ColumnName="Salary" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="aspnet_Users">
-      <EntityTypeMapping TypeName="BookingAgencyModel.aspnet_Users">
-        <MappingFragment StoreEntitySet="aspnet_Users">
-          <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
-          <ScalarProperty Name="IsAnonymous" ColumnName="IsAnonymous" />
-          <ScalarProperty Name="MobileAlias" ColumnName="MobileAlias" />
-          <ScalarProperty Name="LoweredUserName" ColumnName="LoweredUserName" />
-          <ScalarProperty Name="UserName" ColumnName="UserName" />
+    <EntitySetMapping Name="BookingAgencyUsers">
+      <EntityTypeMapping TypeName="BookingAgencyModel.BookingAgencyUser">
+        <MappingFragment StoreEntitySet="BookingAgencyUsers">
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="PIB" ColumnName="PIB" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Accomodations">
       <EntityTypeMapping TypeName="BookingAgencyModel.Accomodation">
         <MappingFragment StoreEntitySet="Accomodation">
+          <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Price" ColumnName="Price" />
           <ScalarProperty Name="Bathroom" ColumnName="Bathroom" />
@@ -53,57 +43,10 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="BookingAgencyUsers">
-      <EntityTypeMapping TypeName="BookingAgencyModel.BookingAgencyUser">
-        <MappingFragment StoreEntitySet="BookingAgencyUsers">
-          <ScalarProperty Name="Phone" ColumnName="Phone" />
-          <ScalarProperty Name="PIB" ColumnName="PIB" />
-          <ScalarProperty Name="Surname" ColumnName="Surname" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="Username" ColumnName="Username" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Comments">
-      <EntityTypeMapping TypeName="BookingAgencyModel.Comment">
-        <MappingFragment StoreEntitySet="Comments">
-          <ScalarProperty Name="CommentDate" ColumnName="CommentDate" />
-          <ScalarProperty Name="Approved" ColumnName="Approved" />
-          <ScalarProperty Name="Comment1" ColumnName="Comment" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="AccomodationId" ColumnName="AccomodationId" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Ratings">
-      <EntityTypeMapping TypeName="BookingAgencyModel.Rating">
-        <MappingFragment StoreEntitySet="Rating">
-          <ScalarProperty Name="Rating1" ColumnName="Rating" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="AccomodationId" ColumnName="AccomodationId" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ReceivedMessages">
-      <EntityTypeMapping TypeName="BookingAgencyModel.ReceivedMessage">
-        <MappingFragment StoreEntitySet="ReceivedMessages">
-          <ScalarProperty Name="ReceiverId" ColumnName="ReceiverId" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Reservations">
-      <EntityTypeMapping TypeName="BookingAgencyModel.Reservation">
-        <MappingFragment StoreEntitySet="Reservations">
-          <ScalarProperty Name="Confirmed" ColumnName="Confirmed" />
-          <ScalarProperty Name="EndPeriod" ColumnName="EndPeriod" />
-          <ScalarProperty Name="StartPeriod" ColumnName="StartPeriod" />
-          <ScalarProperty Name="AccomodationId" ColumnName="AccomodationId" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
+    <EntitySetMapping Name="TravelLocations">
+      <EntityTypeMapping TypeName="BookingAgencyModel.TravelLocation">
+        <MappingFragment StoreEntitySet="TravelLocations">
+          <ScalarProperty Name="LocationName" ColumnName="LocationName" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -115,6 +58,42 @@
           <ScalarProperty Name="MessageDate" ColumnName="MessageDate" />
           <ScalarProperty Name="Message" ColumnName="Message" />
           <ScalarProperty Name="SenderId" ColumnName="SenderId" />
+          <ScalarProperty Name="ReservationId" ColumnName="ReservationId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comments">
+      <EntityTypeMapping TypeName="BookingAgencyModel.Comment">
+        <MappingFragment StoreEntitySet="Comments">
+          <ScalarProperty Name="CommentDate" ColumnName="CommentDate" />
+          <ScalarProperty Name="Approved" ColumnName="Approved" />
+          <ScalarProperty Name="CommentContent" ColumnName="CommentContent" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="AccomodationId" ColumnName="AccomodationId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reservations">
+      <EntityTypeMapping TypeName="BookingAgencyModel.Reservation">
+        <MappingFragment StoreEntitySet="Reservations">
+          <ScalarProperty Name="RatingConsumed" ColumnName="RatingConsumed" />
+          <ScalarProperty Name="CommentConsumed" ColumnName="CommentConsumed" />
+          <ScalarProperty Name="EndPeriod" ColumnName="EndPeriod" />
+          <ScalarProperty Name="Confirmed" ColumnName="Confirmed" />
+          <ScalarProperty Name="StartPeriod" ColumnName="StartPeriod" />
+          <ScalarProperty Name="AccomodationId" ColumnName="AccomodationId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ratings">
+      <EntityTypeMapping TypeName="BookingAgencyModel.Rating">
+        <MappingFragment StoreEntitySet="Rating">
+          <ScalarProperty Name="RatingMark" ColumnName="RatingMark" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="AccomodationId" ColumnName="AccomodationId" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>

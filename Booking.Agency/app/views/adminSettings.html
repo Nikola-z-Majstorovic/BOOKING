@@ -1,0 +1,100 @@
+﻿<div class="content">
+    <div class="content-body" data-ng-show="!loading">
+
+        <br /><br /><br />
+        <h1 style="text-align:center;">Users</h1>
+         <br /><br /><br />
+            <booking-grid class="booking-grid">
+            <booking-grid-row data-ng-repeat="user in Users | filter:query | orderObjectBy:sortBy:sortDirection | paginate:itemsPerPage" >
+
+                <div data-ng-show="user.IsUserApproved == true">
+                    <i class="fa fa-2x fa-fw fa-lock fa-icon"  data-ng-click="lockUser(user);" title="Disable user"></i>
+                </div>
+                <div data-ng-show="user.IsUserApproved == false">
+                    <i class="fa fa-2x fa-fw fa-unlock fa-icon"  data-ng-click="unlockUser(user);" title="Enable user"></i>
+                </div>
+                <div data-ng-show="user.Roles[0] == 'AccomodationUser'" >
+                    <i class="fa fa-2x fa-fw fa-edit fa-icon"  data-ng-click="openAgentSetup(user);" title="Change To Agent"></i>
+                </div>
+                <div>
+                    <label>User Role type: </label>&nbsp&nbsp
+                    <i ng-class="{'fa-user-o': user.Roles[0] == 'AccomodationUser', 'fa-user-circle-o': user.Roles[0] == 'AgentUser'}" class="fa fa-2x fa-fw fa-icon" title="{{user.Roles[0]}}"></i>
+                </div>
+                <div>
+                    <label>Username: </label>&nbsp&nbsp
+                    {{user.Username}}
+                </div>
+                <div>
+                    <label>Name & Surname: </label>&nbsp&nbsp
+                    {{user.Name}}&nbsp{{user.Surname}}
+                </div>
+                <div>
+                    <label>Email: </label>&nbsp&nbsp
+                    {{user.Email}}
+                </div>
+                <div>
+                    <label>Phone: </label>&nbsp&nbsp
+                    {{user.Phone}}
+                </div>                
+                <div data-ng-show="user.Roles[0] == 'AgentUser'">
+                    <label>PIB: </label>&nbsp&nbsp
+                    {{user.PIB}}
+                </div> 
+            </booking-grid-row>
+            <div data-ng-if="Users.length != 0">
+                <paginator page-size="10" total="{{Users.length}}"></paginator>
+            </div>
+        </booking-grid> 
+
+            <div class="modal" data-ng-show="changeUser == true">
+                <div class="modal-content">
+                    <form name="form">
+                        <div>
+                            <label for="PIB" class="red">PIB: </label><br />
+                            <input id="PIB" data-ng-model="editUser.PIB" name="PIB" required="" placeholder="PIB"/>
+                            <span class="required" data-ng-show="frm.PIB.$error.required">PIB is required</span>  
+                            <br />             
+                        </div>
+                    </form>   
+                    <br />      
+                    <br />      
+                    <button data-ng-click="form.$invalid || changeUserToAgent();" title="Save">Save</button>
+                    <button data-ng-click="cancelChangeUserToAgent();" title="Cancel">Cancel</button>
+                </div>                                                      
+            </div>
+
+
+         <br /><br /><br />
+        <h1 style="text-align:center;">Comments</h1>
+         <br /><br /><br />
+            <booking-grid class="booking-grid">
+            <booking-grid-row data-ng-repeat="comment in Comments | filter:query | orderObjectBy:sortBy:sortDirection | paginate:itemsPerPage" >
+                <div data-ng-show="comment.Approved == 0">
+                    <i class="fa fa-2x fa-fw fa-thumbs-up fa-icon"  data-ng-click="approveComment(comment);" title="Approve Comment"></i>
+                </div>
+                <div>
+                    <label>User commented: </label>&nbsp&nbsp
+                    {{comment.BookingAgencyUser.Username}}
+                </div>
+                <div>
+                    <label>Comment content: </label>&nbsp&nbsp
+                    {{comment.CommentContent}}
+                </div>
+                <div>
+                    <label>Commented on Date: </label>&nbsp&nbsp
+                    {{comment.CommentDate}}
+                </div>                
+                <div>
+                    <label>Accomodation: </label>&nbsp&nbsp
+                    {{comment.Accomodation.Name}}
+                </div> 
+            </booking-grid-row>
+            <div data-ng-if="Comments.length != 0">
+                <paginator page-size="10" total="{{Comments.length}}"></paginator>
+            </div>
+        </booking-grid> 
+
+
+
+        </div>
+</div>

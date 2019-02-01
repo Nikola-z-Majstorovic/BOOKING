@@ -14,14 +14,14 @@ namespace Booking.DataAccess
     
     public partial class SentMessage
     {
-        public int Id { get; set; }
-        public System.Guid AccomodationId { get; set; }
+        public System.Guid Id { get; set; }
+        public System.Guid ReservationId { get; set; }
         public System.Guid SenderId { get; set; }
         public string Message { get; set; }
         public System.DateTime MessageDate { get; set; }
         public Nullable<byte> MessageSeen { get; set; }
     
-        public virtual Accomodation Accomodation { get; set; }
         public virtual BookingAgencyUser BookingAgencyUser { get; set; }
+        public virtual Reservation Reservation { get; set; }
     }
 }

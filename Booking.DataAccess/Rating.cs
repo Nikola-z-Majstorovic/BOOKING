@@ -17,7 +17,7 @@ namespace Booking.DataAccess
         public int Id { get; set; }
         public System.Guid AccomodationId { get; set; }
         public System.Guid UserId { get; set; }
-        public byte Rating1 { get; set; }
+        public byte RatingMark { get; set; }
     
         public virtual Accomodation Accomodation { get; set; }
         public virtual BookingAgencyUser BookingAgencyUser { get; set; }

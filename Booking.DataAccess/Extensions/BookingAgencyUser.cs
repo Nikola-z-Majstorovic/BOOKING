@@ -9,6 +9,7 @@ namespace Booking.DataAccess
     partial class BookingAgencyUser
     {
         public string Password { get; set; }
+        public bool IsUserApproved { get; set; }
         public string[] Roles { get; set; }
     }
 }

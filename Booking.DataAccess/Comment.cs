@@ -17,7 +17,7 @@ namespace Booking.DataAccess
         public int Id { get; set; }
         public System.Guid AccomodationId { get; set; }
         public System.Guid UserId { get; set; }
-        public string Comment1 { get; set; }
+        public string CommentContent { get; set; }
         public byte Approved { get; set; }
         public System.DateTime CommentDate { get; set; }
     

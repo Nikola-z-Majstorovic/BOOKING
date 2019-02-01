@@ -647,6 +647,7 @@ z-index:999999 !important;
     left: 0.5em;
     right:1.3em;
     /*top:11.5em;*/
+    background-color: #FFFFFF;
     top:16.5em;
     z-index:11;
     -webkit-box-sizing: border-box;
@@ -814,10 +815,14 @@ control-item-radio {
     border-radius: 0px 0px 5px 5px;
     text-align: left !important;
 }
-.booking-grid-row:nth-child(even) {background: rgba(239, 239, 239, 1);}
-.booking-grid-row:nth-child(odd) {background: rgba(255, 255, 255, 1);}
+/*.booking-grid-row:nth-child(even) {background: rgba(239, 239, 239, 1);}
+.booking-grid-row:nth-child(odd) {background: rgba(255, 255, 255, 1);}*/
 
-.booking-grid-row {    
+.booking-grid-row {   
+    margin-top: 10px; 
+    border-bottom: solid 1px #EC2785;
+
+
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     -o-box-sizing: border-box;
@@ -835,8 +840,8 @@ control-item-radio {
     -ms-box-sizing: border-box;
     box-sizing: border-box;    
     padding:0em;
-    display:block !important;
-    width:100% !important;
+    /*display:block !important;*/
+    /*width:100% !important;*/
 }
 .booking-grid-row > div {
     -webkit-box-sizing: border-box;
@@ -1860,4 +1865,202 @@ ul.dropdown > li:hover {
 
 .navbar {
         margin-top: 123px;
+}
+
+.LocationImageHolder {
+    width: 100%; display:inline-block;
+}
+
+.LocationRepeater {
+    width: 30%; 
+    display:inline-block;  
+    margin: 0 1.5%;
+}
+.LocationImageHolder img{
+    cursor:pointer;
+    width: 100%;
+}
+.LocationNameHolder {
+    text-transform: uppercase;
+    font-size: 2em;
+    color: white;
+    background: #EC2785;
+    position: relative;
+    top: 40px;
+    padding: 5px;
+}
+
+.LocationImageHolder img:hover {  
+   opacity: 0.8;
+   /*Glow*/
+  -webkit-box-shadow: 0px 0px 60px #907DDA;
+  -moz-box-shadow: 0px 0px 60px #907DDA;
+  box-shadow: 0px 0px 60px #907DDA;
+}
+
+.filterOptionsHolder {
+    display: inline-block;
+    width: 124px;
+    text-align: center;
+    padding: 5px;
+    border: 2px solid #907DDA;
+}
+/*
+.filterOptions label {
+    width: 67px;
+}
+
+.filterOptions input[type=checkbox] {
+    margin-right: 10px;
+}*/
+
+.inputFilters {
+    display: inline-block; margin-left: 10px;
+}
+
+/*CHECKBOX STYLES - NEW LOOK*/
+.filterOptions {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 17px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.filterOptions input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.filterOptions:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.filterOptions input:checked ~ .checkmark {
+    background-color: #907DDA;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.filterOptions input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.filterOptions .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.modal{display:block;position: fixed;z-index: 100;padding-top: 300px !important;left: 0;top: 0;width: 100%;height: 100%;overflow: auto;background-color: rgb(0,0,0);background-color: rgba(0,0,0,0.4);}
+.modal-content{background-color: #fefefe;margin: auto;padding: 20px;border: 1px solid #888;width: 55%;}
+.close{color: #aaaaaa;float: right;font-size: 28px;font-weight: bold;}
+.close:hover,.close:focus{color: #000;text-decoration: none;cursor: pointer;}
+
+
+
+
+.btn[disabled] {
+    opacity: 0.90;
+    filter: alpha(opacity=90);
+    background-color: red;
+    color: black;
+}
+
+.iSentMessage {
+    text-align: right;
+}
+
+.heSentMessage {
+    text-align: left;
+}
+
+
+/*comments*/
+.contentOfComment {
+    background-color: beige;
+    min-height: 70px;
+    text-align: left;
+    padding: 10px;
+}
+
+.senderOfCommentHolder {
+    background-color: white;
+    padding: 2px;
+}
+
+.commentBlock {
+    padding: 10px;
+    border: 2px solid #907DDA;
+    margin: 5px 0;
+}
+
+.comentator, .commentDate {
+    display:inline-block;
+}
+
+.commentator {
+    text-align: left;
+}
+
+.commentDate {
+    text-align: right;
+    float: right;
+}
+
+.accomodationCommentContet {
+    background-color: cornflowerblue;
+    color: white;
+}
+
+
+/*rating stuff*/
+.rating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+}
+.rating > span {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+  font-size: 30px;
+}
+.rating > span:hover:before,
+.rating > span:hover ~ span:before {
+   content: "\2605";
+   position: absolute;
 }

@@ -14,14 +14,24 @@ namespace Booking.DataAccess
     
     public partial class Reservation
     {
-        public int Id { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Reservation()
+        {
+            this.SentMessages = new HashSet<SentMessage>();
+        }
+    
+        public System.Guid Id { get; set; }
         public System.Guid UserId { get; set; }
         public System.Guid AccomodationId { get; set; }
         public System.DateTime StartPeriod { get; set; }
-        public string EndPeriod { get; set; }
         public Nullable<byte> Confirmed { get; set; }
+        public System.DateTime EndPeriod { get; set; }
+        public Nullable<bool> CommentConsumed { get; set; }
+        public Nullable<bool> RatingConsumed { get; set; }
     
         public virtual Accomodation Accomodation { get; set; }
         public virtual BookingAgencyUser BookingAgencyUser { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SentMessage> SentMessages { get; set; }
     }
 }

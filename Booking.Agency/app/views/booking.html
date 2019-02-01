@@ -1,0 +1,18 @@
+﻿<div class="content">
+    <div class="content-body" data-ng-show="!loading">
+
+        <br /><br /><br />
+        <h1 style="text-align:center; width: 100%;">OUR DESTINATIONS</h1>
+        <br /><br /><br />
+        <div style="display:block;width:100%;padding:0.5em;">  
+            <label for="searchLocation">Search: &nbsp;&nbsp;</label><input id="searchLocation" placeholder="Search by location name" type="text" data-ng-model="search.LocationName"/>          
+   <!--         <searcher style="float:left;"></searcher>    -->
+        </div>  
+        <br /> <br />  
+        <div data-ng-click="changeView('/accomodations/' + location.Id);" class="LocationRepeater" data-ng-repeat="location in Locations | filter:search | orderObjectBy:sortBy:sortDirection">
+            <div class="LocationNameHolder">{{location.LocationName}} ({{location.Accomodations.length}})</div>
+            <div class="LocationImageHolder"><img  ng-src="app/resources/css/images/LocationImages/{{location.LocationName}}.jpg"/></div>
+        </div>
+
+    </div>
+</div>

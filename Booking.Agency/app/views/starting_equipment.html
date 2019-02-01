@@ -1,0 +1,46 @@
+﻿<div class="content">
+    <div class="content-body" data-ng-show="!loading">
+        <run-header></run-header>
+        <br />                                        
+                    <fieldset>
+                        <legend><i data-ng-show="!run.isRunLocked" class="fa fa-2x fa-fw fa-pencil-square-o fa-icon" data-ng-click="changeView('/startingequipment/edit/' + run.RunId);" title="View/Select"></i>Starting Equipment</legend>
+                            <table class="equipment">
+                                <thead>
+                                    <tr>
+                                        <th>Equipment</th>
+                                        <th>Manufacturer</th>
+                                        <th>Device</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Membrane Lung</td>
+                                        <td>{{ getManufacturer(run.Equipments[0].MembraneLung.ManufacturerId).Name }}</td>
+                                        <td>{{ run.Equipments[0].MembraneLung.Name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Heat Exchanger</td>
+                                        <td>{{getManufacturer(run.Equipments[0].HeatExchanger.ManufacturerId).Name }}</td>
+                                        <td>{{run.Equipments[0].HeatExchanger.Name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Blood Pump</td>
+                                        <td>{{getManufacturer(run.Equipments[0].Pump.ManufacturerId).Name}}</td>
+                                        <td>{{run.Equipments[0].Pump.Name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hemofilter</td>
+                                        <td>{{getManufacturer(run.Equipments[0].Hemofilter.ManufacturerId).Name}}</td>
+                                        <td>{{run.Equipments[0].Hemofilter.Name }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                    </fieldset>               
+           <div class="buttons-container">
+                <button data-ng-click="frm.$invalid || save('back');" title="Back">Back</button>
+                <button data-ng-click="frm.$invalid || save('next');" title="Next">Next</button>
+                <model-state-errors></model-state-errors>
+           </div>
+        </div>  
+</div>
+

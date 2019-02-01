@@ -122,9 +122,6 @@
     <Compile Include="AccomodationOwner.cs">
       <DependentUpon>BookingAgencyDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="aspnet_Users.cs">
-      <DependentUpon>BookingAgencyDBModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="BookingAgencyDBModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -146,9 +143,6 @@
     <Compile Include="Comment.cs">
       <DependentUpon>BookingAgencyDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Employee.cs">
-      <DependentUpon>BookingAgencyDBModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Extensions\BookingAgencyUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -159,13 +153,13 @@
     <Compile Include="Rating.cs">
       <DependentUpon>BookingAgencyDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ReceivedMessage.cs">
-      <DependentUpon>BookingAgencyDBModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Reservation.cs">
       <DependentUpon>BookingAgencyDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SentMessage.cs">
+      <DependentUpon>BookingAgencyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TravelLocation.cs">
       <DependentUpon>BookingAgencyDBModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>

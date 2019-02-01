@@ -1,5 +1,5 @@
 ﻿bookingApp.factory('dataService', ['$resource', '$window', '$routeParams', '$location', '$route', '$cookieStore', '$timeout', '$filter', '$rootScope', 'flashService', 'appService', function ($resource, $window, $routeParams, $location, $route, $cookieStore, $timeout, $filter, $rootScope, flashService, appService) {
-
+    
     return {        
         get: function (ctrlName, id, cb) {            
             if (id) {
@@ -33,7 +33,6 @@
             return $resource($rootScope.getUrl() + '/' + ctrlName + '/get', { objId: id }, { exec: { method: 'GET', headers: appService.getHeader() } });
         },
         getAll: function (ctrlName, action, params, cb) {
-            if ($routeParams.id != 0) {
                 this._getAll(ctrlName, action, params).exec().$promise.then(function (res) {
                     $rootScope.status = res.status;
                     if (cb) {
@@ -41,14 +40,6 @@
                     }
                     return;
                 });
-            }
-            else {
-                $rootScope.status = {};
-                if (cb) {
-                    cb(res);
-                }
-                return;
-            }
         },
         _getAll: function (ctrlName, action, params) {
             if (action == null) {

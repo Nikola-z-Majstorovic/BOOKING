@@ -4,7 +4,6 @@
         restrict: 'A',
         link: function (scope, element, attrs) {
             if (element.attr('title')) {
-
                 $(element).hover(function () {
                     // on mouseenter       
                     element.attr('data-placement', 'auto');
@@ -14,8 +13,6 @@
                     // on mouseleave                 
                     $(element).tooltip('hide');
                 });
-
-                
             }
 
         }

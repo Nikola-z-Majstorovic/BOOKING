@@ -1,20 +1,96 @@
 ﻿<div class="content">
     <div class="content-body" data-ng-show="!loading">
-       <div>
-           <div>Location: {{ selectedAccomodation.Location }}</div>
-           <div>Address: {{ selectedAccomodation.Address }}</div>
-           <div>NoPersons: {{ selectedAccomodation.NoPersons }}</div>
-           <div>Parking: {{ selectedAccomodation.Parking }}</div>
-           <div>Wifi: {{ selectedAccomodation.Wifi }}</div>
-           <div>HB: {{ selectedAccomodation.HB }}</div>
-           <div>TV: {{ selectedAccomodation.TV }}</div>
-           <div>Kitchen: {{ selectedAccomodation.Kitchen }}</div>
-           <div>Price: {{ selectedAccomodation.Price }}</div>
-           <div>Description: {{ selectedAccomodation.Description }}</div>
-       </div>
         <div>
-            Pick reservation date:
+                <div>
+                    <label>Name: </label>&nbsp&nbsp
+                    {{selectedAccomodation.Name}}
+                </div>
+                <div>
+                    <label>Accomodation type: </label>&nbsp&nbsp
+                    <i ng-class="{'fa-h-square': selectedAccomodation.Type == 0, 'fa-bed': selectedAccomodation.Type == 1, 'fa-home': selectedAccomodation.Type == 2}" class="fa fa-2x fa-fw fa-icon" title="{{getAccomodationType(selectedAccomodation.Type).name}}"></i>
+                </div>
+                <div>
+                    <label>HB: </label>&nbsp&nbsp
+                    {{getHBName(selectedAccomodation.HB).name}}
+                </div>
+                <div>
+                    <label>Available stuff: </label>&nbsp&nbsp                   
+                    <i ng-class="{'fa-icon': selectedAccomodation.Wifi == 1}" class="fa fa-2x fa-fw fa-wifi" title="Wifi"></i>
+                    <i ng-class="{'fa-icon': selectedAccomodation.TV == 1}" class="fa fa-2x fa-fw fa-tv" title="TV"></i>
+                    <i ng-class="{'fa-icon': selectedAccomodation.Kitchen == 1}" class="fa fa-2x fa-fw fa-spoon" title="Kitchen"></i>
+                    <i ng-class="{'fa-icon': selectedAccomodation.Parking == 1}" class="fa fa-2x fa-fw fa-automobile" title="Parking"></i>
+                    <i ng-class="{'fa-icon': selectedAccomodation.Bathroom == 1}" class="fa fa-2x fa-fw fa-bath" title="Bathroom"></i>
+                  
+                    <i class="fa fa-2x fa-fw fa-users fa-icon" title="Available for no. Persons"></i> {{selectedAccomodation.NoPersons}}
+                </div>
+
+                <div>                   
+                    <label>Address: </label>
+                    <span>{{selectedAccomodation.Address}}</span>
+                </div>
+                <div>                   
+                    <label>Price: </label>
+                    <span>{{selectedAccomodation.Price}} $</span>
+                </div>
+                <div>                   
+                    <label>Description: </label>
+                    <span>{{selectedAccomodation.Description}}</span>
+                </div>
+
+                <div>                   
+                    <label>Rating: </label>
+                    <span>{{rating}}</span>
+                </div>
+       </div>
+       <button data-ng-if="loggedUser.Username != null && loggedUser.Username != undefined" data-ng-click="displayReservationBox();">Make Reservation</button>
+        <br /><br />
+       <button data-ng-show="messageBoxDisplay == false && canComment == true" data-ng-click="displayMessageBox(true);">Write Comment</button>
+        <div data-ng-show="messageBoxDisplay == true">
+            <textarea style="width: 100%;" data-ng-model="messageContent" required="" name="messageContent"></textarea>
+            <button data-ng-click="postComment(messageContent);">Post Comment</button>
+            <button data-ng-click="displayMessageBox(false);">Cancel</button>
         </div>
-        
+       <div class="modal" data-ng-show="makeReservation == true">
+            <div class="modal-content">
+                <form name="form">
+                    <div>
+                        <div style="display:inline-block;">
+                            Pick Checkin date: {{checkInDate | date: 'MM/dd/yyyy' }}
+                            <div style="border:2px solid black" name="checkInDate" uib-datepicker ng-model="checkInDate" datepicker-options="options" required=""> </div>
+                            <span data-ng-show="form.password.checkInDate.required" class="required">Checkin date is required</span>
+                        </div>
+                        <div style="display:inline-block; margin-left: 2%;">
+                            Pick Checkout date: {{checkOutDate | date: 'MM/dd/yyyy' }}
+                            <div style="border:2px solid black" name="checkOutDate" uib-datepicker ng-model="checkOutDate" datepicker-options="options" required=""></div>
+                            <span data-ng-show="form.checkOutDate.$error.required" class="required">Checkout date is required</span>
+                        </div>
+                    </div> 
+                    <br />
+                    <button data-ng-click="createReservation()">Create reservation</button>     
+                    <button data-ng-click="cancelReservation()">Cancel reservation</button> 
+                </form>   
+            </div>                                                      
+        </div>
+        <div data-ng-show="canRate"><br />You can rate this Accomodation:</div>
+        <div class="rating" data-ng-show="canRate">
+            <span title="excellent" data-ng-click="rate(5);">☆</span>
+            <span title="good" data-ng-click="rate(4);">☆</span>
+            <span title="avarage" data-ng-click="rate(3);">☆</span>
+            <span title="not bad" data-ng-click="rate(2);">☆</span>
+            <span title="bad" data-ng-click="rate(1);">☆</span>            
+        </div>
+        <div data-ng-show="Comments.length > 0">
+            <br />
+            <h1 style="text-align:center;">Comments</h1>
+            <br /><br />
+            <div class="commentBlock" data-ng-repeat="comment in Comments" data-ng-if="comment.Approved == 1">                
+                <div class="comentator">{{comment.BookingAgencyUser.Username}}</div>
+                <div class="commentDate">{{comment.CommentDate | date: 'MM/dd/yyyy' }}</div>
+                <br /><br />
+                <div class="contentOfComment">{{comment.CommentContent}}</div>
+            </div>
+        </div>
+
+        </div>
     </div>
 </div>

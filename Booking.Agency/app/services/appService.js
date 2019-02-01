@@ -8,7 +8,7 @@
             //-----------------------------------------------------------------------------------------------------
             $rootScope.arrReq = [];
             //-----------------------------------------------------------------------------------------------------
-            $rootScope._ = window._; 
+            $rootScope._ = window._;
             //-----------------------------------------------------------------------------------------------------
             $rootScope.loggedUser = {
                 UserId: '',
@@ -30,7 +30,7 @@
             ];
             $rootScope.enumYesNo = [
               { name: 'No', value: 0 },
-              { name: 'Yes', value: 1 }              
+              { name: 'Yes', value: 1 }
             ];
             $rootScope.enumHBType = [
               { name: 'Breakfast', value: 0 },
@@ -56,23 +56,12 @@
                 } else { return ''; }
             };
             //-----------------------------------------------------------------------------------------------------
-            $rootScope.unit = function (str) {
-                return $rootScope.appService.getUnit(str);
-            };
-            //-----------------------------------------------------------------------------------------------------
             $rootScope.changeView = function (view) {
                 $location.path(view);
             };
-            $rootScope.changeViewWithId = function (view, id) {
-                $location.path(view + '/' + id);
-            };
-            //-----------------------------------------------------------------------------------------------------
-            $rootScope.back = function () {
-                $window.history.back();
-            };
             //-----------------------------------------------------------------------------------------------------
         },
-        //#region Lodash helpers (remove/find/filter)
+        //Some lodash functions wrapped up
         lodashRemoveBy: function (array, propertyName, propertyValue) {
             return _.remove(array, [propertyName, propertyValue]);
         },
@@ -97,7 +86,7 @@
             }
             return null;
         },
-        //#endregion
+        //used when calling backend, transfering headers and data that will be used in sessions and booking grids
         getAppConf: function () {
             var format = '';
             var AppConf = {
@@ -153,37 +142,7 @@
                     $(sclEl).scrollTop(0);
                 }
             }, 300);
-        },
-        _getDecimalSeparator: function () {
-            var number = 111111111.111111111;
-            var numberString = number.toLocaleString();
+        }
 
-            for (var i = numberString.length - 1; i >= 0; i--) {
-                var char = numberString.charAt(i);
-                if (char != "1") {
-                    return char;
-                    break;
-                }
-            }
-        },
-        isInRole: function (role) {
-            var roles = this.getAppConf().Roles;
-            if (roles) {
-                if (roles.indexOf(role) > -1) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-            else { return false; }
-        },
-        countDecimalPlaces: function (value) {
-            var decimalPos = String(value).indexOf('.');
-            if (decimalPos === -1) {
-                return 0;
-            } else {
-                return String(value).length - decimalPos - 1;
-            }
-        },
     };
 }]);

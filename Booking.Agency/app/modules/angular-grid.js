@@ -19,7 +19,7 @@
 .directive('bookingGridRow', ['$rootScope', 'appService', function ($rootScope, appService) {
     return {
         restrict: 'E',
-        require: ['^elsoGrid'],
+        require: ['^bookingGrid'],
         scope: true,
         transclude: true,
         replace: true,

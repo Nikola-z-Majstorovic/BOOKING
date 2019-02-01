@@ -4,27 +4,24 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="53ba7f50409d45c3ac25c224d234c47d" Name="Diagram1" ZoomLevel="74">
-        <EntityTypeShape EntityType="BookingAgencyModel.Employee" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BookingAgencyModel.aspnet_Users" Width="1.5" PointX="3.375" PointY="0.75" />
-        <EntityTypeShape EntityType="BookingAgencyModel.Accomodation" Width="1.5" PointX="2.75" PointY="8.875" />
-        <EntityTypeShape EntityType="BookingAgencyModel.AccomodationOwner" Width="1.5" PointX="7.75" PointY="0.625" />
-        <EntityTypeShape EntityType="BookingAgencyModel.BookingAgencyUser" Width="1.5" PointX="2.75" PointY="4.75" />
-        <EntityTypeShape EntityType="BookingAgencyModel.Comment" Width="1.5" PointX="5" PointY="10.125" />
-        <EntityTypeShape EntityType="BookingAgencyModel.Rating" Width="1.5" PointX="8" PointY="10.25" />
-        <EntityTypeShape EntityType="BookingAgencyModel.ReceivedMessage" Width="1.5" PointX="5" PointY="17.5" />
-        <EntityTypeShape EntityType="BookingAgencyModel.Reservation" Width="1.5" PointX="6" PointY="6.125" />
-        <EntityTypeShape EntityType="BookingAgencyModel.SentMessage" Width="1.5" PointX="5" PointY="14.125" />
-        <AssociationConnector Association="BookingAgencyModel.FK__Comments__Accomo__7D0E9093" />
-        <AssociationConnector Association="BookingAgencyModel.FK__Rating__Accomoda__7849DB76" />
-        <AssociationConnector Association="BookingAgencyModel.FK__Reservati__Accom__74794A92" />
-        <AssociationConnector Association="BookingAgencyModel.FK__SentMessa__Accom__04AFB25B" />
-        <AssociationConnector Association="BookingAgencyModel.FK_AccomodationOwners_Accomodation" />
-        <AssociationConnector Association="BookingAgencyModel.FK__Comments__UserId__7C1A6C5A" />
-        <AssociationConnector Association="BookingAgencyModel.FK__Rating__UserId__7755B73D" />
-        <AssociationConnector Association="BookingAgencyModel.FK__ReceivedM__Recei__7FEAFD3E" />
-        <AssociationConnector Association="BookingAgencyModel.FK__Reservati__UserI__73852659" />
-        <AssociationConnector Association="BookingAgencyModel.FK__SentMessa__Sende__03BB8E22" />
+      <Diagram DiagramId="53ba7f50409d45c3ac25c224d234c47d" Name="Diagram1" ZoomLevel="55">
+        <EntityTypeShape EntityType="BookingAgencyModel.BookingAgencyUser" Width="1.5" PointX="0.75" PointY="0.5" />
+        <EntityTypeShape EntityType="BookingAgencyModel.Accomodation" Width="1.5" PointX="5.625" PointY="8" />
+        <EntityTypeShape EntityType="BookingAgencyModel.AccomodationOwner" Width="1.5" PointX="3.375" PointY="3.75" />
+        <EntityTypeShape EntityType="BookingAgencyModel.TravelLocation" Width="1.5" PointX="3.375" PointY="9.625" />
+        <AssociationConnector Association="BookingAgencyModel.FK__Accomodat__Locat__11158940" />
+        <EntityTypeShape EntityType="BookingAgencyModel.SentMessage" Width="1.5" PointX="10.125" PointY="2" />
+        <AssociationConnector Association="BookingAgencyModel.FK__SentMessa__Sende__29E1370A" />
+        <EntityTypeShape EntityType="BookingAgencyModel.Comment" Width="1.5" PointX="10.875" PointY="6.375" />
+        <AssociationConnector Association="BookingAgencyModel.FK__Comments__Accomo__336AA144" />
+        <AssociationConnector Association="BookingAgencyModel.FK__Comments__UserId__32767D0B" />
+        <EntityTypeShape EntityType="BookingAgencyModel.Reservation" Width="1.5" PointX="7.875" PointY="5.125" />
+        <AssociationConnector Association="BookingAgencyModel.FK__Reservati__Accom__18B6AB08" />
+        <AssociationConnector Association="BookingAgencyModel.FK__Reservati__UserI__17C286CF" />
+        <AssociationConnector Association="BookingAgencyModel.FK__SentMessa__Reser__2AD55B43" />
+        <EntityTypeShape EntityType="BookingAgencyModel.Rating" Width="1.5" PointX="7.875" PointY="1.625" />
+        <AssociationConnector Association="BookingAgencyModel.FK__Rating__Accomoda__39237A9A" />
+        <AssociationConnector Association="BookingAgencyModel.FK__Rating__UserId__382F5661" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

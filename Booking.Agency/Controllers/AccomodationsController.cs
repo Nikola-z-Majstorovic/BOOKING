@@ -32,10 +32,7 @@ namespace Booking.Agency.Controllers
     {        
         #region IBaseActions - Default CRUD Actions
 
-        /// <summary>
-        /// Get all objects
-        /// </summary>
-        /// <returns>HttpResponseMessage - Json</returns>
+
         [System.Web.Http.HttpGet]
         public HttpResponseMessage GetAll()
         {
@@ -51,11 +48,7 @@ namespace Booking.Agency.Controllers
             }
         }
 
-        /// <summary>
-        /// Get single object
-        /// </summary>
-        /// <param name="id">UniqueId to get</param>
-        /// <returns>HttpResponseMessage - Json</returns>
+
         [System.Web.Http.HttpGet]
         public HttpResponseMessage Get(Guid objId)
         {
@@ -72,11 +65,7 @@ namespace Booking.Agency.Controllers
             }
         }
 
-        /// <summary>
-        /// Create new object
-        /// </summary>
-        /// <param name="item">Object model to create</param>
-        /// <returns>HttpResponseMessage - Json</returns>
+
         [System.Web.Http.HttpPost]
         public HttpResponseMessage Create(dynamic model)
         {
@@ -89,12 +78,7 @@ namespace Booking.Agency.Controllers
                 return Error(HttpStatusCode.NotAcceptable, ModelState);
             }
         }
-
-        /// <summary>
-        /// Update object
-        /// </summary>
-        /// <param name="item">Object/Model to update</param>
-        /// <returns>HttpResponseMessage - Json</returns>       
+   
         [System.Web.Http.HttpPut]
         public HttpResponseMessage Update(dynamic model)
         {
@@ -113,11 +97,6 @@ namespace Booking.Agency.Controllers
             }
         }
 
-        /// <summary>
-        /// Delete object
-        /// </summary>
-        /// <param name="id">UniqueId to delete</param>
-        /// <returns>HttpResponseMessage - Json</returns>
         [System.Web.Http.HttpDelete]
         public HttpResponseMessage Delete(Guid objId)
         {
@@ -145,6 +124,22 @@ namespace Booking.Agency.Controllers
                 BaseRepository bs = new BaseRepository();
 
                 List<Accomodation> accomodationList = bs.GetAccomodationsForSelectedType(accomodationType);
+                return Ok(accomodationList, HttpStatusCode.OK, "Successfully Get");
+            }
+            else
+            {
+                return Error(HttpStatusCode.NotAcceptable, ModelState);
+            }
+        }
+
+        [System.Web.Http.HttpGet]
+        public HttpResponseMessage getAccomodationsForSelectedLocation(int objId)
+        {
+            if (ModelState.IsValid)
+            {
+                BaseRepository bs = new BaseRepository();
+
+                List<Accomodation> accomodationList = bs.GetAccomodationsForSelectedLocation(objId);
                 return Ok(accomodationList, HttpStatusCode.OK, "Successfully Get");
             }
             else

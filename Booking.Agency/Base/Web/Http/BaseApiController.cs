@@ -29,11 +29,25 @@ namespace Booking.Agency.Base.Web.Http
             var serObj = JsonConvert.SerializeObject(obj, customJsonSettings);
             var retObj = JsonConvert.DeserializeObject<T>(serObj);
             if (initModelStateValidation)
-            {                
+            {
                 this.Validate(retObj);
             }
             return retObj;
         }
+
+        public T MapJsonToModelArrayObjects<T>(dynamic obj, bool initModelStateValidation)
+        {
+            var serObj = JsonConvert.SerializeObject(obj, customJsonSettings);
+            var retObj = JsonConvert.DeserializeObject<IList<SentMessage>>(serObj);
+
+            if (initModelStateValidation)
+            {
+                this.Validate(retObj);
+            }
+
+            return retObj;
+        }
+
 
         public Guid GetUserId()
         {

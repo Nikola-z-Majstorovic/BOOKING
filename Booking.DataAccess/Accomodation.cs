@@ -18,14 +18,13 @@ namespace Booking.DataAccess
         public Accomodation()
         {
             this.Comments = new HashSet<Comment>();
-            this.Ratings = new HashSet<Rating>();
             this.Reservations = new HashSet<Reservation>();
-            this.SentMessages = new HashSet<SentMessage>();
+            this.Ratings = new HashSet<Rating>();
         }
     
         public System.Guid AccomodationId { get; set; }
         public byte Type { get; set; }
-        public string Location { get; set; }
+        public int Location { get; set; }
         public string Address { get; set; }
         public Nullable<byte> Category { get; set; }
         public byte NoPersons { get; set; }
@@ -37,16 +36,14 @@ namespace Booking.DataAccess
         public Nullable<byte> Bathroom { get; set; }
         public byte Price { get; set; }
         public string Description { get; set; }
+        public string Name { get; set; }
     
+        public virtual TravelLocation TravelLocation { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Rating> Ratings { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reservation> Reservations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SentMessage> SentMessages { get; set; }
-        public virtual Accomodation Accomodation1 { get; set; }
-        public virtual Accomodation Accomodation2 { get; set; }
+        public virtual ICollection<Rating> Ratings { get; set; }
     }
 }

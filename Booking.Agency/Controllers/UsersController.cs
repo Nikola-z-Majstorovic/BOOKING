@@ -31,11 +31,7 @@ namespace Booking.Agency.Controllers
     public class UsersController : BaseApiController, IBaseActions
     {
         #region Custom Actions
-        /// <summary>
-        /// Login user
-        /// </summary>
-        /// <param name="user">Login model</param>
-        /// <returns>HttpResponseMessage - Json</returns>       
+ 
         [System.Web.Http.HttpPost]
         [System.Web.Http.ActionName("register")]
         public HttpResponseMessage Register(dynamic model)
@@ -74,16 +70,11 @@ namespace Booking.Agency.Controllers
              }
 
         }
-        /// <summary>
-        /// Login user
-        /// </summary>
-        /// <param name="user">Login model</param>
-        /// <returns>HttpResponseMessage - Json</returns>       
+ 
         [System.Web.Http.HttpPost]
         [System.Web.Http.ActionName("login")]
         public HttpResponseMessage Login(dynamic model)
         {
-
             BookingAgencyUser user = MapJsonToModelObject<BookingAgencyUser>(model, false);
 
             if (ModelState.IsValid)
@@ -93,7 +84,7 @@ namespace Booking.Agency.Controllers
 
                 bool isAuthenticared = Membership.ValidateUser(user.Username, user.Password);
                 MembershipUser mu = Membership.GetUser(user.Username);
-
+                
                 
                 if (isAuthenticared)
                 {
@@ -135,7 +126,15 @@ namespace Booking.Agency.Controllers
                 }
                 else
                 {
-                    string[] errors = new string[] { "Access Denied", "Wrong username or password" };
+                    string[] errors = new string[] { "Access Denied", "Wrong username or password" }; 
+                    if (mu != null)
+                    {
+                        if (mu.IsApproved == false)
+                        {
+                            errors = new string[] { "Access Denied", "Your account has been disabled!" };
+                            return Ok(false, HttpStatusCode.OK, "Access Denied", errors);
+                        }
+                    }                                                          
                     return Error(HttpStatusCode.Forbidden, "Access Denied", errors);
                 }
             }
@@ -145,44 +144,29 @@ namespace Booking.Agency.Controllers
             }
         }
 
-
-
-
-        /// <summary>
-        /// Create user session variables
-        /// </summary>
-        /// <param name="userName">Current Username</param>
-        /// <param name="request">Current Request</param>
-        /// <param name="session">Current Ression Rtate</param>
-        /// <returns></returns>
         public bool CreateUserSessions(string userName, HttpRequestMessage request, HttpSessionState session)
         {
             var user = Membership.GetUser(userName);
             MembershipUser ur = user;
             bool userIsApproved = false;
 
-            using (var context = new BookingAgencyEntities())
-            {
-
-                context.Configuration.ProxyCreationEnabled = false;
-                var guid = new Guid(user.ProviderUserKey.ToString());
-                var dbUser = context.BookingAgencyUsers.FirstOrDefault(u => u.UserId == guid);
+            BaseRepository bs = new BaseRepository();
+    
+            var guid = new Guid(user.ProviderUserKey.ToString());
+            var dbUser = bs.GetUserForId(guid);//   context.BookingAgencyUsers.FirstOrDefault(u => u.UserId == guid);
               
                 
-                string[] roles = System.Web.Security.Roles.GetRolesForUser(userName);
+            string[] roles = System.Web.Security.Roles.GetRolesForUser(userName);
 
-                session["User"] = dbUser;
+            session["User"] = dbUser;
 
-                session["UserId"] = dbUser.UserId;
+            session["UserId"] = dbUser.UserId;
 
-                userIsApproved = true;
-            }
+            userIsApproved = true;
+   
             return userIsApproved;
         }
-        /// <summary>
-        /// Logout user
-        /// </summary>
-        /// <returns>HttpResponseMessage - Json</returns>       
+ 
         [System.Web.Http.HttpPost]
         [System.Web.Http.ActionName("checksession")]
         public HttpResponseMessage Checksession()
@@ -190,11 +174,7 @@ namespace Booking.Agency.Controllers
             string[] messages = new string[] { "Successfully logged out", "See you soon" };
             return Ok(null, HttpStatusCode.OK, "Success", messages);
         }
-                  
-        /// <summary>
-        /// Logout user
-        /// </summary>
-        /// <returns>HttpResponseMessage - Json</returns>       
+   
         [System.Web.Http.HttpPost]
         [System.Web.Http.ActionName("logout")]
         public HttpResponseMessage Logout()
@@ -219,21 +199,103 @@ namespace Booking.Agency.Controllers
             }
         }
 
+        [System.Web.Http.HttpPut]
+        public HttpResponseMessage changeUserToAgent(dynamic model)
+        {
+            BookingAgencyUser user = MapJsonToModelObject<BookingAgencyUser>(model, false);
+            if (ModelState.IsValid)
+            {
+                Roles.RemoveUserFromRole(user.Username, "AccomodationUser");
+
+                Roles.AddUserToRole(user.Username, "AgentUser");
+
+                BaseRepository bs = new BaseRepository();
+                //We are updating user in BookingAgencyUsers table to save PIB for newly Agent
+                bs.UpdateUser(user);
+
+                List<BookingAgencyUser> userList = bs.GetAllUsers();
+
+                userList.ForEach(u => u.Roles = Roles.GetRolesForUser(u.Username));
+
+                return Ok(userList, HttpStatusCode.OK, "Successfully updated");
+            }
+            else
+            {
+                return Error(HttpStatusCode.NotAcceptable, ModelState);
+            }
+        }
+
+        [System.Web.Http.HttpPut]
+        public HttpResponseMessage LockUser(dynamic model)
+        {
+            BookingAgencyUser user = MapJsonToModelObject<BookingAgencyUser>(model, false);
+            if (ModelState.IsValid)
+            {
+                MembershipUser membershipUser = Membership.GetUser(user.UserId);
+                membershipUser.IsApproved = false;
+                Membership.UpdateUser(membershipUser);
+
+                BaseRepository bs = new BaseRepository();
+
+                List<BookingAgencyUser> userList = bs.GetAllUsers();
+
+                //Include user roles from asp tables
+                userList.ForEach(u => u.Roles = Roles.GetRolesForUser(u.Username));
+                //Include user approve status from asp tables
+                userList.ForEach(u => u.IsUserApproved = Membership.GetUser(u.UserId).IsApproved);//if false is returned, that means user is disabled
+
+                return Ok(userList, HttpStatusCode.OK, "Successfully updated");
+            }
+            else
+            {
+                return Error(HttpStatusCode.NotAcceptable, ModelState);
+            }
+        }
+
+        [System.Web.Http.HttpPut]
+        public HttpResponseMessage UnockUser(dynamic model)
+        {
+            BookingAgencyUser user = MapJsonToModelObject<BookingAgencyUser>(model, false);
+            if (ModelState.IsValid)
+            {
+                MembershipUser membershipUser = Membership.GetUser(user.UserId);
+                membershipUser.IsApproved = true;
+                Membership.UpdateUser(membershipUser);
+
+                BaseRepository bs = new BaseRepository();
+
+                List<BookingAgencyUser> userList = bs.GetAllUsers();
+
+                //Include user roles from asp tables
+                userList.ForEach(u => u.Roles = Roles.GetRolesForUser(u.Username));
+                //Include user approve status from asp tables
+                userList.ForEach(u => u.IsUserApproved = Membership.GetUser(u.UserId).IsApproved);//if false is returned, that means user is disabled
+
+                return Ok(userList, HttpStatusCode.OK, "Successfully updated");
+            }
+            else
+            {
+                return Error(HttpStatusCode.NotAcceptable, ModelState);
+            }
+        }
         #endregion
 
 
         #region IBaseActions - Default CRUD Actions
 
-        /// <summary>
-        /// Get all objects
-        /// </summary>
-        /// <returns>HttpResponseMessage - Json</returns>
         [System.Web.Http.HttpGet]
         public HttpResponseMessage GetAll()
         {
             if (ModelState.IsValid)
             {
-                return Ok(null, HttpStatusCode.OK, "Successfully GetAll");
+                BaseRepository bs = new BaseRepository();
+                List<BookingAgencyUser> userList = bs.GetAllUsers();
+
+                //Include user roles from asp tables
+                userList.ForEach(u => u.Roles = Roles.GetRolesForUser(u.Username));
+                //Include user approve status from asp tables
+                userList.ForEach(u => u.IsUserApproved = Membership.GetUser(u.UserId).IsApproved); //if false is returned, that means user is disabled
+                return Ok(userList, HttpStatusCode.OK, "Successfully GetAll");
             }
             else
             {
@@ -241,17 +303,16 @@ namespace Booking.Agency.Controllers
             }
         }
 
-        /// <summary>
-        /// Get single object
-        /// </summary>
-        /// <param name="id">UniqueId to get</param>
-        /// <returns>HttpResponseMessage - Json</returns>
         [System.Web.Http.HttpGet]
         public HttpResponseMessage Get(Guid objId)
         {
             if (ModelState.IsValid)
             {
-                return Ok(null, HttpStatusCode.OK, "Successfully Get");
+
+                BaseRepository bs = new BaseRepository();
+
+                BookingAgencyUser user = bs.GetUserForId(objId);
+                return Ok(user, HttpStatusCode.OK, "Successfully Loaded");
             }
             else
             {
@@ -259,11 +320,6 @@ namespace Booking.Agency.Controllers
             }
         }
 
-        /// <summary>
-        /// Create new object
-        /// </summary>
-        /// <param name="item">Object model to create</param>
-        /// <returns>HttpResponseMessage - Json</returns>
         [System.Web.Http.HttpPost]
         public HttpResponseMessage Create(dynamic model)
         {
@@ -276,12 +332,7 @@ namespace Booking.Agency.Controllers
                 return Error(HttpStatusCode.NotAcceptable, ModelState);
             }
         }
-
-        /// <summary>
-        /// Update object
-        /// </summary>
-        /// <param name="item">Object/Model to update</param>
-        /// <returns>HttpResponseMessage - Json</returns>       
+   
         [System.Web.Http.HttpPut]
         public HttpResponseMessage Update(dynamic model)
         {
@@ -295,11 +346,6 @@ namespace Booking.Agency.Controllers
             }
         }
 
-        /// <summary>
-        /// Delete object
-        /// </summary>
-        /// <param name="id">UniqueId to delete</param>
-        /// <returns>HttpResponseMessage - Json</returns>
         [System.Web.Http.HttpDelete]
         public HttpResponseMessage Delete(Guid objId)
         {
