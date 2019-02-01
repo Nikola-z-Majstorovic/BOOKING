@@ -1,4 +1,4 @@
-﻿using Booking.Agency.Models;
+﻿
 using Booking.Agency.Base.Web.Http;
 using Booking.DataAccess;
 using Microsoft.Ajax.Utilities;
@@ -166,15 +166,7 @@ namespace Booking.Agency.Controllers
    
             return userIsApproved;
         }
- 
-        [System.Web.Http.HttpPost]
-        [System.Web.Http.ActionName("checksession")]
-        public HttpResponseMessage Checksession()
-        {
-            string[] messages = new string[] { "Successfully logged out", "See you soon" };
-            return Ok(null, HttpStatusCode.OK, "Success", messages);
-        }
-   
+
         [System.Web.Http.HttpPost]
         [System.Web.Http.ActionName("logout")]
         public HttpResponseMessage Logout()

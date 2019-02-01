@@ -157,3 +157,7 @@ C:\Users\majst\Downloads\test-newest version\test\Booking.Agency\bin\ru\System.S
 C:\Users\majst\Downloads\test-newest version\test\Booking.Agency\bin\zh-Hans\System.Spatial.resources.dll
 C:\Users\majst\Downloads\test-newest version\test\Booking.Agency\bin\zh-Hant\System.Spatial.resources.dll
 C:\Users\majst\Downloads\test-newest version\test\Booking.Agency\obj\Debug\Booking.Agency.csproj.CopyComplete
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\obj\Debug\Booking.Agency.csprojAssemblyReference.cache
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\obj\Debug\Booking.Agency.csproj.CoreCompileInputs.cache
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\obj\Debug\Booking.Agency.dll
+C:\Users\majst\Desktop\test 11-26-2018\test\Booking.Agency\obj\Debug\Booking.Agency.pdb
