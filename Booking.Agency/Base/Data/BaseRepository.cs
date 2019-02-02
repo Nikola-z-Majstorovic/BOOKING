@@ -1,5 +1,4 @@
-﻿using Booking.Agency.Models;
-using Booking.DataAccess;
+﻿using Booking.DataAccess;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;

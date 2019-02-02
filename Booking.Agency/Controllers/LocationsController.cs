@@ -1,5 +1,4 @@
-﻿using Booking.Agency.Models;
-using Booking.Agency.Base.Web.Http;
+﻿using Booking.Agency.Base.Web.Http;
 using Booking.DataAccess;
 using Microsoft.Ajax.Utilities;
 using System;

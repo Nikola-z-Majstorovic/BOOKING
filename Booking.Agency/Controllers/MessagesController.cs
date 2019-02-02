@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Mvc;
 using Newtonsoft.Json;
-using Booking.Agency.Models;
 using System.Text;
 using System.Web;
 using System.Web.Http.Filters;
