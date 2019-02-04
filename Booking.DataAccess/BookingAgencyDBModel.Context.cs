@@ -26,12 +26,12 @@ namespace Booking.DataAccess
         }
     
         public virtual DbSet<BookingAgencyUser> BookingAgencyUsers { get; set; }
-        public virtual DbSet<Accomodation> Accomodations { get; set; }
         public virtual DbSet<AccomodationOwner> AccomodationOwners { get; set; }
         public virtual DbSet<TravelLocation> TravelLocations { get; set; }
-        public virtual DbSet<SentMessage> SentMessages { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
-        public virtual DbSet<Reservation> Reservations { get; set; }
         public virtual DbSet<Rating> Ratings { get; set; }
+        public virtual DbSet<Accomodation> Accomodations { get; set; }
+        public virtual DbSet<Reservation> Reservations { get; set; }
+        public virtual DbSet<SentMessage> SentMessages { get; set; }
     }
 }

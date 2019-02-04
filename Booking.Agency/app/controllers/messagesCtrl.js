@@ -92,12 +92,27 @@
         if (notSeenMessagesFromOtherUser.length > 0) {
             dataService.update('Messages', 'MarkMessagesAsSeen', notSeenMessagesFromOtherUser, function (res) {
                 //refresh messages
-                console.log('bingo');
 
+
+                for (i = 0; i <= notSeenMessagesFromOtherUser.length - 1; i++) {
+
+                    var messageToMarkAsseen = appService.lodashFindBy(reservation.SentMessages, 'Id', notSeenMessagesFromOtherUser[i].Id);
+
+                    if (messageToMarkAsseen != undefined) {
+                        console.log('asdasda');
+                        messageToMarkAsseen.MessageSeen = 1;
+                    } 
+                    
+                }
+
+                
             });
         }
-
-
-
     }
+
+
+    $scope.formatDatePeriod = function (date) {
+        return moment(new Date(date)).format('MM/DD/YYYY');
+    }
+
 }]);

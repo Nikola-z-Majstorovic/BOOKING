@@ -1,4 +1,4 @@
-﻿
+﻿using Booking.Agency.Models;
 using Booking.Agency.Base.Web.Http;
 using Booking.DataAccess;
 using Microsoft.Ajax.Utilities;
@@ -42,9 +42,6 @@ namespace Booking.Agency.Controllers
              {
                  MembershipUser newUser = Membership.CreateUser(user.Username, user.Password, user.Email);
 
-                 //Roles.CreateRole("AccomodationUser");
-                 //Roles.CreateRole("AdminUser");
-                 //Roles.CreateRole("AgentUser");
 
                  if (newUser.UserName != null)
                  {
@@ -103,7 +100,7 @@ namespace Booking.Agency.Controllers
                         BookingAgencyUser lm = new BookingAgencyUser();
                         lm = ((BookingAgencyUser)Session["User"]);
 
-                        RolePrincipal r = (RolePrincipal)HttpContext.Current.User;
+                        //RolePrincipal r = (RolePrincipal)HttpContext.Current.User;
                         lm.Roles = Roles.GetRolesForUser(mu.UserName);
 
                         //if (lm.Roles.Length == 0)
@@ -152,11 +149,11 @@ namespace Booking.Agency.Controllers
 
             BaseRepository bs = new BaseRepository();
     
-            var guid = new Guid(user.ProviderUserKey.ToString());
+            var guid = new Guid(user.ProviderUserKey.ToString());            
             var dbUser = bs.GetUserForId(guid);//   context.BookingAgencyUsers.FirstOrDefault(u => u.UserId == guid);
               
                 
-            string[] roles = System.Web.Security.Roles.GetRolesForUser(userName);
+            string[] roles = Roles.GetRolesForUser(userName);
 
             session["User"] = dbUser;
 
@@ -166,7 +163,15 @@ namespace Booking.Agency.Controllers
    
             return userIsApproved;
         }
-
+ 
+        [System.Web.Http.HttpPost]
+        [System.Web.Http.ActionName("checksession")]
+        public HttpResponseMessage Checksession()
+        {
+            string[] messages = new string[] { "Successfully logged out", "See you soon" };
+            return Ok(null, HttpStatusCode.OK, "Success", messages);
+        }
+   
         [System.Web.Http.HttpPost]
         [System.Web.Http.ActionName("logout")]
         public HttpResponseMessage Logout()

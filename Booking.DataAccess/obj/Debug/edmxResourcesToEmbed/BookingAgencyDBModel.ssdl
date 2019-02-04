@@ -6,7 +6,7 @@
     </Key>
     <Property Name="AccomodationId" Type="uniqueidentifier" Nullable="false" />
     <Property Name="Type" Type="tinyint" Nullable="false" />
-    <Property Name="Location" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Location" Type="int" Nullable="false" />
     <Property Name="Address" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="Category" Type="tinyint" />
     <Property Name="NoPersons" Type="tinyint" Nullable="false" />
@@ -76,7 +76,7 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="None" />
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
     <Property Name="ReservationId" Type="uniqueidentifier" Nullable="false" />
     <Property Name="SenderId" Type="uniqueidentifier" Nullable="false" />
     <Property Name="Message" Type="text" />

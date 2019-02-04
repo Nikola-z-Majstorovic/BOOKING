@@ -1,4 +1,5 @@
-﻿using Booking.DataAccess;
+﻿using Booking.Agency.Models;
+using Booking.DataAccess;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,9 +43,6 @@ namespace Booking.Agency.Base.Web.Http.Filters
             }
             base.OnActionExecuting(actionContext);
 
-        }
-        public override void OnActionExecuted(HttpActionExecutedContext actionExecutedContext)
-        {
         }
     }
 }

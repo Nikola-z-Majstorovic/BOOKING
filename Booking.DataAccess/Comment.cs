@@ -21,7 +21,7 @@ namespace Booking.DataAccess
         public byte Approved { get; set; }
         public System.DateTime CommentDate { get; set; }
     
-        public virtual Accomodation Accomodation { get; set; }
         public virtual BookingAgencyUser BookingAgencyUser { get; set; }
+        public virtual Accomodation Accomodation { get; set; }
     }
 }

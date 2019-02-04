@@ -11,7 +11,8 @@ namespace Booking.DataAccess
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Xml.Serialization;
+
     public partial class Reservation
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -24,14 +25,15 @@ namespace Booking.DataAccess
         public System.Guid UserId { get; set; }
         public System.Guid AccomodationId { get; set; }
         public System.DateTime StartPeriod { get; set; }
-        public Nullable<byte> Confirmed { get; set; }
         public System.DateTime EndPeriod { get; set; }
+        public Nullable<byte> Confirmed { get; set; }
         public Nullable<bool> CommentConsumed { get; set; }
         public Nullable<bool> RatingConsumed { get; set; }
     
         public virtual Accomodation Accomodation { get; set; }
         public virtual BookingAgencyUser BookingAgencyUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [XmlIgnore]
         public virtual ICollection<SentMessage> SentMessages { get; set; }
     }
 }

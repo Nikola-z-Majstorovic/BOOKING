@@ -6,7 +6,7 @@
             <uib-accordion close-others="true">  
                     <accordion-group data-ng-repeat="res in Reservations" uib-accordion-group style="display: block;" is-open="res.accordionOpenClose" data-ng-click="openConversation(res);">               
                             <accordion-heading uib-accordion-heading class="panel-default">
-                                <span>{{res.Accomodation.Name}} - Reservation: {{res.StartPeriod | date: 'MM/dd/yyyy'}} - {{res.EndPeriod | date: 'MM/dd/yyyy'}}<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': res.accordionOpenClose, 'glyphicon-chevron-right': !res.accordionOpenClose}"></i></span>  
+                                <span>{{res.Accomodation.Name}} - Reservation: {{formatDatePeriod(res.StartPeriod)}} - {{formatDatePeriod(res.EndPeriod)}}<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': res.accordionOpenClose, 'glyphicon-chevron-right': !res.accordionOpenClose}"></i></span>  
                             </accordion-heading>   
                         <div class="control-item" style="width: 50%; margin: auto; height: fit-content; padding: 5px; overflow-y: auto; background-color: #CBCBCB;">
                             <br />

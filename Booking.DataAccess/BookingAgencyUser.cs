@@ -11,16 +11,17 @@ namespace Booking.DataAccess
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Xml.Serialization;
+
     public partial class BookingAgencyUser
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public BookingAgencyUser()
         {
-            this.SentMessages = new HashSet<SentMessage>();
             this.Comments = new HashSet<Comment>();
-            this.Reservations = new HashSet<Reservation>();
             this.Ratings = new HashSet<Rating>();
+            this.Reservations = new HashSet<Reservation>();
+            this.SentMessages = new HashSet<SentMessage>();
         }
     
         public System.Guid UserId { get; set; }
@@ -32,12 +33,16 @@ namespace Booking.DataAccess
         public string Phone { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SentMessage> SentMessages { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [XmlIgnore]
         public virtual ICollection<Comment> Comments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [XmlIgnore]
+        public virtual ICollection<Rating> Ratings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [XmlIgnore]
         public virtual ICollection<Reservation> Reservations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Rating> Ratings { get; set; }
+        [XmlIgnore]
+        public virtual ICollection<SentMessage> SentMessages { get; set; }
     }
 }

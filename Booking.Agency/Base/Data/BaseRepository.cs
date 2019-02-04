@@ -1,4 +1,5 @@
-﻿using Booking.DataAccess;
+﻿using Booking.Agency.Models;
+using Booking.DataAccess;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -53,6 +54,22 @@ namespace Booking.Agency.Base.Data
 
                 Guid adminUserId = GetUserId();
                 return context.BookingAgencyUsers.Where(u => u.UserId != adminUserId).ToList();
+            }
+        }
+
+        public List<BookingAgencyUser> GetAllApprovedAccomodationUsers()
+        {
+            using (var context = new BookingAgencyEntities())
+            {
+                context.Configuration.ProxyCreationEnabled = false;
+
+                string sql = "SELECT BAU.* FROM BookingAgencyUsers BAU " +
+                             "INNER JOIN aspnet_Membership AM ON AM.UserId = BAU.UserId " +
+                             "INNER JOIN aspnet_UsersInRoles AUIR ON AUIR.UserId = BAU.UserId " +
+                             "INNER JOIN aspnet_Roles AR ON AR.RoleId = AUIR.RoleId " +
+                             "WHERE AM.IsApproved = 1 AND AR.RoleName = 'AccomodationUser'";
+
+                return context.BookingAgencyUsers.SqlQuery(sql).ToList<BookingAgencyUser>();
             }
         }
 
@@ -139,6 +156,38 @@ namespace Booking.Agency.Base.Data
                 context.SaveChanges();
             }
         }
+
+        public void CreateAccomodation(Accomodation accomodation)
+        {
+            using (var context = new BookingAgencyEntities())
+            {
+                //context.Configuration.ProxyCreationEnabled = false;
+
+                context.Accomodations.Attach(accomodation);
+
+                context.Entry(accomodation).State = EntityState.Added;
+
+                context.SaveChanges();
+            }
+        }
+
+        public void AssingAccomodationOwner(Guid userId, Guid accomodationId)
+        {
+            using (var context = new BookingAgencyEntities())
+            {
+
+                AccomodationOwner owner = new AccomodationOwner();
+
+                owner.AccomodationId = accomodationId;
+                owner.OwnerId = userId;
+
+                context.AccomodationOwners.Attach(owner);
+
+                context.Entry(owner).State = EntityState.Added;
+
+                context.SaveChanges();
+            }
+        }
         #endregion 
        
         #region Messages
@@ -164,7 +213,24 @@ namespace Booking.Agency.Base.Data
                 context.SaveChanges();
             }
         }
-        
+
+
+        public List<SentMessage> GetSentMessagesForOwnerId(Guid OwnerId)
+        {
+            using (var context = new BookingAgencyEntities())
+            {
+                context.Configuration.ProxyCreationEnabled = false;
+                string sql = "SELECT SM.* FROM SentMessages SM " +
+                             "INNER JOIN Reservations R ON R.Id = SM.ReservationId " +
+                             "INNER JOIN Accomodation A ON A.AccomodationId = R.AccomodationId " +
+                             "INNER JOIN AccomodationOwners AO ON AO.AccomodationId = A.AccomodationId " +
+                             "WHERE AO.OwnerId = '" + OwnerId +"'";
+
+                List<SentMessage> tempList = context.SentMessages.SqlQuery(sql).ToList<SentMessage>();
+
+                return tempList;
+            }
+        }
 
         //public List<SentMessage> GetSentMessagesForAccomodationId(Guid AccomodationId)
         //{
@@ -174,7 +240,13 @@ namespace Booking.Agency.Base.Data
         //    }
         //}
 
-
+        //public List<ReceivedMessage> GetReceivedMessagesForReceiverId(Guid UserId)
+        //{
+        //    using (var context = new BookingAgencyEntities())
+        //    {
+        //        return context.ReceivedMessages.Where(m => m.ReceiverId == UserId).ToList();
+        //    }
+        //}
         #endregion
 
         #region Comments
@@ -219,6 +291,23 @@ namespace Booking.Agency.Base.Data
             {
                 context.Configuration.ProxyCreationEnabled = false;
                 return context.Comments.OrderByDescending(c => c.CommentDate).Include(c => c.BookingAgencyUser).Include(c => c.Accomodation).ToList();
+            }
+        }
+
+        public List<Comment> GetCommentsForOwnerId(Guid OwnerId)
+        {
+            using (var context = new BookingAgencyEntities())
+            {
+                context.Configuration.ProxyCreationEnabled = false;
+                string sql = "SELECT C.* FROM Comments C " +
+                            "INNER JOIN Accomodation A ON A.AccomodationId = C.AccomodationId " +
+                            "INNER JOIN AccomodationOwners AO ON AO.AccomodationId = A.AccomodationId " +
+                            "WHERE AO.OwnerId = '" + OwnerId +"'";
+                //return context.Comments.SqlQuery(sql).ToList<Comment>();
+
+                List<Comment> tempList = context.Comments.SqlQuery(sql).ToList<Comment>();
+
+                return tempList;
             }
         }
 
@@ -291,6 +380,22 @@ namespace Booking.Agency.Base.Data
                 return context.Reservations.Include(m => m.SentMessages.Select(sm => sm.BookingAgencyUser)).Include(m => m.BookingAgencyUser).Include(m => m.Accomodation).Where(r => r.UserId == UserId).ToList();
             }
         }
+
+        public List<Reservation> GetReservationsForOwnerId(Guid OwnerId)
+        {
+            using (var context = new BookingAgencyEntities())
+            {
+                context.Configuration.ProxyCreationEnabled = false;
+                string sql = "SELECT R.* FROM Reservations R " +
+                             "INNER JOIN Accomodation A ON A.AccomodationId = R.AccomodationId " +
+                             "INNER JOIN AccomodationOwners AO ON AO.AccomodationId = A.AccomodationId " +
+                             "WHERE AO.OwnerId = '" + OwnerId +"'";
+
+                List<Reservation> tempList = context.Reservations.SqlQuery(sql).ToList<Reservation>();
+
+                return tempList;
+            }
+        }
         #endregion
 
         #region Locations
@@ -324,6 +429,22 @@ namespace Booking.Agency.Base.Data
                 context.Entry(rate).State = EntityState.Added;
 
                 context.SaveChanges();
+            }
+        }
+
+        public List<Rating> GetRatingsForOwnerAccomodations(Guid OwnerId)
+        {
+            using (var context = new BookingAgencyEntities())
+            {
+                context.Configuration.ProxyCreationEnabled = false;
+                string sql = "SELECT R.* FROM Rating R " +
+                             "INNER JOIN Accomodation A ON A.AccomodationId = R.AccomodationId " +
+                             "INNER JOIN AccomodationOwners AO ON AO.AccomodationId = A.AccomodationId " +
+                             "WHERE AO.OwnerId = '" + OwnerId + "'";
+
+                List<Rating> tempList = context.Ratings.SqlQuery(sql).ToList<Rating>();
+
+                return tempList;
             }
         }
         #endregion

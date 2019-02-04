@@ -23,7 +23,9 @@
 })
 .filter('orderObjectBy', function () {
     return function (items, field, reverse) {
-
+        console.log(items);
+        console.log(field);
+        console.log(reverse);
         var filtered = [];
         angular.forEach(items, function (item) {
             filtered.push(item);
