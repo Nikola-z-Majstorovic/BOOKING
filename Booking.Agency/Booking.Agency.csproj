@@ -185,6 +185,7 @@
     </Compile>
     <Compile Include="Controllers\AccomodationsController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
+    <Compile Include="Controllers\FileUploadController.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Controllers\ReservationsController.cs" />
     <Compile Include="Controllers\LocationsController.cs" />

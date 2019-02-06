@@ -174,7 +174,13 @@ namespace Booking.Agency
 
             return bs.GetAllApprovedAccomodationUsers();
         }
-        
-        
+
+        [WebMethod]
+        public void SaveImageForAccomodation(AccomodationImage ai)
+        {
+            BaseRepository bs = new BaseRepository();
+
+            bs.SaveImageForAccomodation(ai);
+        }
     }
 }

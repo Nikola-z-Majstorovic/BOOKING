@@ -99,6 +99,15 @@
         register: function () {
             return $resource($rootScope.getUrl() + '/users/register', {}, { exec: { method: 'POST' } });
         },
+        uploadImage: function (name, type, size) {
+            return $resource($rootScope.getUrl() + '/FileUpload/UploadFiles', {}, {
+                exec: {
+                    method: 'POST', headers: {
+                        'Content-Type': undefined, 'X-File-Name': name, 'X-File-Type': type, 'X-File-Size': size
+                    }
+                }
+            });
+        },
         logout: function (cb) {
             return $resource($rootScope.getUrl() + '/users/logout', {}, { exec: { method: 'POST' } }).exec().$promise.then(function (res) {
                 $rootScope.loggedUser = null;

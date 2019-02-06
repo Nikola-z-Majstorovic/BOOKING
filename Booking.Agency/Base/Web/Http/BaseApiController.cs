@@ -57,7 +57,7 @@ namespace Booking.Agency.Base.Web.Http
             }
             else
             {
-                throw new Exception("Error occured! Session Object CenterId is null");
+                throw new Exception("Error occured! Session Object UserId is null");
             }
         }
 

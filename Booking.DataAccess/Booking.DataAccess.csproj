@@ -119,6 +119,9 @@
     <Compile Include="Accomodation.cs">
       <DependentUpon>BookingAgencyDBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="AccomodationImage.cs">
+      <DependentUpon>BookingAgencyDBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="AccomodationOwner.cs">
       <DependentUpon>BookingAgencyDBModel.tt</DependentUpon>
     </Compile>

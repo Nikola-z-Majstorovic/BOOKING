@@ -25,6 +25,14 @@
           <Property Name="Description" Type="text" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="AccomodationImages">
+          <Key>
+            <PropertyRef Name="ImageId" />
+          </Key>
+          <Property Name="ImageId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AccomodationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ImageName" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
         <EntityType Name="AccomodationOwners">
           <Key>
             <PropertyRef Name="AccomodationId" />
@@ -95,6 +103,18 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="LocationName" Type="nvarchar" MaxLength="100" />
         </EntityType>
+        <Association Name="FK__Accomodat__Image__603D47BB">
+          <End Role="Accomodation" Type="Self.Accomodation" Multiplicity="1" />
+          <End Role="AccomodationImages" Type="Self.AccomodationImages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accomodation">
+              <PropertyRef Name="AccomodationId" />
+            </Principal>
+            <Dependent Role="AccomodationImages">
+              <PropertyRef Name="AccomodationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Accomodat__Locat__11158940">
           <End Role="TravelLocations" Type="Self.TravelLocations" Multiplicity="1" />
           <End Role="Accomodation" Type="Self.Accomodation" Multiplicity="*" />
@@ -205,6 +225,7 @@
         </Association>
         <EntityContainer Name="BookingAgencyModelStoreContainer">
           <EntitySet Name="Accomodation" EntityType="Self.Accomodation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccomodationImages" EntityType="Self.AccomodationImages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AccomodationOwners" EntityType="Self.AccomodationOwners" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BookingAgencyUsers" EntityType="Self.BookingAgencyUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
@@ -212,6 +233,10 @@
           <EntitySet Name="Reservations" EntityType="Self.Reservations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SentMessages" EntityType="Self.SentMessages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TravelLocations" EntityType="Self.TravelLocations" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Accomodat__Image__603D47BB" Association="Self.FK__Accomodat__Image__603D47BB">
+            <End Role="Accomodation" EntitySet="Accomodation" />
+            <End Role="AccomodationImages" EntitySet="AccomodationImages" />
+          </AssociationSet>
           <AssociationSet Name="FK__Accomodat__Locat__11158940" Association="Self.FK__Accomodat__Locat__11158940">
             <End Role="TravelLocations" EntitySet="TravelLocations" />
             <End Role="Accomodation" EntitySet="Accomodation" />
@@ -297,6 +322,11 @@
           <AssociationSet Name="FK__SentMessa__Reser__4F12BBB9" Association="BookingAgencyModel.FK__SentMessa__Reser__4F12BBB9">
             <End Role="Reservation" EntitySet="Reservations" />
             <End Role="SentMessage" EntitySet="SentMessages" />
+          </AssociationSet>
+          <EntitySet Name="AccomodationImages" EntityType="BookingAgencyModel.AccomodationImage" />
+          <AssociationSet Name="FK__Accomodat__Image__603D47BB" Association="BookingAgencyModel.FK__Accomodat__Image__603D47BB">
+            <End Role="Accomodation" EntitySet="Accomodations" />
+            <End Role="AccomodationImage" EntitySet="AccomodationImages" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="BookingAgencyUser">
@@ -401,6 +431,7 @@
           <NavigationProperty Name="Comments" Relationship="BookingAgencyModel.FK__Comments__Accomo__336AA144" FromRole="Accomodation" ToRole="Comment" />
           <NavigationProperty Name="Ratings" Relationship="BookingAgencyModel.FK__Rating__Accomoda__39237A9A" FromRole="Accomodation" ToRole="Rating" />
           <NavigationProperty Name="Reservations" Relationship="BookingAgencyModel.FK__Reservati__Accom__4A4E069C" FromRole="Accomodation" ToRole="Reservation" />
+          <NavigationProperty Name="AccomodationImages" Relationship="BookingAgencyModel.FK__Accomodat__Image__603D47BB" FromRole="Accomodation" ToRole="AccomodationImage" />
         </EntityType>
         <Association Name="FK__Accomodat__Locat__11158940">
           <End Type="BookingAgencyModel.TravelLocation" Role="TravelLocation" Multiplicity="1" />
@@ -515,6 +546,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="AccomodationImage">
+          <Key>
+            <PropertyRef Name="ImageId" />
+          </Key>
+          <Property Name="ImageId" Type="Guid" Nullable="false" />
+          <Property Name="AccomodationId" Type="Guid" Nullable="false" />
+          <Property Name="ImageName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Accomodation" Relationship="BookingAgencyModel.FK__Accomodat__Image__603D47BB" FromRole="AccomodationImage" ToRole="Accomodation" />
+        </EntityType>
+        <Association Name="FK__Accomodat__Image__603D47BB">
+          <End Type="BookingAgencyModel.Accomodation" Role="Accomodation" Multiplicity="1" />
+          <End Type="BookingAgencyModel.AccomodationImage" Role="AccomodationImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accomodation">
+              <PropertyRef Name="AccomodationId" />
+            </Principal>
+            <Dependent Role="AccomodationImage">
+              <PropertyRef Name="AccomodationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -616,6 +668,15 @@
                 <ScalarProperty Name="SenderId" ColumnName="SenderId" />
                 <ScalarProperty Name="ReservationId" ColumnName="ReservationId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccomodationImages">
+            <EntityTypeMapping TypeName="BookingAgencyModel.AccomodationImage">
+              <MappingFragment StoreEntitySet="AccomodationImages">
+                <ScalarProperty Name="ImageName" ColumnName="ImageName" />
+                <ScalarProperty Name="AccomodationId" ColumnName="AccomodationId" />
+                <ScalarProperty Name="ImageId" ColumnName="ImageId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

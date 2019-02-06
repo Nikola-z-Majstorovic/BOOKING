@@ -99,5 +99,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="AccomodationImages">
+      <EntityTypeMapping TypeName="BookingAgencyModel.AccomodationImage">
+        <MappingFragment StoreEntitySet="AccomodationImages">
+          <ScalarProperty Name="ImageName" ColumnName="ImageName" />
+          <ScalarProperty Name="AccomodationId" ColumnName="AccomodationId" />
+          <ScalarProperty Name="ImageId" ColumnName="ImageId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

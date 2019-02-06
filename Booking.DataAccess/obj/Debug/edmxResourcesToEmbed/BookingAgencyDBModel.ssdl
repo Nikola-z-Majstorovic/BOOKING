@@ -20,6 +20,14 @@
     <Property Name="Description" Type="text" />
     <Property Name="Name" Type="nvarchar" MaxLength="100" />
   </EntityType>
+  <EntityType Name="AccomodationImages">
+    <Key>
+      <PropertyRef Name="ImageId" />
+    </Key>
+    <Property Name="ImageId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="AccomodationId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ImageName" Type="nvarchar" MaxLength="200" Nullable="false" />
+  </EntityType>
   <EntityType Name="AccomodationOwners">
     <Key>
       <PropertyRef Name="AccomodationId" />
@@ -90,6 +98,18 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="LocationName" Type="nvarchar" MaxLength="100" />
   </EntityType>
+  <Association Name="FK__Accomodat__Image__603D47BB">
+    <End Role="Accomodation" Type="Self.Accomodation" Multiplicity="1" />
+    <End Role="AccomodationImages" Type="Self.AccomodationImages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Accomodation">
+        <PropertyRef Name="AccomodationId" />
+      </Principal>
+      <Dependent Role="AccomodationImages">
+        <PropertyRef Name="AccomodationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__Accomodat__Locat__11158940">
     <End Role="TravelLocations" Type="Self.TravelLocations" Multiplicity="1" />
     <End Role="Accomodation" Type="Self.Accomodation" Multiplicity="*" />
@@ -200,6 +220,7 @@
   </Association>
   <EntityContainer Name="BookingAgencyModelStoreContainer">
     <EntitySet Name="Accomodation" EntityType="Self.Accomodation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AccomodationImages" EntityType="Self.AccomodationImages" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AccomodationOwners" EntityType="Self.AccomodationOwners" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BookingAgencyUsers" EntityType="Self.BookingAgencyUsers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
@@ -207,6 +228,10 @@
     <EntitySet Name="Reservations" EntityType="Self.Reservations" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SentMessages" EntityType="Self.SentMessages" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TravelLocations" EntityType="Self.TravelLocations" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Accomodat__Image__603D47BB" Association="Self.FK__Accomodat__Image__603D47BB">
+      <End Role="Accomodation" EntitySet="Accomodation" />
+      <End Role="AccomodationImages" EntitySet="AccomodationImages" />
+    </AssociationSet>
     <AssociationSet Name="FK__Accomodat__Locat__11158940" Association="Self.FK__Accomodat__Locat__11158940">
       <End Role="TravelLocations" EntitySet="TravelLocations" />
       <End Role="Accomodation" EntitySet="Accomodation" />

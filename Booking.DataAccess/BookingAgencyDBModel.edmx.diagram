@@ -22,6 +22,8 @@
         <AssociationConnector Association="BookingAgencyModel.FK__Reservati__UserI__4959E263" />
         <AssociationConnector Association="BookingAgencyModel.FK__SentMessa__Sende__4E1E9780" />
         <AssociationConnector Association="BookingAgencyModel.FK__SentMessa__Reser__4F12BBB9" />
+        <EntityTypeShape EntityType="BookingAgencyModel.AccomodationImage" Width="1.5" PointX="7.875" PointY="9.625" />
+        <AssociationConnector Association="BookingAgencyModel.FK__Accomodat__Image__603D47BB" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

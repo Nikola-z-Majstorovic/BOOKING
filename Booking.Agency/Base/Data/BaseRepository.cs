@@ -121,7 +121,7 @@ namespace Booking.Agency.Base.Data
             using (var context = new BookingAgencyEntities())
             {
                 context.Configuration.ProxyCreationEnabled = false;
-                return context.Accomodations.Where(a => a.Location == LocationId).Include(a => a.Ratings).ToList();
+                return context.Accomodations.Where(a => a.Location == LocationId).Include(a => a.Ratings).Include(a => a.AccomodationImages).ToList();
             }
         }
 
@@ -130,7 +130,7 @@ namespace Booking.Agency.Base.Data
             using (var context = new BookingAgencyEntities())
             {
                 context.Configuration.ProxyCreationEnabled = false;
-                return context.Accomodations.Include(a => a.Reservations).Include(a => a.Ratings).Include(a => a.Comments.Select(bu => bu.BookingAgencyUser)).FirstOrDefault(a => a.AccomodationId == AccomodationId);
+                return context.Accomodations.Include(a => a.Reservations).Include(a => a.Ratings).Include(a => a.AccomodationImages).Include(a => a.Comments.Select(bu => bu.BookingAgencyUser)).FirstOrDefault(a => a.AccomodationId == AccomodationId);
             }
         }
 
@@ -447,7 +447,23 @@ namespace Booking.Agency.Base.Data
                 return tempList;
             }
         }
+
+        public void SaveImageForAccomodation(AccomodationImage acImage)
+        {
+
+            using (var context = new BookingAgencyEntities())
+            {
+                context.Configuration.ProxyCreationEnabled = false;
+
+                context.AccomodationImages.Attach(acImage);
+
+                context.Entry(acImage).State = EntityState.Added;
+
+                context.SaveChanges();
+            }
+
+        }
         #endregion
-        
+
     }
 }

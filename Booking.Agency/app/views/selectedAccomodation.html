@@ -1,47 +1,52 @@
 ﻿<div class="content">
     <div class="content-body" data-ng-show="!loading">
         <div>
-                <div>
-                    <label>Name: </label>&nbsp&nbsp
-                    {{selectedAccomodation.Name}}
-                </div>
-                <div>
-                    <label>Accomodation type: </label>&nbsp&nbsp
-                    <i ng-class="{'fa-h-square': selectedAccomodation.Type == 0, 'fa-bed': selectedAccomodation.Type == 1, 'fa-home': selectedAccomodation.Type == 2}" class="fa fa-2x fa-fw fa-icon" title="{{getAccomodationType(selectedAccomodation.Type).name}}"></i>
-                </div>
-                <div>
-                    <label>HB: </label>&nbsp&nbsp
-                    {{getHBName(selectedAccomodation.HB).name}}
-                </div>
-                <div>
-                    <label>Available stuff: </label>&nbsp&nbsp                   
-                    <i ng-class="{'fa-icon': selectedAccomodation.Wifi == 1}" class="fa fa-2x fa-fw fa-wifi" title="Wifi"></i>
-                    <i ng-class="{'fa-icon': selectedAccomodation.TV == 1}" class="fa fa-2x fa-fw fa-tv" title="TV"></i>
-                    <i ng-class="{'fa-icon': selectedAccomodation.Kitchen == 1}" class="fa fa-2x fa-fw fa-spoon" title="Kitchen"></i>
-                    <i ng-class="{'fa-icon': selectedAccomodation.Parking == 1}" class="fa fa-2x fa-fw fa-automobile" title="Parking"></i>
-                    <i ng-class="{'fa-icon': selectedAccomodation.Bathroom == 1}" class="fa fa-2x fa-fw fa-bath" title="Bathroom"></i>
-                  
-                    <i class="fa fa-2x fa-fw fa-users fa-icon" title="Available for no. Persons"></i> {{selectedAccomodation.NoPersons}}
-                </div>
+            <div>
+                <label>Name: </label>&nbsp&nbsp
+                {{selectedAccomodation.Name}}
+            </div>
+            <div>
+                <label>Accomodation type: </label>&nbsp&nbsp
+                <i ng-class="{'fa-h-square': selectedAccomodation.Type == 0, 'fa-bed': selectedAccomodation.Type == 1, 'fa-home': selectedAccomodation.Type == 2}" class="fa fa-2x fa-fw fa-icon" title="{{getAccomodationType(selectedAccomodation.Type).name}}"></i>
+            </div>
+            <div>
+                <label>HB: </label>&nbsp&nbsp
+                {{getHBName(selectedAccomodation.HB).name}}
+            </div>
+            <div>
+                <label>Available stuff: </label>&nbsp&nbsp
+                <i ng-class="{'fa-icon': selectedAccomodation.Wifi == 1}" class="fa fa-2x fa-fw fa-wifi" title="Wifi"></i>
+                <i ng-class="{'fa-icon': selectedAccomodation.TV == 1}" class="fa fa-2x fa-fw fa-tv" title="TV"></i>
+                <i ng-class="{'fa-icon': selectedAccomodation.Kitchen == 1}" class="fa fa-2x fa-fw fa-spoon" title="Kitchen"></i>
+                <i ng-class="{'fa-icon': selectedAccomodation.Parking == 1}" class="fa fa-2x fa-fw fa-automobile" title="Parking"></i>
+                <i ng-class="{'fa-icon': selectedAccomodation.Bathroom == 1}" class="fa fa-2x fa-fw fa-bath" title="Bathroom"></i>
 
-                <div>                   
-                    <label>Address: </label>
-                    <span>{{selectedAccomodation.Address}}</span>
-                </div>
-                <div>                   
-                    <label>Price: </label>
-                    <span>{{selectedAccomodation.Price}} $</span>
-                </div>
-                <div>                   
-                    <label>Description: </label>
-                    <span>{{selectedAccomodation.Description}}</span>
-                </div>
+                <i class="fa fa-2x fa-fw fa-users fa-icon" title="Available for no. Persons"></i> {{selectedAccomodation.NoPersons}}
+            </div>
 
-                <div>                   
-                    <label>Rating: </label>
-                    <span>{{rating}}</span>
+            <div>
+                <label>Address: </label>
+                <span>{{selectedAccomodation.Address}}</span>
+            </div>
+            <div>
+                <label>Price: </label>
+                <span>{{selectedAccomodation.Price}} $</span>
+            </div>
+            <div>
+                <label>Description: </label>
+                <span>{{selectedAccomodation.Description}}</span>
+            </div>
+
+            <div>
+                <label>Rating: </label>
+                <span>{{rating}}</span>
+            </div>
+            <div data-ng-show="selectedAccomodation.AccomodationImages.length > 0">
+                <div data-ng-repeat="file in selectedAccomodation.AccomodationImages">
+                    <img style="width: 200px; height: 200px;" data-ng-src="app/resources/css/images/AccomodationImages/{{file.ImageName}}" />
                 </div>
-       </div>
+            </div>
+        </div>
        <button data-ng-if="loggedUser.Username != null && loggedUser.Username != undefined" data-ng-click="displayReservationBox();">Make Reservation</button>
         <br /><br />
        <button data-ng-show="messageBoxDisplay == false && canComment == true" data-ng-click="displayMessageBox(true);">Write Comment</button>

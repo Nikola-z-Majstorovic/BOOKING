@@ -33,5 +33,6 @@ namespace Booking.DataAccess
         public virtual DbSet<Accomodation> Accomodations { get; set; }
         public virtual DbSet<Reservation> Reservations { get; set; }
         public virtual DbSet<SentMessage> SentMessages { get; set; }
+        public virtual DbSet<AccomodationImage> AccomodationImages { get; set; }
     }
 }

@@ -17,6 +17,7 @@
     //Get selected accomodation, reservations for this accomodation are also included here
     dataService.get('Accomodations', $routeParams.accomodationId, function (res) {
         $scope.selectedAccomodation = res.data;
+        console.log($scope.selectedAccomodation);
 
         //Only show approved comments
         $scope.Comments = appService.lodashFilterBy($scope.selectedAccomodation.Comments, 'Approved', 1);
