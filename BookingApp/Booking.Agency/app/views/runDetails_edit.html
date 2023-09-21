@@ -1,0 +1,149 @@
+﻿<div class="content">
+    <div class="content-body animateFade" data-ng-show="!loading">
+        <run-header></run-header>
+        
+        <fieldset>
+            <legend>Detail Information</legend>
+            <form name="frm" novalidate="" data-ng-enter="frm.$invalid || save()">
+                <div class="control-item">
+                    <label for="StartTime">Start Time:</label>
+                    <datetime-picker id="StartTime" data-ng-model="RunDetail.StartTime" name="StartTime"
+                        data-format="{{settings.date.dateformat}} {{settings.date.timeformat}}" 
+                        data-24h-format="true" 
+                        data-show-time="true"
+                        data-show-seconds="true"
+                        required=""></datetime-picker>
+                    <span class="required" data-ng-show="frm.StartTime.$error.required">*</span>
+                    <span class="datetime" data-ng-show="frm.StartTime.$error.datetime"></span>
+                </div>
+                <div class="control-item">
+                    <label for="EndTime">End Time:</label>
+                    <datetime-picker id="Datetime-picker1" data-ng-model="RunDetail.EndTime" name="EndTime"
+                        data-format="{{settings.date.dateformat}} {{settings.date.timeformat}}" 
+                        data-24h-format="true" 
+                        data-show-time="true"
+                        data-show-seconds="true"
+                        required=""></datetime-picker>
+                    <span class="required" data-ng-show="frm.EndTime.$error.required">*</span>
+                    <span class="datetime" data-ng-show="frm.EndTime.$error.datetime"></span>
+                </div>
+                <div class="control-item">
+                    <label for="Mode">Mode:</label>
+                    <select id="Mode" name="Mode"
+                        data-ng-model="RunDetail.Mode" 
+                        data-ng-options="Mode.value as Mode.name for Mode in enumModes">
+                        <option value="">- Please Select -</option>
+                    </select>
+                </div>
+                <div class="buttons-container">
+                    <span class="fa-stack fa-lg">
+                        <i class="fa fa-circle fa-stack-2x fa-icon"></i>
+                        <i class="fa fa-check fa-stack-1x fa-icon-white" data-ng-click="frm.$invalid || save();" title="Submit"></i>
+                    </span>
+                        <span class="fa-stack fa-lg">
+                        <i class="fa fa-circle fa-stack-2x fa-icon"></i>
+                        <i class="fa fa-close fa-stack-1x fa-icon-white" data-ng-click="changeView('/')" title="Cancel"></i>
+                    </span>
+                </div>
+            </form>
+        </fieldset>
+
+        <fieldset>
+            <legend>Equipment</legend>
+            <form name="frm" novalidate="" data-ng-enter="frm.$invalid || save()">
+                <fieldset>
+                    <legend class="fa-grey">Membrane Lung</legend>
+                    <div class="control-item">
+                        <label for="Manufacturer">Manufacturer:</label>
+                        <select id="MembraneLungManufacturer" name="MembraneLungManufacturer"
+                            data-ng-model="Equpment.MembraneLung.Manufacturer" 
+                            data-ng-options="Manufacturer.value as Manufacturer.name for Manufacturer in enumManufacturer">
+                            <option value="">- Please Select -</option>
+                        </select>
+                    </div>
+                    <div class="control-item">
+                        <label for="MembraneLung">Device:</label>
+                        <select id="MembraneLungDevice" name="MembraneLungDevice"
+                            data-ng-model="Equpment.MembraneLung.Device" 
+                            data-ng-options="Device.value as Device.name for Device in enumDevices">
+                            <option value="">- Please Select -</option>
+                        </select>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend class="fa-grey">Heat Exchanger</legend>
+                    <div class="control-item">
+                        <label for="HeatExchangerManufacturer">Manufacturer:</label>
+                        <select id="HeatExchangerManufacturer" name="HeatExchangerManufacturer"
+                            data-ng-model="Equpment.HeatExchanger.Manufacturer" 
+                            data-ng-options="Manufacturer.value as Manufacturer.name for Manufacturer in enumManufacturer">
+                            <option value="">- Please Select -</option>
+                        </select>
+                    </div>
+                    <div class="control-item">
+                        <label for="HeatExchangerDevice">Device:</label>
+                        <select id="HeatExchangerDevice" name="HeatExchangerDevice"
+                            data-ng-model="Equpment.HeatExchanger.Device" 
+                            data-ng-options="Device.value as Device.name for Device in enumDevices">
+                            <option value="">- Please Select -</option>
+                        </select>
+                    </div>
+                </fieldset>
+                <fieldset class="fa-grey">
+                    <legend>Blood Pump</legend>
+                    <div class="control-item">
+                        <label for="BloodPumpManufacturer">Manufacturer:</label>
+                        <select id="BloodPumpManufacturer" name="BloodPumpManufacturer"
+                            data-ng-model="Equpment.BloodPump.Manufacturer" 
+                            data-ng-options="Manufacturer.value as Manufacturer.name for Manufacturer in enumManufacturer">
+                            <option value="">- Please Select -</option>
+                        </select>
+                    </div>
+                    <div class="control-item">
+                        <label for="BloodPumpDevice">Device:</label>
+                        <select id="BloodPumpDevice" name="BloodPumpDevice"
+                            data-ng-model="Equpment.BloodPump.Device" 
+                            data-ng-options="Device.value as Device.name for Device in enumDevices">
+                            <option value="">- Please Select -</option>
+                        </select>
+                    </div>
+                </fieldset>
+                <fieldset class="fa-grey">
+                    <legend>Hemofilter</legend>
+                    <div class="control-item">
+                        <label for="HemofilterManufacturer">Manufacturer:</label>
+                        <select id="HemofilterManufacturer" name="HemofilterManufacturer"
+                            data-ng-model="Equpment.Hemofilter.Manufacturer" 
+                            data-ng-options="Manufacturer.value as Manufacturer.name for Manufacturer in enumManufacturer">
+                            <option value="">- Please Select -</option>
+                        </select>
+                    </div>
+                    <div class="control-item">
+                        <label for="HemofilterPumpDevice">Device:</label>
+                        <select id="HemofilterPumpDevice" name="HemofilterDevice"
+                            data-ng-model="Equpment.Hemofilter.Device" 
+                            data-ng-options="Device.value as Device.name for Device in enumDevices">
+                            <option value="">- Please Select -</option>
+                        </select>
+                    </div>
+                </fieldset>
+                <div class="buttons-container">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x fa-icon"></i>
+                            <i class="fa fa-check fa-stack-1x fa-icon-white" data-ng-click="frm.$invalid || save();" title="Submit"></i>
+                        </span>
+                            <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x fa-icon"></i>
+                            <i class="fa fa-close fa-stack-1x fa-icon-white" data-ng-click="changeView('/')" title="Cancel"></i>
+                        </span>
+                    </div>
+            </form>
+        </fieldset>
+
+        <fieldset>
+            <legend>Cannulations</legend>
+                
+        </fieldset>
+
+    </div>
+</div>

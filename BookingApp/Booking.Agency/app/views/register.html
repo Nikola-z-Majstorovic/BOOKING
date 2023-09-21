@@ -1,0 +1,51 @@
+﻿<div class="content">
+    <div class="content-body" data-ng-show="!loading">
+        <form name="erForm">
+            <div class="control-item" style="min-height: 2em !important;">
+                <label for="username">Username:</label><br />
+                <input id="username" data-ng-model="registeruser.username" type="text" name="username" placeholder="Username" required="" tabindex="1" />
+                <span data-ng-show="erForm.username.$error.required" class="required">*</span>
+            </div>   
+                     
+            <div class="control-item" style="min-height: 2em !important;">
+                <label for="password">Password:</label><br />
+                <input id="password" data-ng-model="registeruser.password" type="password" name="password" placeholder="Password" required="" tabindex="3" />
+                <span data-ng-show="erForm.password.$error.required" class="required">*</span>
+            </div>
+
+            <div class="control-item" style="min-height: 2em !important;">
+                <label for="email">email:</label><br />
+                <input id="email" data-ng-model="registeruser.email" type="text" name="email" placeholder="email" required="" tabindex="4" />
+                <span data-ng-show="erForm.email.$error.required" class="required">*</span>
+            </div>
+            <div class="control-item" style="min-height: 2em !important;">
+                <label for="name">Name:</label><br />
+                <input id="name" data-ng-model="registeruser.name" type="text" name="name" placeholder="name" required="" tabindex="5" />
+                <span data-ng-show="erForm.name.$error.required" class="required">*</span>
+            </div>
+            <div class="control-item" style="min-height: 2em !important;">
+                <label for="surname">Surname:</label><br />
+                <input id="surname" data-ng-model="registeruser.surname" type="text" name="surname" placeholder="surname" required="" tabindex="5" />
+                <span data-ng-show="erForm.surname.$error.required" class="required">*</span>
+            </div>
+            <div class="control-item" style="min-height: 2em !important;">
+                <label for="phone">Phone:</label><br />
+                <input id="phone" data-ng-model="registeruser.phone" type="text" name="phone" placeholder="phone" required="" tabindex="6" />
+                <span data-ng-show="erForm.phone.$error.required" class="required">*</span>
+            </div>
+            <div class="buttons-container">
+                <button data-ng-click="erForm.$invalid || register(registeruser);">Register</button>
+                <br />
+                <br />
+                <div class="validation-messages">
+                    <span class="fa-elso-darkblue" data-ng-show="erForm.$valid">Everything is ok you can continue</span>
+                    <span class="fa-elso-darkblue" data-ng-show="erForm.$invalid">Please fill required fields</span>
+                </div>
+                <model-state-errors></model-state-errors>
+            </div>
+        </form>
+        <div style="color:red;" ng-show="status.message === 'Access Denied'">
+            {{status.messages[1]}}
+        </div>
+        </div>
+</div>

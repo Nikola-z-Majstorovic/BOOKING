@@ -1,0 +1,51 @@
+<div class="datetimepicker">
+    <div style="display:inline-block;">
+        <input data-ng-model="searchMonth" type="text" name="month" placeholder="" style="width:6em;" data-ng-show="showMonthInput" data-ng-blur="onBlur('month')" />
+        <span data-ng-show="showMonthPicker">
+            <a href="" name="monthHref" data-ng-click="onPickerClick('month')" title="Select month" data-ng-focus="onPickerClick('month')">{{selectedMonth.name}}</a>
+        </span>
+        <div class="dp-list" data-ng-show="showMonthList" data-ng-model="selectedMonth">
+            <div data-ng-class="selectedMonth.name==item.name ? 'dp-list-item-selected' : 'dp-list-item'" data-ng-repeat="item in months | filter:{ behindFilter: searchMonth } track by item.id" data-ng-mousedown="listItemClick('month', item)" style="cursor:pointer;">{{item.name}}</div>
+        </div>/
+        <input data-ng-model="searchDay" type="text" name="day" placeholder="" style="width:6em;" data-ng-show="showDayInput" data-ng-blur="onBlur('day')" />
+        <span data-ng-show="showDayPicker">
+            <a href="" data-ng-click="onPickerClick('day')" title="Select day" data-ng-focus="onPickerClick('day')">{{selectedDay.name}}</a>
+        </span>
+        <div class="dp-list" data-ng-show="showDayList" data-ng-model="selectedDay">
+            <div data-ng-class="selectedDay.name==item.name ? 'dp-list-item-selected' : 'dp-list-item'" data-ng-repeat="item in days | filter: searchDay track by item.id" data-ng-mousedown="listItemClick('day', item)" style="cursor:pointer;">{{item.name}}</div>
+        </div>/
+        <input data-ng-model="searchYear" type="text" name="year" placeholder="" style="width:6em;" data-ng-show="showYearInput" data-ng-blur="onBlur('year')" />
+        <span data-ng-show="showYearPicker">
+            <a href="" data-ng-click="onPickerClick('year')" title="Select year" data-ng-focus="onPickerClick('year')">{{selectedYear.name}}</a>
+        </span>
+        <div class="dp-list" data-ng-show="showYearList" data-ng-model="selectedYear">
+            <div data-ng-class="selectedYear.name==item.name ? 'dp-list-item-selected' : 'dp-list-item'" data-ng-repeat="item in years | filter: searchYear track by item.id" data-ng-mousedown="listItemClick('year', item)" style="cursor:pointer;">{{item.name}}</div>
+        </div>
+    </div>
+    <div style="display:inline-block;" data-ng-show="showTime">
+        <input data-ng-model="searchHour" type="text" name="hour" placeholder="" style="width:6em;" data-ng-show="showHourInput" data-ng-blur="onBlur('hour')" />
+        <span data-ng-show="showHourPicker">
+            <a href="" data-ng-click="onPickerClick('hour')" title="Select hour" data-ng-focus="onPickerClick('hour')">{{selectedHour.name}}</a>
+        </span>
+        <div class="dp-list" data-ng-show="showHourList" data-ng-model="selectedHour">
+            <div data-ng-class="selectedHour.name==item.name ? 'dp-list-item-selected' : 'dp-list-item'" data-ng-repeat="item in hours | filter: searchHour track by item.id" data-ng-mousedown="listItemClick('hour', item)" style="cursor:pointer;">{{item.name}}</div>
+        </div>:
+        <input data-ng-model="searchMinute" type="text" name="minute" placeholder="" style="width:6em;" data-ng-show="showMinuteInput" data-ng-blur="onBlur('minute')" />
+        <span data-ng-show="showMinutePicker">
+            <a href="" data-ng-click="onPickerClick('minute')" title="Select minute" data-ng-focus="onPickerClick('minute')">{{selectedMinute.name}}</a>
+        </span>
+        <div class="dp-list" data-ng-show="showMinuteList" data-ng-model="selectedMinute">
+            <div data-ng-class="selectedMinute.name==item.name ? 'dp-list-item-selected' : 'dp-list-item'" data-ng-repeat="item in minutes | filter: searchMinute track by item.id" data-ng-mousedown="listItemClick('minute', item)" style="cursor:pointer;">{{item.name}}</div>
+        </div>
+        <span ng-show="showAmPm">
+            <input data-ng-model="searchAmPm" type="text" name="ampm" placeholder="" style="width:6em;" data-ng-show="showAmPmInput" data-ng-blur="onBlur('ampm')" />
+
+            <span data-ng-show="showAmPmPicker">
+                <a href="" data-ng-click="onPickerClick('ampm')" title="Select time format" data-ng-focus="onPickerClick('ampm')">{{selectedAmPm.name}}</a>
+            </span>
+            <div class="dp-list" data-ng-show="showAmPmList" data-ng-model="selectedAmPm">
+                <div data-ng-class="selectedAmPm.name==item.name ? 'dp-list-item-selected' : 'dp-list-item'" data-ng-repeat="item in ampms | filter: searchAmPm track by item.id" data-ng-mousedown="listItemClick('ampm', item)" style="cursor:pointer;">{{item.name}}</div>
+            </div>
+        </span>
+    </div>
+</div>

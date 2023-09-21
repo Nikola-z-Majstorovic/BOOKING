@@ -1,0 +1,79 @@
+﻿<div class="content">
+    <div class="content-body" data-ng-show="!loading">
+        <run-header></run-header>
+        <b>Please insert your equipment information here:</b>
+        <fieldset>
+            <legend>Equipment</legend>
+            <form name="frm" novalidate="" data-ng-enter="frm.$invalid || save()">
+                <fieldset>
+                    <legend class="fa-grey">Membrane Lung</legend>
+                    <div class="control-item">
+                        <label for="MembraneLungNewManufacturer">Manufacturer:</label><br />
+                        <input id="MembraneLungNewManufacturer" type="text" name="MembraneLungNewManufacturer" data-ng-model="newEquipment.membraneLungManufacturer" tabindex="1" placeholder="Membrane Lung New Manufacturer" />                                                
+                    </div>
+                    <div class="control-item">
+                        <label for="MembraneLungNewDevice">Device:</label><br />
+                        <input id="MembraneLungNewDevice" type="text" name="MembraneLungNewDevice" data-ng-model="newEquipment.membraneLungDevice" tabindex="2" placeholder="Membrane Lung New Device" />                                                
+                        <span style = "color:green" ng-show="!newEquipment.membraneLungManufacturer">Please insert a manufacturer first!</span>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend class="fa-grey">Heat Exchanger</legend>
+                    <div class="control-item">
+                        <label for="HeatExchangerNewManufacturer">Manufacturer:</label><br />
+                        <input id="HeatExchangerNewManufacturer" type="text" name="HeatExchangerNewManufacturer" data-ng-model="newEquipment.heatExchangerManufacturer" tabindex="3" placeholder="Heat Exchanger New Manufacturer" />                                                
+                    </div>
+                    <div class="control-item">
+                        <label for="HeatExchangerNewDevice">Device:</label><br />
+                        <input id="HeatExchangerNewDevice" type="text" name="HeatExchangerNewDevice" data-ng-model="newEquipment.heatExchangerDevice" tabindex="4" placeholder="Heat Exchanger New Device" />                                                
+                        <span style = "color:green" ng-show="!newEquipment.heatExchangerManufacturer">Please insert a manufacturer first!</span>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend class="fa-grey">Blood Pump</legend>
+                    <div class="control-item">
+                        <label for="BloodPumpNewManufacturer">Manufacturer:</label><br />
+                        <input id="BloodPumpNewManufacturer" type="text" name="BloodPumpNewManufacturer" data-ng-model="newEquipment.bloodPumpManufacturer" tabindex="5" placeholder="Blood Pump New Manufacturer" />                                                
+                    </div>
+                    <div class="control-item">
+                        <label for="BloodPumpNewDevice">Device:</label><br />
+                        <input id="BloodPumpNewDevice" type="text" name="BloodPumpNewDevice" data-ng-model="newEquipment.bloodPumpDevice" tabindex="6" placeholder="Blood Pump New Device" />                                                
+                        <span style = "color:green" ng-show="!newEquipment.bloodPumpManufacturer">Please insert a manufacturer first!</span>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend class="fa-grey">Hemofilter</legend>
+                    <div class="control-item">
+                        <label for="HemofilterNewManufacturer">Manufacturer:</label><br />
+                        <input id="HemofilterNewManufacturer" type="text" name="HemofilterNewManufacturer" data-ng-model="newEquipment.hemofilterManufacturer" tabindex="7" placeholder="Hemofilter New Manufacturer" />                                                
+                    </div>
+                   <div class="control-item">
+                        <label for="HemofilterNewDevice">Device:</label><br />
+                        <input id="HemofilterNewDevice" type="text" name="HemofilterNewDevice" data-ng-model="newEquipment.hemofilterDevice" tabindex="8" placeholder="Hemofilter New Device" />                                                
+                       <span style = "color:green" ng-show="!newEquipment.hemofilterManufacturer">Please insert a manufacturer first!</span>
+                    </div>
+                </fieldset>
+                <!--<div class="buttons-container">
+                    <span class="fa-stack fa-lg">
+                        <i class="fa fa-circle fa-stack-2x fa-icon"></i>
+                        <i class="fa fa-check fa-stack-1x fa-icon-white" data-ng-click="frm.$invalid || save();" title="Submit"></i>
+                    </span>
+                        <span class="fa-stack fa-lg">
+                        <i class="fa fa-circle fa-stack-2x fa-icon"></i>
+                        <i class="fa fa-close fa-stack-1x fa-icon-white" data-ng-click="changeView('/rundetails/view/' + run.RunId + '/' + runDetail.RunDetailId)" title="Cancel"></i>
+                    </span>
+                    <model-state-errors></model-state-errors>
+                </div>-->
+                
+                <div class="buttons-container">                
+                <!--<button data-ng-click="frm.$invalid || save('next');" title="Next" tabindex="9">Next</button>-->
+                <button data-ng-click="cancel();" title="Cancel">Cancel</button>
+                <button data-ng-click="frm.$invalid || save('');" title="Save" tabindex="10">Save</button>
+                   
+                </div>
+                <model-state-errors></model-state-errors>
+            </div>
+            </form>
+        </fieldset>
+    </div>
+</div>

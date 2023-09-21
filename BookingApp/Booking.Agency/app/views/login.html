@@ -1,0 +1,29 @@
+﻿<div class="content">
+    <div class="content-body" data-ng-show="!loading">
+        <form name="form">
+            <div class="control-item" style="min-height: 2em !important;">
+                <label for="username">Username:</label><br />
+                <input id="username" data-ng-model="loginuser.username" type="text" name="username" placeholder="Username" required="" tabindex="1" />
+                <span data-ng-show="form.username.$error.required" class="required">*</span>
+            </div>
+            <div class="control-item" style="min-height: 2em !important;">
+                <label for="password">Password:</label><br />
+                <input id="password" data-ng-model="loginuser.password" type="password" name="password" placeholder="Password" required="" tabindex="2" />
+                <span data-ng-show="form.password.$error.required" class="required">*</span>
+            </div>
+            <div class="buttons-container">
+                <button data-ng-click="form.$invalid || login(loginuser);">Login</button>
+                <br />
+                <br />
+                <div class="validation-messages">
+                    <span class="fa-elso-darkblue" data-ng-show="form.$valid">Everything is ok you can continue</span>
+                    <span class="fa-elso-darkblue" data-ng-show="form.$invalid">Please fill required fields</span>
+                </div>
+                <model-state-errors></model-state-errors>
+            </div>
+        </form>
+        <div style="color:red;" ng-show="status.message === 'Access Denied'">
+            {{status.messages[1]}}
+        </div>
+        </div>
+</div>

@@ -1,0 +1,40 @@
+﻿<div>    
+    <div>
+
+        <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x fa-icon"></i>
+            <i class="fa fa-angle-double-left fa-stack-1x fa-icon-white" data-ng-class="(paginator.isFirstPage()) ? 'fa-color-dark' : 'fa-icon-light'" data-ng-click="paginator.firstPage();pageChange(paginator.page);" title="First Page"></i>
+        </span>
+
+        <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x fa-icon"></i>
+            <i class="fa fa-angle-left fa-stack-1x fa-icon-white" data-ng-class="(paginator.isFirstPage()) ? 'fa-color-dark' : 'fa-icon-light'" data-ng-click="paginator.perviousPage();pageChange(paginator.page);" title="Back Page"></i>
+        </span>
+
+        <span style="font-size: 100%;" class="fa-color">
+            Page <select data-ng-model="optionPage" data-ng-options="optionPage.name for optionPage in optionsPage track by optionPage.name" data-ng-change="optionsPageChange(optionPage);"></select>
+            of {{paginator.pageCount()}}
+        </span>
+        <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x fa-icon"></i>
+            <i class="fa fa-angle-right fa-stack-1x fa-icon-white" data-ng-class="(paginator.isLastPage()) ? 'fa-color-dark' : 'fa-icon-light'" data-ng-click="paginator.nextPage();pageChange(paginator.page);" title="Next Page"></i>
+        </span>
+
+        <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x fa-icon"></i>
+            <i class="fa fa-angle-double-right fa-stack-1x fa-icon-white" data-ng-class="(paginator.isLastPage()) ? 'fa-color-dark' : 'fa-icon-light'" data-ng-click="paginator.lastPage();pageChange(paginator.page);" title="Last Page"></i>
+        </span>
+        
+        
+    </div>
+    <div>
+        <span style="font-size: 100%;" class="fa-color">
+            Show <select data-ng-model="optionPerPage" data-ng-options="optionPerPage.name for optionPerPage in optionsPerPage" data-ng-change="optionsPerPageChange(optionPerPage)"></select> 
+            items per page
+        </span>
+    </div>
+    <div>
+        
+    </div>
+
+</div>

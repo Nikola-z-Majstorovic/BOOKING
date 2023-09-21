@@ -1,0 +1,70 @@
+﻿<div class="content">
+    <div class="content-body" data-ng-show="!loading">
+
+
+        <button data-ng-click="changeView('/accomodations/create');">Create Accomodation</button>
+        <br /><br /><br />
+        <h1 style="text-align:center;">My Accomodations</h1>
+         <br /><br /><br />
+   <!--         <div data-ng-click="changeView('/accomodations/' + location.Id);" class="LocationRepeater" data-ng-repeat="location in Locations | filter:search | orderObjectBy:sortBy:sortDirection">
+                <div class="LocationNameHolder">{{location.LocationName}} ({{location.Accomodations.length}})</div>
+                <div class="LocationImageHolder"><img  ng-src="app/resources/css/images/LocationImages/{{location.LocationName}}.jpg"/></div>
+            </div>-->
+          <booking-grid class="booking-grid">
+            <booking-grid-row data-ng-repeat="accomodation in Accomodations | paginate:itemsPerPage" >
+
+                <div style="display: block;">                  
+                    <i class="fa fa-2x fa-fw fa-eye fa-icon" data-ng-click="changeView('/comments/' + accomodation.Accomodation.AccomodationId);" title="View Accomodation Comments"></i>
+                    <i class="fa fa-2x fa-fw fa-edit fa-icon" data-ng-click="changeView('/accomodations/edit/' + accomodation.Accomodation.AccomodationId);" title="Edit Accomodation"></i>
+                    <i class="fa fa-2x fa-fw fa-pencil fa-icon" data-ng-click="changeView('/makereservation/' + accomodation.Accomodation.AccomodationId);" title="Make Reservation"></i>
+                </div>
+                <div>
+                    <label>Name: </label>&nbsp&nbsp
+                    {{accomodation.Accomodation.Name}}
+                </div>
+                <div>
+                    <label>Accomodation type: </label>&nbsp&nbsp
+                    <i ng-class="{'fa-h-square': accomodation.Accomodation.Type == 0, 'fa-bed': accomodation.Accomodation.Type == 1, 'fa-home': accomodation.Accomodation.Type == 2}" class="fa fa-2x fa-fw fa-icon" title="{{getAccomodationType(accomodation.Accomodation.Type).name}}"></i>
+                </div>
+                <div>
+                    <label>HB: </label>&nbsp&nbsp
+                    {{getHBName(accomodation.Accomodation.HB).name}}
+                </div>
+                <div>
+                    <label>Available stuff: </label>&nbsp&nbsp                   
+                    <i ng-class="{'fa-icon': accomodation.Accomodation.Wifi == 1}" class="fa fa-2x fa-fw fa-wifi" title="Wifi"></i>
+                    <i ng-class="{'fa-icon': accomodation.Accomodation.TV == 1}" class="fa fa-2x fa-fw fa-tv" title="TV"></i>
+                    <i ng-class="{'fa-icon': accomodation.Accomodation.Kitchen == 1}" class="fa fa-2x fa-fw fa-spoon" title="Kitchen"></i>
+                    <i ng-class="{'fa-icon': accomodation.Accomodation.Parking == 1}" class="fa fa-2x fa-fw fa-automobile" title="Parking"></i>
+                    <i ng-class="{'fa-icon': accomodation.Accomodation.Bathroom == 1}" class="fa fa-2x fa-fw fa-bath" title="Bathroom"></i>
+                  
+                    <i class="fa fa-2x fa-fw fa-users fa-icon" title="Available for no. Persons"></i> {{accomodation.Accomodation.NoPersons}}
+                </div>
+
+                <div>                   
+                    <label>Address: </label>
+                    <span>{{accomodation.Accomodation.Address}}</span>
+                </div>
+                <div>                   
+                    <label>Price: </label>
+                    <span>{{accomodation.Accomodation.Price}} $</span>
+                </div>
+                <div>                   
+                    <label>Description: </label>
+                    <span>{{accomodation.Accomodation.Description}}</span>
+                </div>
+
+                <div>                   
+                    <label>Rating: </label>
+                    <span>{{GetRating(accomodation.Accomodation.Ratings)}}</span>
+                </div>
+                
+            </booking-grid-row>
+            <div data-ng-if="Accomodations.length != 0">
+                <paginator page-size="10" total="{{Accomodations.length}}"></paginator>
+            </div>
+        </booking-grid>    
+
+
+    </div>
+</div>

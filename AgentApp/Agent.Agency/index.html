@@ -1,0 +1,161 @@
+﻿<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org">
+    <head>
+        <title>Agent Agency</title>
+        <meta charset="UTF-8">
+        <meta name="author: Nikola Majstorovic" content="Copyright © 2018 www.agentagency.org. All Rights Reserved.">
+        <!-- meta -->
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,height=device-height,user-scalable=no"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <!-- google fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600" rel="stylesheet" type="text/css">
+        <!-- font icons -->
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <!-- bootstrap -->
+        <link href="Content/bootstrap.min.css" rel="stylesheet" />
+        <!-- qtip -->
+        <link href="Content/jquery.qtip.css" rel="stylesheet" />
+        <link href="Content/select.min.css" rel="stylesheet" />
+        <link href="css/loading-bar.min.css" rel="stylesheet" />
+        <!-- default style -->
+        <link href="app/resources/css/default.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body id="body" data-ng-app="bookingApp" data-ng-cloak="">
+        <!-- layout start -->
+        <nav class="navbar">
+	        <ul class="nav">
+		        <li data-ng-show="loggedUser.Username == null && loggedUser.Username == undefined" >
+			        <div data-ng-click="changeView('/login');">Login</div>
+		        </li>
+		        <li>
+                    <div data-ng-click="changeView('/booking');">Booking</div>			        	
+		        </li>
+		        <li>
+			        About Us
+		        </li>
+		        <li>
+			        Contact
+		        </li>
+	        </ul>
+        </nav>	
+        <div data-ng-show="loading" class="loading">
+            <div>
+                <i class="fa fa-cog fa-spin fa-booking-darkblue fa-3x fa-fw"></i>
+                <div>{{loadingMessage}}</div>
+            </div>
+        </div>
+        <div id="slider" class="slideup">
+            <div data-ng-show="messages.length != 0" data-ng-repeat="msg in messages track by $index">
+                {{msg}}
+            </div>
+            <div data-ng-show="errors.length != 0" data-ng-repeat="err in errors track by $index">
+                {{err}}
+            </div>
+        </div>
+        <div class="header" style="display: block; text-align:center;">
+            <img src="Content/images/bookingagencylogo.png" style="cursor:pointer;" data-ng-click="changeView('/')" />
+
+            <div class="header-nav" data-ng-show="loggedUser != undefined && loggedUser.UserId!='' && !route.startsWith('/login')">
+                <div>
+                    <i data-ng-show="loggedUser.Roles[0] == 'AgentUser'" class="fa fa-2x fa-fw fa-gear fa-icon" data-ng-click="changeView('/agentsettings')" title="Settings" ></i>
+                    <i data-ng-show="loggedUser.Roles[0] == 'AgentUser'" class="fa fa-2x fa-fw fa-envelope fa-icon" data-ng-click="changeView('/messages')" title="Messages" ></i>
+
+                    <i class="fa fa-2x fa-fw fa-sign-out fa-icon" data-ng-click="logout();" data-ng-show="loggedUser != null" title="Logout" ></i>
+                </div>
+                <br />
+                <div>
+                    <div>
+                        <b>{{loggedUser.FullName}}</b>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section-header></section-header>
+        <div class="scroller" ng-class="{largeH: route == '/login', smallH: route != '/login'}">
+            <ul>
+                <li>
+                    <div class="layout animateView" data-ng-view=""></div>
+                </li>
+            </ul>
+        </div>
+        <div class="footer noselect">
+            <div class="copyright">
+                © 2018 - Agent Agency
+            </div>
+        </div>
+        <!-- layout end -->
+        <!-- moment -->
+        <script src="Scripts/moment.min.js"></script>
+        <script src="Scripts/moment-with-locales.min.js"></script>
+        <script src="Scripts/moment-timezone-with-data.min.js"></script>
+        <!-- lodash -->
+        <script src="Scripts/lodash.min.js"></script>
+        <!-- jquery -->
+        <script src="Scripts/jquery-1.12.4.min.js"></script>
+        <!-- jquery qtip -->
+        <script src="Scripts/jquery.qtip.min.js"></script>
+        <!-- botstrap -->
+        <script src="Scripts/bootstrap.min.js"></script>
+        <!-- angular -->
+        <script src="Scripts/angular.js"></script>
+        <!-- angular ui -->
+        <script src="Scripts/ui-bootstrap-tpls-2.5.0.min.js"></script>
+        <!-- angular scripts -->
+        <script src="Scripts/angular-route.min.js"></script>
+        <script src="Scripts/angular-resource.min.js"></script>
+        <script src="Scripts/angular-animate.min.js"></script>
+        <script src="Scripts/angular-cookies.min.js"></script>
+        <script src="Scripts/angular-sanitize.min.js"></script>
+        <script src="Scripts/loading-bar.min.js"></script>
+        <!-- dynamic locale -->
+        <script src="Scripts/tmhDynamicLocale.min.js"></script>
+        <!-- angular ui grid -->
+        <!--<script src="Scripts/ui-grid.min.js"></script>-->
+        <script src="Scripts/select.min.js"></script>
+        <!-- modules -->                
+        <script src="app/modules/angular-client-paginate.js"></script>
+        <script src="app/modules/angular-grid.js"></script>
+        <script src="app/modules/angular-sorter.js"></script>
+        <script src="app/modules/angular-section-header.js"></script>
+        <script src="app/modules/angular-title.js"></script>
+        <script src="app/modules/angular-model-state-errors.js"></script>
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.1.3/ui-bootstrap-tpls.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js"></script>
+        <!-- controllers -->
+        <script src="app/app.js"></script>
+        <script src="app/controllers/homeCtrl.js"></script>
+        <script src="app/controllers/loginCtrl.js"></script>
+        <script src="app/controllers/registerCtrl.js"></script>
+        <script src="app/controllers/bookingCtrl.js"></script>
+        <script src="app/controllers/accomodationsCtrl.js"></script>
+        <script src="app/controllers/selectedAccomodationCtrl.js"></script>
+        <script src="app/controllers/agentSettingsCtrl.js"></script>
+        <script src="app/controllers/messagesCtrl.js"></script>
+        <script src="app/controllers/createAcomodationCtrl.js"></script>
+        <script src="app/controllers/editAcomodationCtrl.js"></script>
+        <script src="app/controllers/commentsPreviewCtrl.js"></script>
+        <script src="app/controllers/selfReservationCtrl.js"></script>
+        <!-- services -->
+        <script src="app/services/appService.js"></script>
+        <script src="app/services/dataService.js"></script>
+        <script src="app/services/flashService.js"></script>
+        <!-- directives -->        
+		<script src="app/directives/uiSelectOpenOnFocus.js"></script>      
+        <!--Menu effects-->
+        <script>
+            $(document).ready(function () {
+                // Loop through each nav item
+                $('nav.navbar').children('ul.nav').children('li').each(function (indexCount) {
+                    // loop through each dropdown, count children and apply a animation delay based on their index value
+                    $(this).children('ul.dropdown').children('li').each(function (index) {
+                        // Turn the index value into a reasonable animation delay
+                        var delay = 0.1 + index * 0.03;
+                        // Apply the animation delay
+                        $(this).css("animation-delay", delay + "s")
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

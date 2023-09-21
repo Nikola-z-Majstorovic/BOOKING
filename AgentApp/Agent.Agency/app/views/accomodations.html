@@ -1,0 +1,155 @@
+﻿<div class="content">
+    <div class="content-body" data-ng-show="!loading">
+
+        <br /><br /><br />
+        <h1 style="text-align:center; width: 100%;">OUR ACCOMODATIONS FOR <span style="color: #EC2785;text-transform: uppercase;">{{getLocationName(selectedLocationId).LocationName}}</span></h1>
+        <br /><br /><br />
+
+        <div class="filterOptionsHolder">
+            <label class="filterOptions">Kitchen
+              <input type="checkbox" data-ng-model="kitchen">
+              <span class="checkmark"></span>
+            </label>
+        </div>
+        <div class="filterOptionsHolder">
+            <label class="filterOptions">Wifi
+              <input type="checkbox" data-ng-model="wifi">
+              <span class="checkmark"></span>
+            </label>
+        </div>
+        <div class="filterOptionsHolder">
+            <label class="filterOptions">Parking
+              <input type="checkbox" data-ng-model="parking">
+              <span class="checkmark"></span>
+            </label>
+        </div>
+        <div class="filterOptionsHolder">
+            <label class="filterOptions">TV
+              <input type="checkbox" data-ng-model="tv">
+              <span class="checkmark"></span>
+            </label>
+        </div>
+        <div class="filterOptionsHolder">
+            <label class="filterOptions">Bathroom
+              <input type="checkbox" data-ng-model="bathroom">
+              <span class="checkmark"></span>
+            </label>
+        </div>  
+        <br />
+        <br />
+        <br />
+        <div class="inputFilters">
+            <label for="noPersons">No. Persons: </label>&nbsp;&nbsp;&nbsp;
+            <input style="width: 10em;" id="noPersons" placeholder="Number of Persons" type="number" data-ng-model="noPersons" />
+        </div>
+        <div class="inputFilters">
+            <label for="Type">Accomodation Type:</label>&nbsp;&nbsp;&nbsp;
+            <select id="Type" name="Type" 
+                data-ng-model="type" 
+                data-ng-options="Type.value as Type.name for Type in enumAccomodationType">
+                <option value="">- Please Select -</option>
+            </select>
+        </div>
+        <div class="inputFilters">
+            <label for="HB">HB:</label>&nbsp;&nbsp;&nbsp;
+            <select id="HB" name="HB" 
+                data-ng-model="hb" 
+                data-ng-options="HB.value as HB.name for HB in enumHBType">
+                <option value="">- Please Select -</option>
+            </select>
+        </div>
+        <div class="inputFilters">
+            <label for="MinPrice">Min. Price: </label>&nbsp;&nbsp;&nbsp;
+            <input style="width: 10em;" id="MinPrice" placeholder="Minimal Price" type="number" data-ng-model="minPrice" />
+        </div>
+        <div class="inputFilters">
+            <label for="MaxPrice">Max. Price: </label>&nbsp;&nbsp;&nbsp;
+            <input style="width: 10em;" id="MaxPrice" placeholder="Maximum Price" type="number" data-ng-model="maxPrice" />
+        </div>
+        <br />
+        <br />
+        <button data-ng-click="masterFilter()">Filter</button>
+        <br />
+        <br />
+        <div style="display:block;width:100%;padding:0.5em;">            
+           <!-- <searcher style="float:left;"></searcher>    
+            <br /> <br />            -->
+            <booking-sorter 
+                sort="[
+                { name: 'Price', value: 'Price' }
+            ]"></booking-sorter>   
+       </div>  
+        <br /><br />
+
+         <booking-grid class="booking-grid">
+            <booking-grid-row data-ng-repeat="accomodation in Accomodations | filter:query | orderObjectBy:sortBy:sortDirection | paginate:itemsPerPage" >
+
+                <div style="display: block;">                  
+                    <i class="fa fa-2x fa-fw fa-eye fa-icon" data-ng-click="changeView('/selectedaccomodation/' + accomodation.AccomodationId);" title="View Accomodation"></i>
+                </div>
+                <div>
+                    <label>Name: </label>&nbsp&nbsp
+                    {{accomodation.Name}}
+                </div>
+                <div>
+                    <label>Accomodation type: </label>&nbsp&nbsp
+                    <i ng-class="{'fa-h-square': accomodation.Type == 0, 'fa-bed': accomodation.Type == 1, 'fa-home': accomodation.Type == 2}" class="fa fa-2x fa-fw fa-icon" title="{{getAccomodationType(accomodation.Type).name}}"></i>
+                </div>
+                <div>
+                    <label>HB: </label>&nbsp&nbsp
+                    {{getHBName(accomodation.HB).name}}
+                </div>
+                <div>
+                    <label>Available stuff: </label>&nbsp&nbsp                   
+                    <i ng-class="{'fa-icon': accomodation.Wifi == 1}" class="fa fa-2x fa-fw fa-wifi" title="Wifi"></i>
+                    <i ng-class="{'fa-icon': accomodation.TV == 1}" class="fa fa-2x fa-fw fa-tv" title="TV"></i>
+                    <i ng-class="{'fa-icon': accomodation.Kitchen == 1}" class="fa fa-2x fa-fw fa-spoon" title="Kitchen"></i>
+                    <i ng-class="{'fa-icon': accomodation.Parking == 1}" class="fa fa-2x fa-fw fa-automobile" title="Parking"></i>
+                    <i ng-class="{'fa-icon': accomodation.Bathroom == 1}" class="fa fa-2x fa-fw fa-bath" title="Bathroom"></i>
+                  
+                    <i class="fa fa-2x fa-fw fa-users fa-icon" title="Available for no. Persons"></i> {{accomodation.NoPersons}}
+                </div>
+
+                <div>                   
+                    <label>Address: </label>
+                    <span>{{accomodation.Address}}</span>
+                </div>
+                <div>                   
+                    <label>Price: </label>
+                    <span>{{accomodation.Price}} $</span>
+                </div>
+                <div>                   
+                    <label>Description: </label>
+                    <span>{{accomodation.Description}}</span>
+                </div>
+
+                <div>                   
+                    <label>Rating: </label>
+                    <span>{{GetRating(accomodation.Ratings)}}</span>
+                </div>
+                <br />
+                <div data-ng-show="accomodation.AccomodationImages.length > 0">
+                    <div data-ng-repeat="file in accomodation.AccomodationImages">                       
+                        <img style="width: 200px; height: 200px;" data-ng-src="app/resources/css/images/AccomodationImages/{{file.ImageName}}" />
+                    </div>
+                </div>
+            </booking-grid-row>
+            <div data-ng-if="Accomodations.length != 0">
+                <paginator page-size="10" total="{{Accomodations.length}}"></paginator>
+            </div>
+        </booking-grid>    
+
+
+
+<!--       <div data-ng-repeat="accomodation in Accomodations | filter:query | orderObjectBy:sortBy:sortDirection">
+
+
+           <div>HB: {{ accomodation.HB }}</div>
+
+           <div>
+               Check reservation schedule: <button data-ng-click="goToAccomodation(accomodation.AccomodationId)">Reservation</button>
+           </div>
+       </div>-->
+        
+    </div>
+</div>

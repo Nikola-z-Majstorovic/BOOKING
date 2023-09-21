@@ -1,0 +1,144 @@
+﻿<div class="content">
+    <div class="content-body" data-ng-show="!loading">
+
+        <br /><br /><br />
+        <h1 style="text-align:center; width: 100%;">Accomodation Creation</h1>
+        <br /><br /><br />
+
+        <form name="erForm">
+            <div class="control-item" style="min-height: 2em !important;">
+                <label for="accomodationName">Accomodation Name:</label><br />
+                <input id="accomodationName" data-ng-model="accomodation.Name" type="text" name="Name" placeholder="Accomodation Name" required="" />
+                <span data-ng-show="erForm.Name.$error.required" class="required">*</span>
+            </div>   
+
+            <div class="control-item" style="min-height: 2em !important;">
+                <label for="accomodationNoPersons">Accomodation NoPersons:</label><br />
+                <input id="accomodationNoPersons" data-ng-model="accomodation.NoPersons" type="number" name="NoPersons" placeholder="Accomodation NoPersons" required="" />
+                <span data-ng-show="erForm.NoPersons.$error.required" class="required">*</span>
+            </div>   
+					
+            <div class="control-item" style="min-height: 2em !important;">
+                <label for="accomodationPrice">Accomodation Price:</label><br />
+                <input id="accomodationPrice" data-ng-model="accomodation.Price" type="number" name="Price" placeholder="Accomodation Price" required="" />
+                <span data-ng-show="erForm.Price.$error.required" class="required">*</span>
+            </div> 
+
+            <div class="control-item" style="min-height: 2em !important;">
+                <label for="accomodationDescription">Accomodation Description:</label><br />
+                <textarea id="accomodationDescription" data-ng-model="accomodation.Description" name="Description">
+                    Your Accomodation description goes here.
+                </textarea>
+            </div>
+
+            <div class="control-item" style="min-height: 2em !important;">
+                <label for="accomodationAddress">Address:</label><br />
+                <input id="accomodationAddress" data-ng-model="accomodation.Address" type="text" name="Address" placeholder="Accomodation Address" required=""  />
+                <span data-ng-show="erForm.Address.$error.required" class="required">*</span>
+            </div>
+
+            <div class="control-item" style="min-height: 2em !important;">
+                <label for="accomodationType">Accomodation Type:</label><br />
+                <select id="accomodationType" name="Type" required=""
+                    data-ng-model="accomodation.Type" 
+                    data-ng-options="Type.value as Type.name for Type in enumAccomodationType">
+                    <option value="">- Please Select -</option>
+                </select>                
+                <span data-ng-show="erForm.Type.$error.required" class="required">*</span>
+            </div> 
+
+            <div class="control-item" style="min-height: 2em !important;">
+                <label for="accomodationLocation">Accomodation Location:</label><br />
+                <select id="accomodationLocation" name="Location" required=""
+                    data-ng-model="accomodation.Location" 
+                    data-ng-options="Location.Id as Location.LocationName for Location in Locations">
+                    <option value="">- Please Select -</option>
+                </select>                
+                <span data-ng-show="erForm.Location.$error.required" class="required">*</span>
+            </div> 
+
+   <!--         <div class="control-item" style="min-height: 2em !important;">
+                <label for="accomodationCategory">Accomodation Category:</label><br />
+                <select id="accomodationCategory" name="Category" 
+                    data-ng-model="accomodation.Category" 
+                    data-ng-options="Category.value as Category.name for Category in enumAccomodationCategories">
+                    <option value="">- Please Select -</option>
+                </select>                
+                <span data-ng-show="erForm.Category.$error.required" class="required">*</span>
+            </div> -->
+
+            <div class="control-item" style="min-height: 2em !important;">
+                <label for="accomodationWifi">Accomodation Wifi:</label><br />
+                <select id="accomodationWifi" name="Wifi" required=""
+                    data-ng-model="accomodation.Wifi" 
+                    data-ng-options="Wifi.value as Wifi.name for Wifi in enumYesNo">
+                    <option value="">- Please Select -</option>
+                </select>                
+                <span data-ng-show="erForm.Wifi.$error.required" class="required">*</span>
+            </div> 
+
+            <div class="control-item" style="min-height: 2em !important;">
+                <label for="accomodationParking">Accomodation Parking:</label><br />
+                <select id="accomodationParking" name="Parking" required=""
+                    data-ng-model="accomodation.Parking" 
+                    data-ng-options="Parking.value as Parking.name for Parking in enumYesNo">
+                    <option value="">- Please Select -</option>
+                </select>                
+                <span data-ng-show="erForm.Parking.$error.required" class="required">*</span>
+            </div> 
+
+            <div class="control-item" style="min-height: 2em !important;">
+                <label for="accomodationTV">Accomodation TV:</label><br />
+                <select id="accomodationTV" name="TV" required=""
+                    data-ng-model="accomodation.TV" 
+                    data-ng-options="TV.value as TV.name for TV in enumYesNo">
+                    <option value="">- Please Select -</option>
+                </select>                
+                <span data-ng-show="erForm.TV.$error.required" class="required">*</span>
+            </div> 
+
+            <div class="control-item" style="min-height: 2em !important;">
+                <label for="accomodationKitchen">Accomodation Kitchen:</label><br />
+                <select id="accomodationKitchen" name="Kitchen" required=""
+                    data-ng-model="accomodation.Kitchen" 
+                    data-ng-options="Kitchen.value as Kitchen.name for Kitchen in enumYesNo">
+                    <option value="">- Please Select -</option>
+                </select>                
+                <span data-ng-show="erForm.Kitchen.$error.required" class="required">*</span>
+            </div> 
+
+            <div class="control-item" style="min-height: 2em !important;">
+                <label for="accomodationBathroom">Accomodation Bathroom:</label><br />
+                <select id="accomodationBathroom" name="Bathroom" required=""
+                    data-ng-model="accomodation.Bathroom" 
+                    data-ng-options="Bathroom.value as Bathroom.name for Bathroom in enumYesNo">
+                    <option value="">- Please Select -</option>
+                </select>                
+                <span data-ng-show="erForm.Kitchen.$error.required" class="required">*</span>
+            </div> 
+
+            <div class="control-item" style="min-height: 2em !important;">
+                <label for="accomodationHB">Accomodation HB:</label><br />
+                <select id="accomodationHB" name="HB" required=""
+                    data-ng-model="accomodation.HB" 
+                    data-ng-options="HB.value as HB.name for HB in enumHBType">
+                    <option value="">- Please Select -</option>
+                </select>                
+                <span data-ng-show="erForm.HB.$error.required" class="required">*</span>
+            </div> 
+
+
+
+            <div class="buttons-container">
+                <button data-ng-click="erForm.$invalid || saveEditAccomodation();">Update</button>
+                <br />
+                <br />
+                <div class="validation-messages">
+                    <span class="fa-elso-darkblue" data-ng-show="erForm.$valid">Everything is ok you can continue</span>
+                    <span class="fa-elso-darkblue" data-ng-show="erForm.$invalid">Please fill required fields</span>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>

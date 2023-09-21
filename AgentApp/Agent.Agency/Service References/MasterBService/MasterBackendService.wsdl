@@ -1,0 +1,808 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://bookingagency.com/webservices" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://bookingagency.com/webservices" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://bookingagency.com/webservices">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="HelloWorld">
+        <s:complexType />
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckIfAgentUserIsValid">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckIfAgentUserIsValidResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckIfAgentUserIsValidResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReturnAgentCreditelians">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReturnAgentCrediteliansResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnAgentCrediteliansResult" type="tns:MembershipUser" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="MembershipUser">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Comment" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsApproved" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastLoginDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastActivityDate" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ReturnAgentId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReturnAgentIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ReturnAgentIdResult" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReturnBookingAgent">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReturnBookingAgentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnBookingAgentResult" type="tns:BookingAgencyUser" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BookingAgencyUser">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="UserId" type="s1:guid" />
+          <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Surname" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PIB" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsUserApproved" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Roles" type="tns:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateMessageAsSeen">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateMessageAsSeen" type="tns:SentMessage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SentMessage">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReservationId" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="SenderId" type="s1:guid" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="MessageDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="MessageSeen" nillable="true" type="s:unsignedByte" />
+          <s:element minOccurs="0" maxOccurs="1" name="BookingAgencyUser" type="tns:BookingAgencyUser" />
+          <s:element minOccurs="0" maxOccurs="1" name="Reservation" type="tns:Reservation" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Reservation">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserId" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="AccomodationId" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="StartPeriod" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="EndPeriod" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Confirmed" nillable="true" type="s:unsignedByte" />
+          <s:element minOccurs="1" maxOccurs="1" name="CommentConsumed" nillable="true" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="RatingConsumed" nillable="true" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Accomodation" type="tns:Accomodation" />
+          <s:element minOccurs="0" maxOccurs="1" name="BookingAgencyUser" type="tns:BookingAgencyUser" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Accomodation">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="AccomodationId" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="Type" type="s:unsignedByte" />
+          <s:element minOccurs="1" maxOccurs="1" name="Location" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Category" nillable="true" type="s:unsignedByte" />
+          <s:element minOccurs="1" maxOccurs="1" name="NoPersons" type="s:unsignedByte" />
+          <s:element minOccurs="1" maxOccurs="1" name="Parking" nillable="true" type="s:unsignedByte" />
+          <s:element minOccurs="1" maxOccurs="1" name="Wifi" nillable="true" type="s:unsignedByte" />
+          <s:element minOccurs="1" maxOccurs="1" name="HB" nillable="true" type="s:unsignedByte" />
+          <s:element minOccurs="1" maxOccurs="1" name="TV" nillable="true" type="s:unsignedByte" />
+          <s:element minOccurs="1" maxOccurs="1" name="Kitchen" nillable="true" type="s:unsignedByte" />
+          <s:element minOccurs="1" maxOccurs="1" name="Bathroom" nillable="true" type="s:unsignedByte" />
+          <s:element minOccurs="1" maxOccurs="1" name="Price" type="s:unsignedByte" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TravelLocation" type="tns:TravelLocation" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TravelLocation">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="LocationName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateMessageAsSeenResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SendMessageFromAgent">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="message" type="tns:SentMessage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendMessageFromAgentResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="CreateReservationFromAgent">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="reservation" type="tns:Reservation" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateReservationFromAgentResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="CreateAccomodationAndAssignOwner">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="accomodation" type="tns:Accomodation" />
+            <s:element minOccurs="1" maxOccurs="1" name="ownerId" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateAccomodationAndAssignOwnerResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UpdateAccomodation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="accomodation" type="tns:Accomodation" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateAccomodationResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetCommentsForOwnerId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ownerId" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCommentsForOwnerIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCommentsForOwnerIdResult" type="tns:ArrayOfComment" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfComment">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Comment" nillable="true" type="tns:Comment" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Comment">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="AccomodationId" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserId" type="s1:guid" />
+          <s:element minOccurs="0" maxOccurs="1" name="CommentContent" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Approved" type="s:unsignedByte" />
+          <s:element minOccurs="1" maxOccurs="1" name="CommentDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="BookingAgencyUser" type="tns:BookingAgencyUser" />
+          <s:element minOccurs="0" maxOccurs="1" name="Accomodation" type="tns:Accomodation" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetReservationsForOwnerId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ownerId" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetReservationsForOwnerIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetReservationsForOwnerIdResult" type="tns:ArrayOfReservation" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfReservation">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Reservation" nillable="true" type="tns:Reservation" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetSentMessagesForOwnerId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ownerId" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSentMessagesForOwnerIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSentMessagesForOwnerIdResult" type="tns:ArrayOfSentMessage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSentMessage">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SentMessage" nillable="true" type="tns:SentMessage" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetRatingsForOwnerAccomodations">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ownerId" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRatingsForOwnerAccomodationsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRatingsForOwnerAccomodationsResult" type="tns:ArrayOfRating" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfRating">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Rating" nillable="true" type="tns:Rating" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Rating">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="AccomodationId" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserId" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="RatingMark" type="s:unsignedByte" />
+          <s:element minOccurs="0" maxOccurs="1" name="BookingAgencyUser" type="tns:BookingAgencyUser" />
+          <s:element minOccurs="0" maxOccurs="1" name="Accomodation" type="tns:Accomodation" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAllAccomodationUsers">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllAccomodationUsersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllAccomodationUsersResult" type="tns:ArrayOfBookingAgencyUser" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfBookingAgencyUser">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="BookingAgencyUser" nillable="true" type="tns:BookingAgencyUser" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SaveImageForAccomodation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ai" type="tns:AccomodationImage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AccomodationImage">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ImageId" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="AccomodationId" type="s1:guid" />
+          <s:element minOccurs="0" maxOccurs="1" name="ImageName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Accomodation" type="tns:Accomodation" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SaveImageForAccomodationResponse">
+        <s:complexType />
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckIfAgentUserIsValidSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckIfAgentUserIsValid" />
+  </wsdl:message>
+  <wsdl:message name="CheckIfAgentUserIsValidSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckIfAgentUserIsValidResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReturnAgentCrediteliansSoapIn">
+    <wsdl:part name="parameters" element="tns:ReturnAgentCreditelians" />
+  </wsdl:message>
+  <wsdl:message name="ReturnAgentCrediteliansSoapOut">
+    <wsdl:part name="parameters" element="tns:ReturnAgentCrediteliansResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReturnAgentIdSoapIn">
+    <wsdl:part name="parameters" element="tns:ReturnAgentId" />
+  </wsdl:message>
+  <wsdl:message name="ReturnAgentIdSoapOut">
+    <wsdl:part name="parameters" element="tns:ReturnAgentIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReturnBookingAgentSoapIn">
+    <wsdl:part name="parameters" element="tns:ReturnBookingAgent" />
+  </wsdl:message>
+  <wsdl:message name="ReturnBookingAgentSoapOut">
+    <wsdl:part name="parameters" element="tns:ReturnBookingAgentResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateMessageAsSeenSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateMessageAsSeen" />
+  </wsdl:message>
+  <wsdl:message name="UpdateMessageAsSeenSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateMessageAsSeenResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendMessageFromAgentSoapIn">
+    <wsdl:part name="parameters" element="tns:SendMessageFromAgent" />
+  </wsdl:message>
+  <wsdl:message name="SendMessageFromAgentSoapOut">
+    <wsdl:part name="parameters" element="tns:SendMessageFromAgentResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateReservationFromAgentSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateReservationFromAgent" />
+  </wsdl:message>
+  <wsdl:message name="CreateReservationFromAgentSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateReservationFromAgentResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateAccomodationAndAssignOwnerSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateAccomodationAndAssignOwner" />
+  </wsdl:message>
+  <wsdl:message name="CreateAccomodationAndAssignOwnerSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateAccomodationAndAssignOwnerResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAccomodationSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateAccomodation" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAccomodationSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateAccomodationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCommentsForOwnerIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCommentsForOwnerId" />
+  </wsdl:message>
+  <wsdl:message name="GetCommentsForOwnerIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCommentsForOwnerIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetReservationsForOwnerIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetReservationsForOwnerId" />
+  </wsdl:message>
+  <wsdl:message name="GetReservationsForOwnerIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetReservationsForOwnerIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSentMessagesForOwnerIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSentMessagesForOwnerId" />
+  </wsdl:message>
+  <wsdl:message name="GetSentMessagesForOwnerIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSentMessagesForOwnerIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRatingsForOwnerAccomodationsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRatingsForOwnerAccomodations" />
+  </wsdl:message>
+  <wsdl:message name="GetRatingsForOwnerAccomodationsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRatingsForOwnerAccomodationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllAccomodationUsersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllAccomodationUsers" />
+  </wsdl:message>
+  <wsdl:message name="GetAllAccomodationUsersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllAccomodationUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveImageForAccomodationSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveImageForAccomodation" />
+  </wsdl:message>
+  <wsdl:message name="SaveImageForAccomodationSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveImageForAccomodationResponse" />
+  </wsdl:message>
+  <wsdl:portType name="MasterBackendServiceSoap">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckIfAgentUserIsValid">
+      <wsdl:input message="tns:CheckIfAgentUserIsValidSoapIn" />
+      <wsdl:output message="tns:CheckIfAgentUserIsValidSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReturnAgentCreditelians">
+      <wsdl:input message="tns:ReturnAgentCrediteliansSoapIn" />
+      <wsdl:output message="tns:ReturnAgentCrediteliansSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReturnAgentId">
+      <wsdl:input message="tns:ReturnAgentIdSoapIn" />
+      <wsdl:output message="tns:ReturnAgentIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReturnBookingAgent">
+      <wsdl:input message="tns:ReturnBookingAgentSoapIn" />
+      <wsdl:output message="tns:ReturnBookingAgentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMessageAsSeen">
+      <wsdl:input message="tns:UpdateMessageAsSeenSoapIn" />
+      <wsdl:output message="tns:UpdateMessageAsSeenSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMessageFromAgent">
+      <wsdl:input message="tns:SendMessageFromAgentSoapIn" />
+      <wsdl:output message="tns:SendMessageFromAgentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateReservationFromAgent">
+      <wsdl:input message="tns:CreateReservationFromAgentSoapIn" />
+      <wsdl:output message="tns:CreateReservationFromAgentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateAccomodationAndAssignOwner">
+      <wsdl:input message="tns:CreateAccomodationAndAssignOwnerSoapIn" />
+      <wsdl:output message="tns:CreateAccomodationAndAssignOwnerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAccomodation">
+      <wsdl:input message="tns:UpdateAccomodationSoapIn" />
+      <wsdl:output message="tns:UpdateAccomodationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCommentsForOwnerId">
+      <wsdl:input message="tns:GetCommentsForOwnerIdSoapIn" />
+      <wsdl:output message="tns:GetCommentsForOwnerIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReservationsForOwnerId">
+      <wsdl:input message="tns:GetReservationsForOwnerIdSoapIn" />
+      <wsdl:output message="tns:GetReservationsForOwnerIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSentMessagesForOwnerId">
+      <wsdl:input message="tns:GetSentMessagesForOwnerIdSoapIn" />
+      <wsdl:output message="tns:GetSentMessagesForOwnerIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRatingsForOwnerAccomodations">
+      <wsdl:input message="tns:GetRatingsForOwnerAccomodationsSoapIn" />
+      <wsdl:output message="tns:GetRatingsForOwnerAccomodationsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAccomodationUsers">
+      <wsdl:input message="tns:GetAllAccomodationUsersSoapIn" />
+      <wsdl:output message="tns:GetAllAccomodationUsersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveImageForAccomodation">
+      <wsdl:input message="tns:SaveImageForAccomodationSoapIn" />
+      <wsdl:output message="tns:SaveImageForAccomodationSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MasterBackendServiceSoap" type="tns:MasterBackendServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://bookingagency.com/webservices/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckIfAgentUserIsValid">
+      <soap:operation soapAction="http://bookingagency.com/webservices/CheckIfAgentUserIsValid" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReturnAgentCreditelians">
+      <soap:operation soapAction="http://bookingagency.com/webservices/ReturnAgentCreditelians" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReturnAgentId">
+      <soap:operation soapAction="http://bookingagency.com/webservices/ReturnAgentId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReturnBookingAgent">
+      <soap:operation soapAction="http://bookingagency.com/webservices/ReturnBookingAgent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMessageAsSeen">
+      <soap:operation soapAction="http://bookingagency.com/webservices/UpdateMessageAsSeen" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessageFromAgent">
+      <soap:operation soapAction="http://bookingagency.com/webservices/SendMessageFromAgent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateReservationFromAgent">
+      <soap:operation soapAction="http://bookingagency.com/webservices/CreateReservationFromAgent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateAccomodationAndAssignOwner">
+      <soap:operation soapAction="http://bookingagency.com/webservices/CreateAccomodationAndAssignOwner" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAccomodation">
+      <soap:operation soapAction="http://bookingagency.com/webservices/UpdateAccomodation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCommentsForOwnerId">
+      <soap:operation soapAction="http://bookingagency.com/webservices/GetCommentsForOwnerId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReservationsForOwnerId">
+      <soap:operation soapAction="http://bookingagency.com/webservices/GetReservationsForOwnerId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSentMessagesForOwnerId">
+      <soap:operation soapAction="http://bookingagency.com/webservices/GetSentMessagesForOwnerId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRatingsForOwnerAccomodations">
+      <soap:operation soapAction="http://bookingagency.com/webservices/GetRatingsForOwnerAccomodations" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAccomodationUsers">
+      <soap:operation soapAction="http://bookingagency.com/webservices/GetAllAccomodationUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveImageForAccomodation">
+      <soap:operation soapAction="http://bookingagency.com/webservices/SaveImageForAccomodation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MasterBackendServiceSoap12" type="tns:MasterBackendServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://bookingagency.com/webservices/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckIfAgentUserIsValid">
+      <soap12:operation soapAction="http://bookingagency.com/webservices/CheckIfAgentUserIsValid" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReturnAgentCreditelians">
+      <soap12:operation soapAction="http://bookingagency.com/webservices/ReturnAgentCreditelians" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReturnAgentId">
+      <soap12:operation soapAction="http://bookingagency.com/webservices/ReturnAgentId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReturnBookingAgent">
+      <soap12:operation soapAction="http://bookingagency.com/webservices/ReturnBookingAgent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMessageAsSeen">
+      <soap12:operation soapAction="http://bookingagency.com/webservices/UpdateMessageAsSeen" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessageFromAgent">
+      <soap12:operation soapAction="http://bookingagency.com/webservices/SendMessageFromAgent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateReservationFromAgent">
+      <soap12:operation soapAction="http://bookingagency.com/webservices/CreateReservationFromAgent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateAccomodationAndAssignOwner">
+      <soap12:operation soapAction="http://bookingagency.com/webservices/CreateAccomodationAndAssignOwner" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAccomodation">
+      <soap12:operation soapAction="http://bookingagency.com/webservices/UpdateAccomodation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCommentsForOwnerId">
+      <soap12:operation soapAction="http://bookingagency.com/webservices/GetCommentsForOwnerId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReservationsForOwnerId">
+      <soap12:operation soapAction="http://bookingagency.com/webservices/GetReservationsForOwnerId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSentMessagesForOwnerId">
+      <soap12:operation soapAction="http://bookingagency.com/webservices/GetSentMessagesForOwnerId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRatingsForOwnerAccomodations">
+      <soap12:operation soapAction="http://bookingagency.com/webservices/GetRatingsForOwnerAccomodations" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAccomodationUsers">
+      <soap12:operation soapAction="http://bookingagency.com/webservices/GetAllAccomodationUsers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveImageForAccomodation">
+      <soap12:operation soapAction="http://bookingagency.com/webservices/SaveImageForAccomodation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MasterBackendService">
+    <wsdl:port name="MasterBackendServiceSoap" binding="tns:MasterBackendServiceSoap">
+      <soap:address location="http://localhost:8889/MasterBackendService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MasterBackendServiceSoap12" binding="tns:MasterBackendServiceSoap12">
+      <soap12:address location="http://localhost:8889/MasterBackendService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

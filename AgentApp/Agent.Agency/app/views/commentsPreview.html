@@ -1,0 +1,15 @@
+﻿<div class="content">
+    <div class="content-body" data-ng-show="!loading">
+        <div data-ng-show="comments.length > 0">
+            <br />
+            <h1 style="text-align:center;">Comments</h1>
+            <br /><br />
+            <div class="commentBlock" data-ng-repeat="comment in comments" data-ng-if="comment.Approved == 1">                
+                <div class="comentator">{{comment.BookingAgencyUser.Username}}</div>
+                <div class="commentDate">{{comment.CommentDate | date: 'MM/dd/yyyy' }}</div>
+                <br /><br />
+                <div class="contentOfComment">{{comment.CommentContent}}</div>
+            </div>
+        </div>
+    </div>
+</div>
